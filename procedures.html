@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mémo des procédures : du dialogue social à la justice · Formation CSE SSCT · Destination Prévention</title>
+<meta name="description" content="Mémo pas à pas pour les élus du CSE : accompagner un salarié en souffrance (RPS), déclencher un danger grave et imminent sur une machine défaillante, réagir à un défaut d'information ou de consultation. Toujours le dialogue d'abord, l'inspection du travail et le juge en dernier recours. Chaque étape est reliée à sa source sur Légifrance.">
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+<style>
+/* ===== Spécifique à la page Mémo des procédures ===== */
+/* Échelle des 5 niveaux */
+.ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0 6px;counter-reset:rung}
+@media(max-width:820px){.ladder{grid-template-columns:1fr}}
+.rung{position:relative;border-radius:16px;padding:16px 16px 16px;color:#fff;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:6px;transition:.25s}
+.rung:hover{transform:translateY(-4px)}
+.rung .rn{font-family:"Plus Jakarta Sans";font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.85}
+.rung .rt{font-family:"Plus Jakarta Sans";font-weight:800;font-size:1.05rem;line-height:1.2}
+.rung .rd{font-size:.86rem;opacity:.95;line-height:1.45}
+.rung .ri{font-size:1.35rem;opacity:.9;margin-bottom:2px}
+.rung.l1{background:linear-gradient(135deg,#3fd08c,var(--green))}
+.rung.l2{background:linear-gradient(135deg,var(--teal-2),var(--teal-d))}
+.rung.l3{background:linear-gradient(135deg,#eea23a,#bf6d0a)}
+.rung.l4{background:linear-gradient(135deg,#8a96ff,var(--indigo))}
+.rung.l5{background:linear-gradient(135deg,#f3766c,var(--red))}
+.rung:after{content:"\2192";position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:1.3rem;color:var(--muted);z-index:2}
+.rung:last-child:after{content:none}
+@media(max-width:820px){.rung:after{content:"\2193";right:auto;left:50%;top:auto;bottom:-16px;transform:translateX(-50%)}}
+
+/* Pastilles de niveau réutilisées dans les parcours */
+.lvl{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;border-radius:7px;padding:3px 9px;color:#fff;vertical-align:middle}
+.lvl.l1{background:var(--green)}.lvl.l2{background:var(--teal-2)}.lvl.l3{background:#b86a0a}.lvl.l4{background:var(--indigo)}.lvl.l5{background:var(--red)}
+
+/* Trois réflexes */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0 4px}
+@media(max-width:680px){.trio{grid-template-columns:1fr}}
+.trio .t{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fbfdfd;text-align:center}
+.trio .t i{font-size:1.6rem;color:var(--teal-2);margin-bottom:8px;display:block}
+.trio .t b{display:block;font-family:"Plus Jakarta Sans";font-size:1.02rem;margin-bottom:4px}
+.trio .t span{font-size:.9rem;color:var(--muted)}
+
+/* Sélecteur des cas */
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+@media(max-width:760px){.cases{grid-template-columns:1fr}}
+.casebtn{border:2px solid var(--line);background:#fff;border-radius:18px;padding:18px;text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);transition:.22s;display:flex;flex-direction:column;gap:8px}
+.casebtn:hover{border-color:#bfe0e2;transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.casebtn .ci{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;font-size:1.25rem;box-shadow:var(--shadow-sm)}
+.casebtn .ct{font-family:"Plus Jakarta Sans";font-weight:800;font-size:1.05rem;line-height:1.2}
+.casebtn .cd{font-size:.88rem;color:var(--muted)}
+.casebtn.on{border-color:var(--teal-2);background:var(--teal-l)}
+.casebtn.on .cd{color:#27474d}
+.casepanel{display:none;animation:fade .4s ease}
+.casepanel.show{display:block}
+
+/* Deux volets (individuel / collectif) */
+.volets{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 6px}
+@media(max-width:820px){.volets{grid-template-columns:1fr}}
+.volet{border-radius:16px;padding:16px 18px;border:1px solid}
+.volet.a{background:linear-gradient(135deg,var(--coral-l),#fff);border-color:#f6cfc9}
+.volet.b{background:linear-gradient(135deg,var(--teal-l),#fff);border-color:#bfe0e2}
+.volet h4{margin:0 0 6px;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.volet p{margin:0;font-size:.92rem;color:#3a5258}
+
+/* Parcours pas à pas */
+.flow{position:relative;margin:14px 0 4px}
+.flow:before{content:"";position:absolute;left:23px;top:10px;bottom:10px;width:3px;background:linear-gradient(var(--green),var(--teal-2) 35%,#c9780f 60%,var(--indigo) 80%,var(--red));border-radius:3px}
+.fstep{position:relative;padding:0 0 16px 62px}
+.fstep .fdot{position:absolute;left:9px;top:2px;width:32px;height:32px;border-radius:50%;background:#fff;border:3px solid var(--teal-2);color:var(--teal-d);font-weight:800;display:grid;place-items:center;font-size:.9rem;z-index:1}
+.fstep.l1 .fdot{border-color:var(--green)}.fstep.l2 .fdot{border-color:var(--teal-2)}.fstep.l3 .fdot{border-color:#c9780f}.fstep.l4 .fdot{border-color:var(--indigo)}.fstep.l5 .fdot{border-color:var(--red)}
+.fcard{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;transition:.2s}
+.fcard:hover{box-shadow:var(--shadow-sm)}
+.fcard>button{width:100%;text-align:left;border:none;background:#fbfdfd;font-family:inherit;color:var(--ink);padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fcard>button .ft{font-family:"Plus Jakarta Sans";font-weight:800;font-size:1.02rem;flex:1;min-width:200px}
+.fcard>button .chev{margin-left:auto;transition:.3s;color:var(--muted)}
+.fcard.open>button .chev{transform:rotate(180deg)}
+.fcard .fbody{display:none;padding:4px 16px 16px;color:#2f464c;font-size:.95rem}
+.fcard.open .fbody{display:block;animation:fade .35s ease}
+.fbody p{margin:8px 0}
+.fbody ul{margin:6px 0 8px;padding-left:20px}
+.fbody li{margin:3px 0}
+.fbody h5{margin:14px 0 6px;font-size:.92rem;text-transform:uppercase;letter-spacing:.6px;color:var(--teal-d)}
+.fbody .who{display:inline-block;font-size:.78rem;font-weight:700;color:var(--muted);background:var(--bg);border-radius:6px;padding:2px 8px;margin-right:6px}
+
+/* Aiguillage : ça marche / ça ne marche pas */
+.branch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 4px}
+@media(max-width:640px){.branch{grid-template-columns:1fr}}
+.branch .b{border-radius:12px;padding:12px 14px;border:1px solid;font-size:.9rem}
+.branch .ok{background:var(--green-l);border-color:#bfe3cd}
+.branch .ko{background:var(--amber-l);border-color:#f0debb}
+.branch .b b{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.branch .ok b{color:#177a4d}.branch .ko b{color:#a4710c}
+
+/* Liste de preuves cochable */
+.chk-list{list-style:none;margin:8px 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:640px){.chk-list{grid-template-columns:1fr}}
+.chk-list li{margin:0}
+.chk-list label{display:flex;gap:9px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer;background:#fff;font-size:.9rem;transition:.18s}
+.chk-list label:hover{border-color:#bfe0e2;background:var(--teal-l)}
+.chk-list input{margin-top:3px;accent-color:var(--teal-2);width:16px;height:16px;flex:none}
+.chk-list input:checked+span{text-decoration:line-through;color:var(--muted)}
+.chk-meta{font-size:.82rem;color:var(--muted);margin:6px 0 0}
+
+/* Modèles copiables */
+.modele{border:1px solid var(--line);border-left:5px solid var(--teal-2);border-radius:0 14px 14px 0;background:linear-gradient(135deg,#fbfdfd,#fff);padding:14px 16px;margin:12px 0}
+.modele .mh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.modele .mh b{font-family:"Plus Jakarta Sans";color:var(--teal-d);flex:1;min-width:180px}
+.modele pre{margin:0;white-space:pre-wrap;font-family:"Inter",sans-serif;font-size:.9rem;line-height:1.6;color:#22343a;background:#fff;border:1px dashed var(--line);border-radius:10px;padding:12px 14px}
+.modele pre mark{background:var(--amber-l);color:#7a5406;border-radius:3px;padding:0 3px;font-style:italic}
+.btn-sm{font-size:.82rem;padding:8px 13px;border-radius:9px}
+
+/* Grille acteurs */
+.acteurs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
+@media(max-width:680px){.acteurs{grid-template-columns:1fr}}
+.acteur{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fbfdfd;display:flex;gap:12px}
+.acteur .ai{flex:none;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;color:#fff;font-size:1.05rem}
+.acteur b{display:block;margin-bottom:2px}
+.acteur span{font-size:.88rem;color:#3a5258}
+.acteur .quand{display:block;font-size:.78rem;font-weight:700;color:var(--teal-2);margin-top:5px;text-transform:uppercase;letter-spacing:.4px}
+
+/* Fiabilité */
+.fiab{display:flex;gap:14px;align-items:flex-start;border:1px solid #bfe3cd;background:var(--green-l);border-radius:14px;padding:14px 16px;margin-top:10px;font-size:.9rem}
+.fiab .score{flex:none;font-family:"Plus Jakarta Sans";font-weight:800;font-size:1.5rem;color:#177a4d;line-height:1}
+.fiab .score small{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.kv-ul{margin:6px 0 0;padding-left:18px}
+.kv-ul li{margin:2px 0}
+.tag-src{display:inline-block;font-size:.72rem;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:var(--muted);margin-left:4px;vertical-align:middle}
+/* Logigrammes */
+.logi{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px 16px 12px;margin:14px 0 18px;box-shadow:var(--shadow-sm)}
+.logi-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.logi-bar b{display:block;font-family:"Plus Jakarta Sans";font-size:1.02rem;color:var(--teal-d)}
+.logi-actions{display:flex;gap:8px;flex-wrap:wrap}
+.logi-svg{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.logi-svg svg{display:block;width:100%;height:auto}
+.logi-hint{margin:8px 0 0;font-size:.82rem;color:var(--muted)}
+#logi-overlay{position:fixed;inset:0;background:rgba(16,36,42,.97);z-index:400;display:none;flex-direction:column}
+#logi-overlay.show{display:flex}
+#logi-overlay .ov-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#fff;flex-wrap:wrap}
+#logi-overlay .ov-bar b{flex:1;font-family:"Plus Jakarta Sans";min-width:200px}
+#logi-overlay .ov-body{flex:1;overflow:auto;padding:0 16px 16px;-webkit-overflow-scrolling:touch}
+#logi-overlay .ov-body svg{display:block;width:var(--zoom,1400px);max-width:none;height:auto;margin:0 auto;background:#fff;border-radius:14px}
+@media(max-width:560px){.logi-actions .btn span{display:none}}
+@media print{#logi-overlay{display:none!important}.logi{break-inside:avoid}}
+@media print{.casepanel{display:block!important}.fcard .fbody{display:block!important}nav.bar,.home-fab,.btt{display:none!important}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav class="bar" id="nav">
+  <div class="wrap">
+    <a class="lg" href="index.html"><img class="mark" src="logo.svg" alt=""> Formation CSE SSCT</a>
+    <div class="links">
+      <a href="#principe">La règle d'or</a>
+      <a href="#cas">Les 3 situations</a>
+      <a href="#ecrits">Les écrits</a>
+      <a href="#acteurs">Qui appeler</a>
+      <a href="#regl">Réglementation</a>
+      <a href="#fiabilite">Fiabilité</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">← Sommaire de la formation</a></div>
+    <div class="logo-wrap"><img src="logo.svg" alt="Destination Prévention" style="width:96px;height:96px"></div>
+    <span class="kick">Module 11 · Mémo des procédures</span>
+    <h1>Du dialogue social <span class="hl">à la justice</span></h1>
+    <p class="sub">Un salarié qui va mal, une machine dangereuse, un employeur qui ne donne pas les informations : trois situations réelles, déroulées pas à pas. On commence toujours par parler. On écrit ensuite. L'inspection du travail et le juge n'arrivent qu'à la fin, et seulement si le reste a échoué.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">3</div><div class="l">situations, chacune avec son logigramme</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">niveaux, du « off » au tribunal</div></div>
+      <div class="stat"><div class="n">30+</div><div class="l">articles reliés à Légifrance</div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== LA RÈGLE D'OR ===== -->
+  <section id="principe">
+    <div class="sec-head">
+      <div class="sec-ico t-teal"><i class="fa-solid fa-stairs"></i></div>
+      <div><div class="kicker">La règle d'or</div><h2>Une escalade graduée, jamais un saut</h2></div>
+    </div>
+    <p class="lead">Quelle que soit la situation, la démarche d'un élu suit la même échelle. Chaque niveau se tente avant le suivant, et chaque niveau prépare le suivant : ce que vous écrivez au niveau 2 est la preuve dont vous aurez besoin au niveau 5. Sauter un barreau, c'est perdre le bénéfice de la procédure et fragiliser le dossier.</p>
+
+    <div class="ladder">
+      <div class="rung l1"><i class="ri fa-solid fa-comments"></i><span class="rn">Niveau 1</span><span class="rt">Le dialogue «&nbsp;en off&nbsp;»</span><span class="rd">Un échange direct avec le manager, la RH ou le président du CSE. Sans formalisme, pour obtenir vite une mesure concrète. C'est là que se règlent la majorité des situations.</span></div>
+      <div class="rung l2"><i class="ri fa-solid fa-envelope-open-text"></i><span class="rn">Niveau 2</span><span class="rt">L'écrit qui trace</span><span class="rd">Le mail de confirmation ou le mail miroir. Il ne change pas de ton, il fixe ce qui a été dit, demandé et promis, avec une date. Sans écrit, rien n'a existé.</span></div>
+      <div class="rung l3"><i class="ri fa-solid fa-bell"></i><span class="rn">Niveau 3</span><span class="rt">La procédure légale</span><span class="rd">Droit d'alerte, inscription au registre, résolution du CSE, déclaration au procès-verbal. L'employeur est désormais tenu par des délais et des obligations précises.</span></div>
+      <div class="rung l4"><i class="ri fa-solid fa-user-tie"></i><span class="rn">Niveau 4</span><span class="rt">L'inspection du travail</span><span class="rd">L'agent de contrôle est saisi, informé ou invité à siéger. Il constate, observe, met en demeure ou saisit le juge. Il agit d'autant mieux que le dossier est prêt.</span></div>
+      <div class="rung l5"><i class="ri fa-solid fa-scale-balanced"></i><span class="rn">Niveau 5</span><span class="rt">La justice</span><span class="rd">Conseil de prud'hommes, tribunal judiciaire, procureur. Le juge tranche avec ce que vous lui apportez : vos écrits des niveaux 2 et 3, rien d'autre.</span></div>
+    </div>
+
+    <div class="note n-info">
+      <span class="ni"><i class="fa-solid fa-lightbulb" style="color:var(--teal-2)"></i></span>
+      <div>
+        <span class="tag">En clair, pour un nouvel élu</span>
+        <p>On ne « va pas aux prud'hommes » ni « à l'inspection » sur un coup de colère. On y va parce que l'on a parlé, écrit, alerté, et que l'employeur n'a pas bougé. Le juge et l'inspecteur vous croiront sur pièces : datez, écrivez, conservez. Une exception, et une seule : le <b>danger grave et imminent</b>, où la sécurité passe avant le formalisme (voir le cas nº 2).</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Les trois réflexes qui valent à tous les niveaux</h3>
+    <div class="trio">
+      <div class="t"><i class="fa-solid fa-calendar-day"></i><b>Dater</b><span>Chaque fait, chaque échange, chaque promesse : jour, heure, lieu, personnes présentes. Le journal de bord de l'élu commence le premier jour.</span></div>
+      <div class="t"><i class="fa-solid fa-pen-nib"></i><b>Écrire</b><span>Un oral se confirme toujours par un mail dans la journée. Copie à soi-même, et au secrétaire du CSE quand le sujet dépasse la personne.</span></div>
+      <div class="t"><i class="fa-solid fa-box-archive"></i><b>Conserver</b><span>Un dossier par situation : mails, photos, registre, comptes rendus, procès-verbaux. Hors de la messagerie professionnelle, qui peut être fermée du jour au lendemain.</span></div>
+    </div>
+
+    <div class="note n-warn">
+      <span class="ni">⚠️</span>
+      <div>
+        <span class="tag">Les limites de l'élu</span>
+        <p>L'élu n'est ni médecin, ni psychologue, ni avocat, ni inspecteur. Il ne diagnostique pas, il ne promet pas un résultat, il ne mène pas d'enquête seul dans le dos de l'employeur. Sa force est ailleurs : il connaît le travail réel, il a des droits que le salarié isolé n'a pas, et il sait à qui passer le relais. La protection du mandat n'est pas une immunité (le support de formation le rappelle : un élu peut être poursuivi pour des faits commis dans l'exercice du mandat).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LES TROIS SITUATIONS ===== -->
+  <section id="cas">
+    <div class="sec-head">
+      <div class="sec-ico t-coral"><i class="fa-solid fa-route"></i></div>
+      <div><div class="kicker">Pas à pas</div><h2>Trois situations, trois parcours</h2></div>
+    </div>
+    <p class="lead">Choisissez la situation qui ressemble à la vôtre. Chaque parcours suit l'échelle des cinq niveaux, avec un aiguillage à chaque étape : si ça marche, on s'arrête là et on trace ; si ça ne marche pas, on monte d'un niveau. Le logigramme en tête de chaque parcours donne la vue d'ensemble, en plein écran ou à télécharger pour l'afficher en salle ; cliquez ensuite sur une étape pour l'ouvrir. Les cases à cocher restent dans votre navigateur, rien n'est transmis.</p>
+
+    <div class="cases" role="tablist">
+      <button class="casebtn on" data-case="rps" role="tab" aria-selected="true">
+        <span class="ci t-coral"><i class="fa-solid fa-heart-crack"></i></span>
+        <span class="ct">Cas nº 1 · Un salarié qui va mal</span>
+        <span class="cd">Risques psychosociaux, surcharge, management dégradé, harcèlement possible. Deux volets : accompagner la personne, améliorer la situation de travail du collectif.</span>
+      </button>
+      <button class="casebtn" data-case="dgi" role="tab" aria-selected="false">
+        <span class="ci t-red"><i class="fa-solid fa-gears"></i></span>
+        <span class="ct">Cas nº 2 · Une machine défaillante</span>
+        <span class="cd">Carter retiré, arrêt d'urgence hors service, protection shuntée. Le danger grave et imminent, et comment faire venir l'inspecteur du travail au CSE.</span>
+      </button>
+      <button class="casebtn" data-case="info" role="tab" aria-selected="false">
+        <span class="ci t-indigo"><i class="fa-solid fa-folder-minus"></i></span>
+        <span class="ct">Cas nº 3 · Pas d'informations</span>
+        <span class="cd">Une consultation sans documents, des pièces incomplètes, un refus de communiquer. Pourquoi le CSE ne peut pas rendre d'avis, et comment le dire sans se faire piéger par le délai.</span>
+      </button>
+    </div>
+
+    <!-- ================= CAS 1 : RPS ================= -->
+    <div class="casepanel show" id="case-rps">
+      <div class="note n-ex">
+        <span class="ni"><i class="fa-solid fa-user" style="color:var(--indigo)"></i></span>
+        <div>
+          <span class="tag">La situation</span>
+          <p>Camille travaille en open space depuis la fusion de deux services. Dix dossiers de plus, un effectif en baisse, des objectifs comparés chaque semaine devant l'équipe, un manager qui coupe la parole et « oublie » de la convoquer aux réunions. Elle dort mal, pleure dans sa voiture avant d'entrer, prend un traitement. Elle vient vous voir « pour parler », en précisant qu'elle ne veut « surtout pas d'histoires ». Un collègue du même plateau a fait un malaise le mois dernier.</p>
+        </div>
+      </div>
+
+      <div class="logi" id="logi-rps">
+        <div class="logi-bar">
+          <div><span class="kicker" style="font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-2)">Logigramme</span><b>Le parcours en un coup d'œil : deux volets, du off au juge</b></div>
+          <div class="logi-actions">
+            <button class="btn btn-ghost btn-sm" data-logi-zoom="logi-rps"><i class="fa-solid fa-expand"></i> Plein écran</button>
+            <button class="btn btn-ghost btn-sm" data-logi-png="logi-rps"><i class="fa-solid fa-image"></i> Image PNG</button>
+            <button class="btn btn-ghost btn-sm" data-logi-svg="logi-rps"><i class="fa-solid fa-download"></i> SVG</button>
+          </div>
+        </div>
+        <div class="logi-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 1034" role="img" aria-label="Logigramme du cas nº 1 : un salarié qui va mal, volet individuel et volet collectif" style="font-family:Inter,-apple-system,sans-serif;width:100%;height:auto;display:block"><title>Logigramme du cas nº 1 : un salarié qui va mal, volet individuel et volet collectif</title><defs><marker id="arr-rps" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b7178"/></marker></defs><rect width="1060" height="1034" fill="#fff" rx="14"/><text x="24" y="30" font-size="17" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="24" dy="0">Cas nº 1 · Un salarié qui va mal : les deux volets avancent ensemble</tspan></text><rect x="24" y="44" width="12" height="12" rx="3" fill="#1faa6b"/><text x="41" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="41" dy="0">N1 · OFF</tspan></text><rect x="117.6" y="44" width="12" height="12" rx="3" fill="#15909f"/><text x="134.6" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="134.6" dy="0">N2 · ÉCRIT</tspan></text><rect x="225.6" y="44" width="12" height="12" rx="3" fill="#c9780f"/><text x="242.6" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="242.6" dy="0">N3 · PROCÉDURE</tspan></text><rect x="362.4" y="44" width="12" height="12" rx="3" fill="#5b6cff"/><text x="379.4" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="379.4" dy="0">N4 · INSPECTION</tspan></text><rect x="506.4" y="44" width="12" height="12" rx="3" fill="#d8453a"/><text x="523.4" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="523.4" dy="0">N5 · JUSTICE</tspan></text><rect x="350.0" y="70" width="360" height="36" rx="18" fill="#10242a"/><text x="530" y="93" font-size="12.5" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="530" dy="0">Un salarié se confie à un élu</tspan></text><rect x="20" y="130" width="500" height="884" rx="16" fill="#fbfdfd" stroke="#dbe9ea"/><rect x="20" y="130" width="500" height="34" rx="16" fill="#ff6b5d"/><rect x="20" y="148" width="500" height="16" fill="#ff6b5d"/><text x="270.0" y="153" font-size="13" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="270.0" dy="0">VOLET A · ACCOMPAGNER LA PERSONNE</tspan></text><rect x="540" y="130" width="500" height="884" rx="16" fill="#fbfdfd" stroke="#dbe9ea"/><rect x="540" y="130" width="500" height="34" rx="16" fill="#15909f"/><rect x="540" y="148" width="500" height="16" fill="#15909f"/><text x="790.0" y="153" font-size="13" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="790.0" dy="0">VOLET B · AMÉLIORER LA SITUATION DE TRAVAIL</tspan></text><path d="M500,106 L270,106 L270,130" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><path d="M560,106 L790,106 L790,130" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><rect x="40" y="176" width="440" height="86" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="2"/><rect x="40" y="176" width="7" height="86" rx="3.5" fill="#1faa6b"/><circle cx="70" cy="200" r="14" fill="#1faa6b"/><text x="70" y="205" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="70" dy="0">A1</tspan></text><text x="92" y="195" font-size="9.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="92" dy="0">NIVEAU 1 · OFF</tspan></text><text x="92" y="212" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="92" dy="0">Écouter, cadrer, orienter</tspan></text><text x="92" y="230" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="92" dy="0">Ne pas qualifier. « Qu'attendez-vous de moi ? »</tspan><tspan x="92" dy="14.5">Médecin du travail à la demande du salarié (R. 4624-34).</tspan><tspan x="92" dy="14.5">Rien sans l'accord écrit du salarié.</tspan></text><path d="M260.0,262 L260.0,282" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><rect x="40" y="282" width="440" height="72" rx="12" fill="#fff" stroke="#15909f" stroke-width="2"/><rect x="40" y="282" width="7" height="72" rx="3.5" fill="#15909f"/><circle cx="70" cy="306" r="14" fill="#15909f"/><text x="70" y="311" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="70" dy="0">A2</tspan></text><text x="92" y="301" font-size="9.5" font-weight="800" fill="#15909f" text-anchor="start"><tspan x="92" dy="0">NIVEAU 2 · ÉCRIT</tspan></text><text x="92" y="318" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="92" dy="0">Constituer la preuve au fil de l'eau</tspan></text><text x="92" y="336" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="92" dy="0">Journal daté, mails, certificats, témoignages écrits.</tspan><tspan x="92" dy="14.5">Preuve aménagée : éléments de fait (L. 1154-1).</tspan></text><path d="M260.0,354 L260.0,374" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><rect x="40" y="374" width="440" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="2"/><rect x="40" y="374" width="7" height="72" rx="3.5" fill="#1faa6b"/><circle cx="70" cy="398" r="14" fill="#1faa6b"/><text x="70" y="403" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="70" dy="0">A3</tspan></text><text x="92" y="393" font-size="9.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="92" dy="0">NIVEAU 1 · OFF</tspan></text><text x="92" y="410" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="92" dy="0">Traiter « en off » + mail miroir le jour même</tspan></text><text x="92" y="428" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="92" dy="0">Décrire une situation de travail, pas une personne.</tspan><tspan x="92" dy="14.5">Demander des mesures concrètes et datées.</tspan></text><path d="M260.0,446 L260.0,470" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><polygon points="260.0,470.0 348.0,500 260.0,530.0 172.0,500" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="260.0" y="496.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="260.0" dy="0">Mesures prises</tspan><tspan x="260.0" dy="15">dans le délai ?</tspan></text><rect x="364" y="470" width="116" height="62" rx="14" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><text x="422.0" y="492" font-size="12.5" font-weight="800" fill="#177a4d" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="422.0" dy="0">OUI · Tracer</tspan></text><text x="422.0" y="508" font-size="11" font-weight="400" fill="#2f464c" text-anchor="middle"><tspan x="422.0" dy="0">point à 1 mois,</tspan><tspan x="422.0" dy="13.5">puis volet B</tspan></text><path d="M348.0,500 L364,500" fill="none" stroke="#1faa6b" stroke-width="2" marker-end="url(#arr-rps)"/><text x="355.0" y="493" font-size="10.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="355.0" dy="0">oui</tspan></text><path d="M260.0,530 L260.0,556" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-rps)"/><text x="268.0" y="540" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="268.0" dy="0">non</tspan></text><rect x="40" y="556" width="440" height="86" rx="12" fill="#fff" stroke="#c9780f" stroke-width="2"/><rect x="40" y="556" width="7" height="86" rx="3.5" fill="#c9780f"/><circle cx="70" cy="580" r="14" fill="#c9780f"/><text x="70" y="585" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="70" dy="0">A4</tspan></text><text x="92" y="575" font-size="9.5" font-weight="800" fill="#c9780f" text-anchor="start"><tspan x="92" dy="0">NIVEAU 3 · PROCÉDURE</tspan></text><text x="92" y="592" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="92" dy="0">Droit d'alerte L. 2312-59 (un seul élu suffit)</tspan></text><text x="92" y="610" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="92" dy="0">Saisine écrite immédiate du président du CSE.</tspan><tspan x="92" dy="14.5">Enquête conjointe « sans délai », avec l'élu.</tspan><tspan x="92" dy="14.5">Refuser l'enquête interne menée sans vous.</tspan></text><path d="M260.0,642 L260.0,662" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><rect x="40" y="662" width="440" height="58" rx="12" fill="#fff" stroke="#c9780f" stroke-width="2"/><rect x="40" y="662" width="7" height="58" rx="3.5" fill="#c9780f"/><circle cx="70" cy="686" r="14" fill="#c9780f"/><text x="70" y="691" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="70" dy="0">A5</tspan></text><text x="92" y="681" font-size="9.5" font-weight="800" fill="#c9780f" text-anchor="start"><tspan x="92" dy="0">NIVEAU 3 · PROCÉDURE</tspan></text><text x="92" y="698" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="92" dy="0">Compte rendu conjoint, ou mail miroir qui en tient lieu</tspan></text><text x="92" y="716" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="92" dy="0">5 blocs · signé · copie secrétaire · « sauf observation sous 8 jours »</tspan></text><path d="M260.0,720 L260.0,732 L294.0,732 L294.0,744" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><polygon points="294.0,744.0 389.0,774 294.0,804.0 199.0,774" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="294.0" y="770.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="294.0" dy="0">Carence ou</tspan><tspan x="294.0" dy="15">divergence ?</tspan></text><rect x="40" y="750" width="132" height="48" rx="24.0" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><text x="106.0" y="772" font-size="12.5" font-weight="800" fill="#177a4d" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="106.0" dy="0">NON · Fin</tspan></text><text x="106.0" y="788" font-size="11" font-weight="400" fill="#2f464c" text-anchor="middle"><tspan x="106.0" dy="0">suivi à l'ordre du jour</tspan></text><path d="M199.0,774 L172,774" fill="none" stroke="#1faa6b" stroke-width="2" marker-end="url(#arr-rps)"/><text x="185.5" y="767" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="middle"><tspan x="185.5" dy="0">non</tspan></text><path d="M294.0,804 L294.0,816" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-rps)"/><path d="M294.0,816 L294.0,822 L146,822 L146,828" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-rps)"/><path d="M294.0,822 L374,822 L374,828" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-rps)"/><text x="302.0" y="816" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="302.0" dy="0">oui</tspan></text><rect x="40" y="828" width="212" height="92" rx="12" fill="#fff" stroke="#5b6cff" stroke-width="2"/><rect x="40" y="828" width="7" height="92" rx="3.5" fill="#5b6cff"/><circle cx="70" cy="852" r="14" fill="#5b6cff"/><text x="70" y="857" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="70" dy="0">A6</tspan></text><text x="92" y="847" font-size="9.5" font-weight="800" fill="#5b6cff" text-anchor="start"><tspan x="92" dy="0">NIVEAU 4 · INSPECTION</tspan></text><text x="92" y="864" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="92" dy="0">Informer l'inspection</tspan></text><text x="92" y="882" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="92" dy="0">Mail court + pièces.</tspan><tspan x="92" dy="14.5">Présence en réunion SSCT</tspan><tspan x="92" dy="14.5">(majorité des élus, L. 2314-3).</tspan></text><rect x="268" y="828" width="212" height="92" rx="12" fill="#fff" stroke="#d8453a" stroke-width="2"/><rect x="268" y="828" width="7" height="92" rx="3.5" fill="#d8453a"/><circle cx="298" cy="852" r="14" fill="#d8453a"/><text x="298" y="857" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="298" dy="0">A8</tspan></text><text x="320" y="847" font-size="9.5" font-weight="800" fill="#d8453a" text-anchor="start"><tspan x="320" dy="0">NIVEAU 5 · JUSTICE</tspan></text><text x="320" y="864" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="320" dy="0">Prud'hommes</tspan></text><text x="320" y="882" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="320" dy="0">L. 2312-59 : procédure accélérée,</tspan><tspan x="320" dy="14.5">l'élu peut saisir si le salarié</tspan><tspan x="320" dy="14.5">averti par écrit ne s'y oppose pas.</tspan></text><text x="260.0" y="936" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="middle"><tspan x="260.0" dy="0">en parallèle</tspan></text><rect x="40" y="946" width="440" height="54" rx="10" fill="#fde9e7" stroke="#d8453a" stroke-width="1.5" stroke-dasharray="5 4"/><text x="52" y="965" font-size="11.5" font-weight="800" fill="#d8453a" text-anchor="start"><tspan x="52" dy="0">À TOUT MOMENT · A7 · SI LE SALARIÉ CRAQUE</tspan></text><text x="52" y="981" font-size="11" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="52" dy="0">Accident du travail : fait daté, certificat, déclaration 24 h / 48 h. Risque déjà signalé par écrit</tspan><tspan x="52" dy="13.5">→ faute inexcusable de l'employeur de droit (L. 4131-4). Délai : 2 ans.</tspan></text><rect x="560" y="176" width="440" height="86" rx="12" fill="#fff" stroke="#15909f" stroke-width="2"/><rect x="560" y="176" width="7" height="86" rx="3.5" fill="#15909f"/><circle cx="590" cy="200" r="14" fill="#15909f"/><text x="590" y="205" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="590" dy="0">B1</tspan></text><text x="612" y="195" font-size="9.5" font-weight="800" fill="#15909f" text-anchor="start"><tspan x="612" dy="0">NIVEAU 2 · ÉCRIT</tspan></text><text x="612" y="212" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="612" dy="0">Objectiver : une situation de travail, pas un cas</tspan></text><text x="612" y="230" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="612" dy="0">Inspection ciblée (L. 2312-13), entretiens collectifs,</tspan><tspan x="612" dy="14.5">grille RPS-DU INRS (ED 6403).</tspan><tspan x="612" dy="14.5">Demander par écrit : indicateurs 3 ans, lignes RPS du DUERP.</tspan></text><path d="M780.0,262 L780.0,282" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><rect x="560" y="282" width="440" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="2"/><rect x="560" y="282" width="7" height="72" rx="3.5" fill="#1faa6b"/><circle cx="590" cy="306" r="14" fill="#1faa6b"/><text x="590" y="311" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="590" dy="0">B2</tspan></text><text x="612" y="301" font-size="9.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="612" dy="0">NIVEAU 1 · OFF</tspan></text><text x="612" y="318" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="612" dy="0">Proposer « en off » une démarche RPS partagée</tspan></text><text x="612" y="336" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="612" dy="0">Commission RPS, 5 étapes INRS, engagement écrit.</tspan><tspan x="612" dy="14.5">Mail miroir le jour même.</tspan></text><path d="M780.0,354 L780.0,378" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><polygon points="780.0,378.0 880.0,408 780.0,438.0 680.0,408" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="780.0" y="404.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="780.0" dy="0">Accord de</tspan><tspan x="780.0" dy="15">l'employeur ?</tspan></text><path d="M780.0,438 L780.0,466" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-rps)"/><text x="788.0" y="446" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="788.0" dy="0">non</tspan></text><rect x="560" y="466" width="440" height="86" rx="12" fill="#fff" stroke="#c9780f" stroke-width="2"/><rect x="560" y="466" width="7" height="86" rx="3.5" fill="#c9780f"/><circle cx="590" cy="490" r="14" fill="#c9780f"/><text x="590" y="495" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="590" dy="0">B3</tspan></text><text x="612" y="485" font-size="9.5" font-weight="800" fill="#c9780f" text-anchor="start"><tspan x="612" dy="0">NIVEAU 3 · PROCÉDURE</tspan></text><text x="612" y="502" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="612" dy="0">Ordre du jour + résolution du CSE</tspan></text><text x="612" y="520" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="612" dy="0">Réunion à la demande motivée de 2 membres (L. 2315-27).</tspan><tspan x="612" dy="14.5">Le refus doit être motivé. Enquête (L. 2312-13),</tspan><tspan x="612" dy="14.5">expertise risque grave (L. 2315-94, 100 % employeur).</tspan></text><path d="M780.0,552 L780.0,576" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><polygon points="780.0,576.0 890.0,606 780.0,636.0 670.0,606" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="780.0" y="602.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="780.0" dy="0">Employeur réunit</tspan><tspan x="780.0" dy="15">et motive ?</tspan></text><path d="M780.0,636 L780.0,662" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-rps)"/><text x="788.0" y="644" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="788.0" dy="0">non</tspan></text><rect x="560" y="662" width="440" height="72" rx="12" fill="#fff" stroke="#5b6cff" stroke-width="2"/><rect x="560" y="662" width="7" height="72" rx="3.5" fill="#5b6cff"/><circle cx="590" cy="686" r="14" fill="#5b6cff"/><text x="590" y="691" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="590" dy="0">B5</tspan></text><text x="612" y="681" font-size="9.5" font-weight="800" fill="#5b6cff" text-anchor="start"><tspan x="612" dy="0">NIVEAU 4 · INSPECTION</tspan></text><text x="612" y="698" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="612" dy="0">Inspection du travail, médecin du travail, Carsat</tspan></text><text x="612" y="716" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="612" dy="0">Présence en réunion SSCT (majorité des élus, L. 2314-3).</tspan><tspan x="612" dy="14.5">Employeur défaillant : convocation par l'inspecteur (L. 2315-27).</tspan></text><path d="M780.0,734 L780.0,758" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-rps)"/><polygon points="780.0,758.0 880.0,788 780.0,818.0 680.0,788" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="780.0" y="792.0" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="780.0" dy="0">Déblocage ?</tspan></text><path d="M780.0,818 L780.0,842" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-rps)"/><text x="788.0" y="826" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="788.0" dy="0">non</tspan></text><rect x="560" y="842" width="440" height="76" rx="12" fill="#fff" stroke="#d8453a" stroke-width="2"/><rect x="560" y="842" width="7" height="76" rx="3.5" fill="#d8453a"/><circle cx="590" cy="866" r="14" fill="#d8453a"/><text x="590" y="871" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="590" dy="0">B6</tspan></text><text x="612" y="861" font-size="9.5" font-weight="800" fill="#d8453a" text-anchor="start"><tspan x="612" dy="0">NIVEAU 5 · JUSTICE</tspan></text><text x="612" y="878" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="612" dy="0">Justice pour le collectif</tspan></text><text x="612" y="896" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="612" dy="0">Entrave (L. 2317-1) : citation directe. Tribunal judiciaire : expertise,</tspan><tspan x="612" dy="14.5">prérogatives du CSE. Budget de fonctionnement.</tspan></text><rect x="560" y="930" width="300" height="70" rx="14" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><text x="710.0" y="952" font-size="12.5" font-weight="800" fill="#177a4d" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="710.0" dy="0">OUI · B4 · Installer et suivre</tspan></text><text x="710.0" y="968" font-size="11" font-weight="400" fill="#2f464c" text-anchor="middle"><tspan x="710.0" dy="0">DUERP : ligne RPS · plan d'action au PAPRIPACT</tspan><tspan x="710.0" dy="13.5">(8 éléments) · suivi RPS permanent à l'ordre du jour</tspan><tspan x="710.0" dy="13.5">de chaque réunion</tspan></text><path d="M880.0,408 L1014,408 L1014,965 L860,965" fill="none" stroke="#1faa6b" stroke-width="2" marker-end="url(#arr-rps)"/><text x="888.0" y="401" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="888.0" dy="0">oui</tspan></text><path d="M890.0,606 L1014,606" fill="none" stroke="#1faa6b" stroke-width="2"/><text x="898.0" y="599" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="898.0" dy="0">oui</tspan></text><path d="M880.0,788 L1014,788" fill="none" stroke="#1faa6b" stroke-width="2"/><text x="888.0" y="781" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="888.0" dy="0">oui</tspan></text></svg></div>
+        <p class="logi-hint">Losanges : les questions à se poser. Vert : ça marche, on trace et on s'arrête. Ambre : ça ne marche pas, on monte d'un niveau. Le détail de chaque étape est dans le parcours ci-dessous. Version haute définition pour la salle : <a href="logigrammes/logigramme-rps-cse.png" target="_blank" rel="noopener">PNG</a> · <a href="logigrammes/logigramme-rps-cse.svg" target="_blank" rel="noopener">SVG</a>.</p>
+      </div>
+
+      <div class="volets">
+        <div class="volet a"><h4><i class="fa-solid fa-hand-holding-heart" style="color:var(--coral)"></i> Volet A · Accompagner Camille</h4><p>Protéger la personne, préserver ses droits (santé, accident du travail, preuve), sans jamais décider à sa place. C'est le parcours individuel, il va jusqu'au conseil de prud'hommes.</p></div>
+        <div class="volet b"><h4><i class="fa-solid fa-people-group" style="color:var(--teal-2)"></i> Volet B · Améliorer la situation de travail</h4><p>Camille n'est pas un cas isolé : c'est une organisation qui produit de la souffrance. C'est le parcours collectif du CSE, il passe par le DUERP, le PAPRIPACT et, s'il le faut, l'expertise et l'inspection du travail.</p></div>
+      </div>
+
+      <div class="note n-warn">
+        <span class="ni">⚠️</span>
+        <div>
+          <span class="tag">Les deux volets avancent ensemble, mais ne se confondent pas</span>
+          <p>Le support de formation insiste sur cette confusion, la plus fréquente en salle : traiter le cas individuel n'améliore pas le travail, et lancer une démarche collective ne protège pas Camille demain matin. Menez les deux. Et n'engagez jamais le volet A au-delà de ce que Camille accepte par écrit.</p>
+        </div>
+      </div>
+
+      <h3 class="sub"><i class="fa-solid fa-hand-holding-heart" style="color:var(--coral)"></i> Volet A · Accompagner le salarié</h3>
+      <div class="flow">
+
+        <div class="fstep l1">
+          <div class="fdot">A1</div>
+          <div class="fcard">
+            <button><span class="lvl l1">Niveau 1</span><span class="ft">Écouter, cadrer, orienter vers le médecin du travail</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p><span class="who">Qui</span> L'élu, seul avec le salarié, dans un lieu discret, sur son temps de délégation.</p>
+              <p>Écoutez sans interrompre et sans qualifier : ne dites ni « c'est du harcèlement » ni « ce n'est pas si grave ». Reformulez les faits, pas les émotions. Puis posez la seule question qui compte à ce stade : <b>« Qu'est-ce que vous attendez de moi ? »</b> Certains veulent seulement être entendus, d'autres veulent que ça cesse. Vous n'irez pas plus loin que ce qu'ils acceptent.</p>
+              <p>Orientez tout de suite vers le <b>médecin du travail</b> : tout salarié peut demander une visite, à tout moment, sans passer par l'employeur et sans avoir à se justifier auprès de lui. Le médecin peut proposer un aménagement, constater l'état de santé, et il a lui-même un droit d'alerte auprès de l'employeur. Conseillez aussi une consultation chez le médecin traitant, qui datera l'état de santé.</p>
+              <h5>Ce que vous dites, ce que vous ne dites pas</h5>
+              <ul>
+                <li>Vous dites : « Je ne suis ni médecin ni juge. Je peux vous aider à faire cesser la situation et à protéger vos droits. On avance à votre rythme, et rien ne se fait sans votre accord écrit. »</li>
+                <li>Vous ne dites pas : « Je vais régler ça », « Je connais quelqu'un », « Ne vous inquiétez pas ». Vous ne promettez pas la confidentialité absolue : expliquez qu'une alerte suppose que l'employeur sache, et que le salarié décidera si et quand.</li>
+              </ul>
+              <p>Sources : <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045676635" target="_blank" rel="noopener">R. 4624-34</a> (code du travail) sur la visite à la demande du travailleur ; <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043909039" target="_blank" rel="noopener">L. 4624-1</a> (code du travail) sur le suivi individuel.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l2">
+          <div class="fdot">A2</div>
+          <div class="fcard">
+            <button><span class="lvl l2">Niveau 2</span><span class="ft">Constituer la preuve au fil de l'eau</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Le support de formation le dit sans détour : <i>reconstituer cinq ans après est presque impossible</i>. Le dossier se construit dès la première conversation. En matière de harcèlement, la charge de la preuve est aménagée : le salarié présente des <b>éléments de fait laissant supposer</b> un harcèlement, et c'est à l'employeur de prouver que ses décisions reposent sur des éléments objectifs (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019902" target="_blank" rel="noopener">L. 1154-1</a>, code du travail). Des éléments de fait, donc : datés, précis, vérifiables.</p>
+              <h5>La liste à cocher avec le salarié</h5>
+              <ul class="chk-list" data-list="rps-preuves">
+                <li><label><input type="checkbox"><span>Un <b>journal daté</b> tenu par le salarié : date, heure, lieu, qui, quoi, témoins. Une ligne par fait, sans commentaire.</span></label></li>
+                <li><label><input type="checkbox"><span>Les <b>mails, messages, plannings, objectifs</b> : exportés et sauvegardés hors de l'entreprise (le compte pro peut être coupé).</span></label></li>
+                <li><label><input type="checkbox"><span>Les <b>comptes rendus d'entretien annuel</b> avant et après le changement d'organisation : la rupture se lit dans les écrits.</span></label></li>
+                <li><label><input type="checkbox"><span>Les <b>arrêts de travail et certificats médicaux</b>, la fiche de visite du médecin du travail.</span></label></li>
+                <li><label><input type="checkbox"><span>Des <b>témoignages écrits, datés et signés</b>, avec copie de la pièce d'identité du témoin, pour être recevables (attestation au sens de l'article 202 du code de procédure civile).</span></label></li>
+                <li><label><input type="checkbox"><span>Le <b>relevé des heures</b> réellement faites, les connexions tardives, les sollicitations le week-end.</span></label></li>
+                <li><label><input type="checkbox"><span>Vos propres écrits d'élu : mails miroirs, saisine, comptes rendus (voir A3 à A5). Ils sont des preuves à part entière.</span></label></li>
+                <li><label><input type="checkbox"><span>Ce qui existe au niveau collectif : absentéisme du service, turnover, malaise du collègue (déclaré en AT ?), visites spontanées au service de santé.</span></label></li>
+              </ul>
+              <p class="chk-meta">Prudence sur les enregistrements réalisés à l'insu d'une personne : la Cour de cassation admet depuis fin 2023 qu'une preuve déloyale puisse être produite si elle est indispensable et proportionnée, mais c'est le juge qui l'apprécie au cas par cas. Ce n'est jamais la pièce sur laquelle bâtir un dossier.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l1">
+          <div class="fdot">A3</div>
+          <div class="fcard">
+            <button><span class="lvl l1">Niveau 1</span><span class="ft">Traiter « en off » avec l'employeur, puis confirmer par un mail miroir</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p><span class="who">Qui</span> L'élu, avec l'accord écrit du salarié (un SMS ou un mail suffit : « d'accord pour que vous en parliez à la RH, sans citer mon nom pour l'instant »).</p>
+              <p>Demandez un entretien informel à la personne qui peut réellement décider : la RH, le N+2, ou le président du CSE. Pas un mail, pas un ordre du jour : un échange. Décrivez une <b>situation de travail</b>, pas une personne : « sur le plateau X, depuis la fusion, la charge a augmenté, les comparaisons publiques d'objectifs créent une tension forte, un salarié a fait un malaise, un autre est en difficulté ». Demandez des mesures concrètes et rapides : arrêt des comparaisons publiques, point de charge, entretien avec le médecin du travail, changement de rattachement si le salarié le souhaite.</p>
+              <p>Le jour même, envoyez un <b>mail miroir</b> : il reprend, sans ton polémique, ce qui a été dit, ce qui a été demandé et ce que l'employeur a répondu ou promis, avec une date de point. Copie à vous-même. Ce mail est votre premier niveau 2 : il rend l'échange opposable sans le durcir. Le modèle est dans <a href="#ecrits">la section « Les écrits »</a>.</p>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>Des mesures sont prises dans le délai convenu. Confirmez-le par écrit, remerciez, et fixez un point à un mois. Passez au volet B : ce qui a fait souffrir Camille fera souffrir d'autres personnes.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>Refus, silence au-delà de la date convenue, ou proposition d'une « enquête interne » menée par la RH sans vous, sans cadre ni délai : passez à l'étape A4. L'enquête interne unilatérale n'est pas l'enquête que la loi prévoit.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">A4</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">Le droit d'alerte pour atteinte aux droits des personnes</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p><span class="who">Qui</span> Un seul membre de la délégation du personnel suffit. Pas de vote, pas de majorité. Mais toujours l'accord du salarié.</p>
+              <p>L'article <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038791189" target="_blank" rel="noopener">L. 2312-59</a> (code du travail) vise expressément l'atteinte à la <b>santé physique et mentale</b> et le <b>harcèlement moral</b>. Trois mots à retenir du texte : l'élu saisit <b>« immédiatement »</b> l'employeur, celui-ci enquête <b>« sans délai »</b>, et l'enquête se fait <b>« avec le membre de la délégation du personnel »</b>. C'est ce dernier point qui disqualifie l'enquête interne solitaire : la loi impose une enquête conjointe.</p>
+              <h5>Comment saisir</h5>
+              <ul>
+                <li>Par écrit, le jour du constat : mail au président du CSE (ou lettre remise contre décharge), copie au secrétaire du CSE et à vous-même. Le support recommande le mail avec copie à soi-même : simple, daté, incontestable.</li>
+                <li>Contenu : les faits datés, la qualification « atteinte à la santé mentale au sens de l'article L. 2312-59 », la demande d'enquête conjointe sans délai, une proposition de date sous 48 heures, et les mesures de protection immédiates demandées.</li>
+                <li>Le <a href="alertes.html#generateur">générateur de courrier de la fiche « Les alertes »</a> rédige ce courrier à partir de vos réponses.</li>
+              </ul>
+              <h5>Pendant l'enquête conjointe</h5>
+              <ul>
+                <li>Vous êtes co-enquêteur, pas observateur : vous proposez les personnes à entendre, les documents à consulter (plannings, objectifs, arrêts), vous posez vos questions.</li>
+                <li>Les personnes entendues le sont sur le <b>travail</b>, pas sur leur personnalité. Pas de tribunal : le support le rappelle pour les démarches RPS, cela vaut ici.</li>
+                <li>Le temps passé est du temps de travail effectif, non déduit du crédit d'heures, dès lors qu'il s'agit d'incidents répétés ayant révélé un risque grave (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262458" target="_blank" rel="noopener">L. 2315-11</a>, code du travail, 3°).</li>
+              </ul>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>L'enquête a lieu, des mesures sont décidées : exigez un compte rendu écrit conjoint (étape A5), et un suivi à l'ordre du jour du CSE.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>Pas d'enquête sous quelques jours, enquête sans vous, ou désaccord sur la réalité de l'atteinte : c'est la « carence » ou la « divergence » que vise le texte. Informez l'inspection du travail (A6) et préparez le conseil de prud'hommes (A8).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">A5</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">Le compte rendu d'enquête, ou le mail miroir qui en tient lieu</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>La loi ne décrit pas le compte rendu de l'enquête conjointe. C'est pourtant la pièce maîtresse : elle fixe ce qui a été constaté et ce qui a été décidé. Le support de formation le dit pour l'inspection, cela vaut pour l'enquête : <i>sans écrit, elle n'a pas eu lieu</i>.</p>
+              <h5>Le compte rendu conjoint, comment le faire</h5>
+              <ul>
+                <li>Proposez de le rédiger vous-même, à chaud, et de le soumettre à l'employeur : celui qui tient la plume tient le récit.</li>
+                <li>Structure en cinq blocs : les faits allégués ; les personnes entendues et les documents consultés ; les constats partagés ; les points de désaccord, formulés tels quels ; les mesures décidées, avec un responsable et une date pour chacune.</li>
+                <li>Signé par l'employeur (ou son représentant) et par vous. Une copie au salarié, une au secrétaire du CSE, une dans votre dossier.</li>
+                <li>Séparez ce qui protège Camille (mesures individuelles) de ce qui corrige l'organisation (à reprendre dans le volet B et dans le DUERP).</li>
+              </ul>
+              <h5>Et si l'employeur refuse le compte rendu, ou traîne</h5>
+              <p>Envoyez sous 48 heures un <b>mail miroir</b> qui tient lieu de compte rendu : « Suite à l'enquête menée le [date] en application de l'article L. 2312-59, je consigne ci-dessous les constats et les mesures évoqués. Sauf observation écrite de votre part sous huit jours, ce compte rendu sera versé au dossier tel quel. » Copie au secrétaire du CSE. L'absence de réponse ne vaut pas accord en droit, mais un employeur qui ne conteste pas un écrit précis et daté aura beaucoup de mal, plus tard, à soutenir qu'il disait autre chose. Le modèle est dans <a href="#ecrits">la section « Les écrits »</a>.</p>
+              <p>Demandez enfin l'inscription d'un point « suivi de l'alerte du [date] » à l'ordre du jour de la prochaine réunion du CSE : les délibérations et déclarations y sont consignées au procès-verbal (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262447" target="_blank" rel="noopener">L. 2315-34</a>, code du travail).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l4">
+          <div class="fdot">A6</div>
+          <div class="fcard">
+            <button><span class="lvl l4">Niveau 4</span><span class="ft">En parallèle : informer l'inspection du travail</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Dès que le droit d'alerte est déclenché, et sans attendre son issue, informez l'agent de contrôle de l'inspection du travail compétent pour l'établissement. Ce n'est pas une « saisine » au sens strict (la loi ne prévoit pas ici de saisine obligatoire, contrairement au danger grave et imminent), c'est un <b>signalement</b> : il documente, il pèse, et il prépare la suite.</p>
+              <p>L'agent de contrôle veille à l'application du code du travail, constate les infractions et décide librement des suites (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033025397" target="_blank" rel="noopener">L. 8112-1</a>, code du travail). Il peut se déplacer, entendre les salariés, demander des documents, adresser des observations à l'employeur, et, s'il constate un délit (harcèlement moral, entrave), en informer le procureur.</p>
+              <h5>Le courrier qui a des chances d'aboutir</h5>
+              <ul>
+                <li>Un mail court, factuel, en pièces jointes : votre saisine L. 2312-59, le compte rendu (ou le mail miroir qui en tient lieu), la chronologie datée. Pas d'adjectifs.</li>
+                <li>Une demande précise : un contrôle, un entretien avec vous, ou sa présence à la prochaine réunion SSCT du CSE : il y est invité à la demande de la majorité des élus, et de droit aux réunions de la CSSCT (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043893890" target="_blank" rel="noopener">L. 2314-3</a>, code du travail).</li>
+                <li>Copie au médecin du travail, qui assiste de droit à ces réunions avec voix consultative, et qui détient souvent la vue d'ensemble sur le service.</li>
+                <li>Le modèle est dans <a href="#ecrits">la section « Les écrits »</a>.</li>
+              </ul>
+              <p>Si l'employeur refuse d'enquêter, ne consulte pas, ou fait obstacle à votre mandat, signalez-le dans le même courrier : l'entrave au fonctionnement régulier du CSE est un délit (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035634273" target="_blank" rel="noopener">L. 2317-1</a>, code du travail), que l'agent de contrôle peut constater.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">A7</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">Si Camille craque : l'accident du travail, et ce que votre alerte change</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Un malaise après un entretien, une crise d'angoisse au poste, un effondrement daté à la suite d'un événement précis : c'est un <b>accident du travail</b> au sens de la loi, « quelle qu'en soit la cause », dès lors qu'il survient par le fait ou à l'occasion du travail (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047452603" target="_blank" rel="noopener">L. 411-1</a>, code de la sécurité sociale). Le support de formation le rappelle : la lésion peut être <b>psychologique</b>, et l'accident survenu aux temps et lieu du travail est <b>présumé</b> d'origine professionnelle. Ce n'est pas au salarié de prouver le lien, c'est à l'employeur ou à la caisse de le renverser.</p>
+              <h5>Ce que vous faites, dans l'ordre</h5>
+              <ul>
+                <li><b>Faire dater l'événement.</b> Un accident, c'est un fait soudain, situé dans le temps : « le 12 mars à 10 h 40, à l'issue de l'entretien avec M. X, dans le bureau 214 ». Aidez le salarié à le formuler ainsi, et notez les témoins.</li>
+                <li><b>Le certificat médical initial</b>, le jour même ou le lendemain, qui décrit les lésions (état anxieux aigu, syndrome de stress, etc.) et prescrit ou non un arrêt. Le médecin traitant peut l'établir.</li>
+                <li><b>La déclaration.</b> Le salarié informe l'employeur dans les 24 heures ; l'employeur déclare à la caisse dans les 48 heures, hors dimanches et jours fériés, et peut émettre des réserves motivées (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743183" target="_blank" rel="noopener">L. 441-1</a> et <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038423383" target="_blank" rel="noopener">R. 441-3</a>, code de la sécurité sociale). Demandez une copie de la déclaration et des réserves : elles conditionnent l'instruction.</li>
+                <li><b>Si l'employeur ne déclare pas</b>, le salarié peut déclarer lui-même à la caisse, jusqu'à la fin de la deuxième année suivant l'accident (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743085" target="_blank" rel="noopener">L. 441-2</a>, code de la sécurité sociale). Aidez-le à le faire sans attendre.</li>
+                <li><b>Le CSE enquête.</b> Un accident du travail lié aux RPS relève des enquêtes du comité (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035609774" target="_blank" rel="noopener">L. 2312-13</a>, code du travail). Demandez-la, à deux : un élu et l'employeur ou son représentant.</li>
+              </ul>
+              <div class="note n-ok" style="margin-top:12px">
+                <span class="ni"><i class="fa-solid fa-key" style="color:var(--green)"></i></span>
+                <div>
+                  <span class="tag">Le point qui change tout</span>
+                  <p>Si l'accident survient <b>après que vous avez signalé le risque</b> à l'employeur, la faute inexcusable est <b>de droit</b> : le salarié n'a plus à la prouver (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653293" target="_blank" rel="noopener">L. 4131-4</a>, code du travail, renvoyant à <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743112" target="_blank" rel="noopener">L. 452-1</a>, code de la sécurité sociale). Votre saisine écrite de l'étape A4 est exactement ce signalement. C'est pour cela que l'on écrit avant, et pas seulement après. La faute inexcusable double la rente et ouvre la réparation des préjudices personnels ; le délai pour agir est de <b>deux ans</b>, et il court vite quand le salarié est en arrêt long.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l5">
+          <div class="fdot">A8</div>
+          <div class="fcard">
+            <button><span class="lvl l5">Niveau 5</span><span class="ft">Le conseil de prud'hommes, en dernier recours</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Deux voies s'ouvrent, et elles ne s'excluent pas.</p>
+              <h5>La voie rapide de l'article L. 2312-59</h5>
+              <p>En cas de carence de l'employeur ou de divergence sur la réalité de l'atteinte, le salarié saisit le <b>bureau de jugement</b> du conseil de prud'hommes, qui statue selon la <b>procédure accélérée au fond</b>. Le juge peut ordonner <b>toutes mesures propres à faire cesser l'atteinte</b>, sous astreinte. C'est une action pour faire cesser, pas pour indemniser. Particularité : <b>l'élu peut saisir lui-même</b>, à la place du salarié, si celui-ci, <b>averti par écrit</b>, ne s'y oppose pas. Jamais contre lui. Conservez cet avertissement écrit et la réponse du salarié.</p>
+              <h5>L'action au fond du salarié</h5>
+              <ul>
+                <li>Harcèlement moral (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006900818" target="_blank" rel="noopener">L. 1152-1</a>, code du travail) : « agissements répétés », « pour objet ou pour effet », l'intention de nuire n'est pas requise. Le délai pour agir est de <b>cinq ans</b> à compter du dernier fait (délai de droit commun de l'article 2224 du code civil, que l'article <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762126" target="_blank" rel="noopener">L. 1471-1</a> du code du travail réserve expressément pour le harcèlement).</li>
+                <li>Manquement à l'obligation de sécurité (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035640828" target="_blank" rel="noopener">L. 4121-1</a>, code du travail) et à l'obligation de prévention du harcèlement (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029144897" target="_blank" rel="noopener">L. 1152-4</a>, code du travail) : l'employeur répond même s'il n'est pas l'auteur des faits, et même s'il a fini par réagir, dès lors qu'il n'a pas prévenu.</li>
+                <li>Pièces : le journal daté, les mails, les certificats, les témoignages, et <b>vos écrits d'élu</b> (saisine, compte rendu ou mail miroir, procès-verbaux de CSE). C'est la chaîne complète des niveaux 2 à 4 qui convainc le juge.</li>
+              </ul>
+              <h5>Les compléments</h5>
+              <ul>
+                <li><b>Le pénal</b> : plainte pour harcèlement moral (article 222-33-2 du code pénal, deux ans d'emprisonnement et 30 000 € d'amende) dans les <b>six ans</b> du dernier fait. Poursuite de l'auteur, pas de l'organisation : la voie civile reste la plus utile pour changer le travail.</li>
+                <li><b>Le Défenseur des droits</b>, si le harcèlement se double d'une discrimination : saisine gratuite, en ligne.</li>
+                <li><b>L'avocat</b> : à ce niveau, il n'est plus optionnel. Les syndicats disposent de défenseurs syndicaux et de conventions avec des cabinets.</li>
+              </ul>
+              <div class="note n-info" style="margin-top:12px">
+                <span class="ni"><i class="fa-solid fa-hourglass-half" style="color:var(--teal-2)"></i></span>
+                <div><span class="tag">Trois compteurs distincts</span><p>Deux ans pour la faute inexcusable, cinq ans aux prud'hommes pour le harcèlement, six ans au pénal. C'est toujours le <b>fait le plus récent</b> qui fait courir le délai : un harcèlement ancien qui se poursuit reste entièrement poursuivable.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub"><i class="fa-solid fa-people-group" style="color:var(--teal-2)"></i> Volet B · Améliorer la situation de travail du collectif</h3>
+      <p class="lead" style="font-size:.98rem">Le support de formation range les RPS parmi les risques ordinaires : mêmes principes généraux de prévention (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035640828" target="_blank" rel="noopener">L. 4121-1</a> et <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019913" target="_blank" rel="noopener">L. 4121-2</a>, code du travail, qui protègent expressément la santé mentale), même document unique, même programme annuel. La démarche est celle de l'INRS, en cinq étapes : préparer, analyser, élaborer, mettre en œuvre, suivre.</p>
+      <div class="flow">
+
+        <div class="fstep l2">
+          <div class="fdot">B1</div>
+          <div class="fcard">
+            <button><span class="lvl l2">Niveau 2</span><span class="ft">Objectiver : passer d'une personne à une situation de travail</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Tant que vous parlez de Camille, l'employeur vous répondra « fragilité » ou « conflit de personnes ». Vous devez parler du plateau, de la fusion, de la charge et des objectifs comparés. Il faut donc des faits collectifs.</p>
+              <h5>Ce que le CSE peut réunir sans rien demander à personne</h5>
+              <ul>
+                <li>Une <b>inspection</b> ciblée sur le service, décidée par résolution du comité (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035609774" target="_blank" rel="noopener">L. 2312-13</a>, code du travail) : grille préparée, questions fermées et vérifiables, salariés prévenus, compte rendu écrit. La fiche <a href="inspection.html">L'inspection CSSCT</a> en donne la méthode.</li>
+                <li>Des <b>entretiens collectifs</b>, avec les deux questions d'ouverture du support, toujours dans cet ordre : « qu'est-ce qui pose problème, crée des tensions, entrave le travail ? » puis « qu'est-ce qui fonctionne bien, facilite le travail ? ». Et la question qui sauve, à la fin : « y a-t-il des points non abordés qu'il vous semble important de signaler ? »</li>
+                <li>La <b>grille RPS-DU de l'INRS</b> (brochure ED 6403) : 26 questions, six facteurs (intensité et temps de travail, exigences émotionnelles, autonomie, rapports sociaux, conflits de valeurs, insécurité). Gratuite, reconnue par l'employeur comme par l'inspection, remplie en collectif.</li>
+              </ul>
+              <h5>Ce que le CSE demande à l'employeur (par écrit, niveau 2)</h5>
+              <ul>
+                <li>Les indicateurs du service sur trois ans : absentéisme, turnover, accidents du travail déclarés (dont le malaise du collègue), heures supplémentaires, demandes de mutation.</li>
+                <li>Le bilan du médecin du travail et le nombre de visites à la demande des salariés du service (sans les noms).</li>
+                <li>La ou les lignes RPS du <b>DUERP</b> pour cette unité de travail. Le support pose la question qui fait mal : « combien de lignes RPS votre DUERP comporte-t-il ? Zéro est une réponse fréquente, et c'est un manquement. »</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l1">
+          <div class="fdot">B2</div>
+          <div class="fcard">
+            <button><span class="lvl l1">Niveau 1</span><span class="ft">Proposer « en off » une démarche RPS partagée</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Avant tout ordre du jour, allez voir le président du CSE avec une proposition, pas une accusation : une démarche d'évaluation des RPS sur le service, en cinq étapes, avec une <b>commission RPS</b> (élus, service de prévention et de santé au travail, représentant de l'employeur, encadrement de proximité), un planning, et l'engagement écrit de l'employeur d'être présent et de donner les moyens (temps, informations, documents).</p>
+              <p>Les arguments qui portent devant une direction, tirés du support : la prévention des RPS n'est pas un coût, c'est une réduction de coûts (absentéisme, turnover, sinistralité) ; l'outil INRS est gratuit et reconnu par l'inspection ; la démarche protège aussi l'encadrement, qui n'est pas mis en accusation (« pas de tribunal »).</p>
+              <p>Confirmez l'échange par un <b>mail miroir</b> le jour même, avec la liste de ce qui a été proposé et la date de retour convenue.</p>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>Faites signer des conditions écrites (périmètre, calendrier, protection de la parole des salariés, engagement de mise en œuvre). Passez à B4 pour installer la démarche.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>Refus, renvoi vers « un cabinet qui fera un diagnostic », ou silence : passez au niveau 3 (B3). Un diagnostic externe n'est qu'un point de départ, le support le classe parmi les cinq erreurs à ne pas commettre.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">B3</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">Inscrire le sujet à l'ordre du jour et faire délibérer le CSE</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>L'ordre du jour est établi conjointement par le président et le secrétaire (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035624861" target="_blank" rel="noopener">L. 2315-29</a>, code du travail). Demandez par écrit au secrétaire l'inscription d'un point « situation de travail du service X : évaluation des risques psychosociaux ». Au moins quatre réunions par an portent sur la santé, la sécurité et les conditions de travail, et le comité est réuni <b>à la demande motivée de deux de ses membres</b> sur ces sujets (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036761943" target="_blank" rel="noopener">L. 2315-27</a>, code du travail). Deux signatures suffisent donc pour obtenir une réunion.</p>
+              <h5>Ce que le CSE vote, par résolution</h5>
+              <ul>
+                <li>La demande d'une <b>évaluation des RPS</b> intégrée au DUERP, avec commission et calendrier. Le support le rappelle : c'est une prérogative du comité, et <b>le refus de l'employeur doit être motivé</b>. Un refus non motivé est un manquement caractérisé, à consigner au procès-verbal.</li>
+                <li>Si des incidents répétés ont révélé un risque grave (le malaise, les arrêts, les alertes), une <b>enquête</b> du CSE (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035609774" target="_blank" rel="noopener">L. 2312-13</a>) : le temps passé est payé et non déduit du crédit d'heures (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262458" target="_blank" rel="noopener">L. 2315-11</a>, 3°).</li>
+                <li>Si l'employeur refuse toujours, ou si la situation l'exige, une <b>expertise pour risque grave</b>, constaté dans l'établissement (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043975185" target="_blank" rel="noopener">L. 2315-94</a>, code du travail, 1°), financée intégralement par l'employeur (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036761908" target="_blank" rel="noopener">L. 2315-80</a>). La résolution doit décrire le risque grave et les éléments qui le révèlent : elle sera lue par un juge si l'employeur la conteste.</li>
+              </ul>
+              <p>Toutes ces délibérations, et la réponse motivée de l'employeur, sont consignées au procès-verbal (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262447" target="_blank" rel="noopener">L. 2315-34</a>). Le procès-verbal est la pièce que l'inspecteur et le juge liront en premier.</p>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>La démarche est actée : passez à B4.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>Refus de réunir, refus non motivé, ordre du jour bloqué, expertise contestée sans motif : passez au niveau 4 (B5). Le refus de réunir à la demande motivée de deux membres est une entrave.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">B4</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">Installer la démarche et la rendre opposable : DUERP et PAPRIPACT</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Les cinq étapes du support, avec leurs conditions de réussite :</p>
+              <ul>
+                <li><b>Préparer</b> : une démarche centrée sur le travail et jamais sur les personnes ; des conditions écrites et signées ; la parole des salariés protégée, notamment ceux qui sont contraints de contourner les consignes pour tenir le travail ; pas de lancement pendant les congés des personnes concernées.</li>
+                <li><b>Analyser</b> le travail réel avec la grille RPS-DU, en entretiens collectifs, par volontariat, sans mettre l'encadrement en porte-à-faux.</li>
+                <li><b>Élaborer</b> un plan d'action avec les huit éléments obligatoires : situation de travail, actions, objectifs, personnes désignées, coûts, délais, critères d'évaluation, information des salariés. « Un plan sans nom, sans date et sans coût n'est pas un plan. »</li>
+                <li><b>Mettre en œuvre</b> : l'employeur valide le plan et l'<b>inscrit au PAPRIPACT</b>. C'est le point à ne pas lâcher, parce que c'est ce qui rend le plan opposable l'année suivante.</li>
+                <li><b>Suivre</b> : un point « suivi RPS » <b>permanent à l'ordre du jour</b> de chaque réunion. C'est le conseil le plus concret du module, et c'est ce qui empêche une démarche de s'éteindre au bout de six mois.</li>
+              </ul>
+              <p>Enfin, les RPS s'inscrivent dans le <b>DUERP</b> comme tout autre risque : unité de travail, facteurs, cotation, mesures existantes, actions à mener. Un DUERP sans ligne RPS est un DUERP incomplet ; et un DUERP arrêté à la criticité brute, sans risque résiduel, ne permet pas de suivre l'effet des mesures d'une année sur l'autre.</p>
+              <p>Attention au piège classique : installer une cellule d'écoute et s'arrêter là. C'est de la réparation présentée comme de la prévention ; le niveau primaire, celui qui agit sur l'organisation, reste intact.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l4">
+          <div class="fdot">B5</div>
+          <div class="fcard">
+            <button><span class="lvl l4">Niveau 4</span><span class="ft">L'inspection du travail, le médecin du travail, la Carsat</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Trois acteurs extérieurs, à mobiliser dans cet ordre de facilité.</p>
+              <ul>
+                <li><b>Le médecin du travail</b> : il assiste de droit, avec voix consultative, aux réunions SSCT du CSE ; il peut y être interpellé sur la situation du service, et il a ses propres leviers (alerte à l'employeur, propositions de mesures, fiche d'entreprise). Demandez-lui une intervention en réunion.</li>
+                <li><b>L'agent de contrôle de l'inspection du travail</b> : invité aux réunions de la CSSCT, et aux réunions SSCT du CSE à l'initiative de l'employeur ou <b>à la demande de la majorité des élus</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043893890" target="_blank" rel="noopener">L. 2314-3</a>, code du travail), et informé annuellement du calendrier par l'employeur (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036761943" target="_blank" rel="noopener">L. 2315-27</a>). Écrivez-lui avec le dossier prêt (procès-verbaux, résolutions, refus motivé ou non, indicateurs) et demandez sa présence à la prochaine réunion. Si l'employeur est <b>défaillant</b> pour réunir le comité, la moitié des membres peut demander à l'agent de contrôle de convoquer lui-même le CSE et de le présider (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036761943" target="_blank" rel="noopener">L. 2315-27</a>, troisième alinéa).</li>
+                <li><b>L'agent de prévention de la Carsat</b> : il peut visiter, conseiller, et il pèse sur l'employeur par la tarification. Les aides financières de la Carsat peuvent financer une partie des actions.</li>
+              </ul>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>La présence de l'inspecteur ou du médecin en réunion débloque très souvent la situation. Actez tout au procès-verbal et revenez à B4.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>Refus persistant de réunir, d'évaluer, d'informer : c'est le niveau 5 (B6).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l5">
+          <div class="fdot">B6</div>
+          <div class="fcard">
+            <button><span class="lvl l5">Niveau 5</span><span class="ft">La justice, pour le collectif : entrave et juge judiciaire</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Le volet collectif ne va pas aux prud'hommes (c'est la juridiction du contrat individuel). Il va devant le <b>tribunal judiciaire</b>, au civil, et devant le <b>tribunal correctionnel</b>, au pénal.</p>
+              <ul>
+                <li><b>L'entrave au fonctionnement régulier du CSE</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035634273" target="_blank" rel="noopener">L. 2317-1</a>, code du travail) : 7 500 € d'amende pour la personne physique, le quintuple pour la personne morale. La jurisprudence citée dans le support en donne les contours : refus de convoquer une réunion extraordinaire, ordre du jour fixé unilatéralement, consultation remplacée par une information. Trois voies : plainte simple au procureur, plainte avec constitution de partie civile, citation directe devant le tribunal correctionnel (article 388 du code de procédure pénale), la plus utilisée parce que les faits sont simples et qu'ils se prouvent par écrit : convocations, ordres du jour, procès-verbaux.</li>
+                <li><b>Le juge civil</b> : le CSE, représenté par son secrétaire mandaté par résolution, peut demander au tribunal judiciaire d'ordonner l'expertise refusée, de faire cesser un trouble manifestement illicite, ou de faire respecter ses prérogatives. Les frais de procédure relèvent du budget de fonctionnement.</li>
+              </ul>
+              <p>Le support prévient, à propos de la décision de la chambre sociale du 13 mai 2026 : devant le juge civil, le manquement formel ne suffit pas, il faut démontrer en quoi il a <b>privé le comité de l'exercice effectif de ses prérogatives</b>. C'est exactement ce que prouvent, pièce par pièce, vos mails miroirs, vos résolutions et vos procès-verbaux des niveaux 2 et 3.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /case-rps -->
+
+    <!-- ================= CAS 2 : DGI ================= -->
+    <div class="casepanel" id="case-dgi">
+      <div class="note n-ex">
+        <span class="ni"><i class="fa-solid fa-triangle-exclamation" style="color:var(--red)"></i></span>
+        <div>
+          <span class="tag">La situation</span>
+          <p>Lors d'une inspection, vous constatez qu'un opérateur travaille sur une presse dont le carter de protection a été retiré « parce qu'il gêne pour décoincer les pièces ». L'arrêt d'urgence est masqué par un bac. Le chef d'atelier est au courant : « on attend la pièce depuis trois semaines, la production ne peut pas s'arrêter ». C'est la question de vérification des acquis de la séquence « alertes » : le risque est <b>grave</b> (amputation possible) et <b>imminent</b> (l'exposition est en cours).</p>
+        </div>
+      </div>
+
+      <div class="logi" id="logi-dgi">
+        <div class="logi-bar">
+          <div><span class="kicker" style="font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-2)">Logigramme</span><b>Le parcours en un coup d'œil : du constat à la mise en demeure</b></div>
+          <div class="logi-actions">
+            <button class="btn btn-ghost btn-sm" data-logi-zoom="logi-dgi"><i class="fa-solid fa-expand"></i> Plein écran</button>
+            <button class="btn btn-ghost btn-sm" data-logi-png="logi-dgi"><i class="fa-solid fa-image"></i> Image PNG</button>
+            <button class="btn btn-ghost btn-sm" data-logi-svg="logi-dgi"><i class="fa-solid fa-download"></i> SVG</button>
+          </div>
+        </div>
+        <div class="logi-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 924" role="img" aria-label="Logigramme du cas nº 2 : machine défaillante, danger grave et imminent" style="font-family:Inter,-apple-system,sans-serif;width:100%;height:auto;display:block"><title>Logigramme du cas nº 2 : machine défaillante, danger grave et imminent</title><defs><marker id="arr-dgi" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b7178"/></marker></defs><rect width="1060" height="924" fill="#fff" rx="14"/><text x="24" y="30" font-size="17" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="24" dy="0">Cas nº 2 · Une machine défaillante : la sécurité d'abord, l'écrit tout de suite après</tspan></text><rect x="24" y="44" width="12" height="12" rx="3" fill="#1faa6b"/><text x="41" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="41" dy="0">N1 · OFF</tspan></text><rect x="117.6" y="44" width="12" height="12" rx="3" fill="#15909f"/><text x="134.6" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="134.6" dy="0">N2 · ÉCRIT</tspan></text><rect x="225.6" y="44" width="12" height="12" rx="3" fill="#c9780f"/><text x="242.6" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="242.6" dy="0">N3 · PROCÉDURE</tspan></text><rect x="362.4" y="44" width="12" height="12" rx="3" fill="#5b6cff"/><text x="379.4" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="379.4" dy="0">N4 · INSPECTION</tspan></text><rect x="506.4" y="44" width="12" height="12" rx="3" fill="#d8453a"/><text x="523.4" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="523.4" dy="0">N5 · JUSTICE</tspan></text><rect x="170.0" y="70" width="420" height="36" rx="18" fill="#10242a"/><text x="380" y="93" font-size="12.5" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="380" dy="0">Constat d'un danger grave ET imminent (ex. carter retiré)</tspan></text><path d="M380,106 L380,126" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-dgi)"/><rect x="120.0" y="126" width="520" height="86" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="2"/><rect x="120.0" y="126" width="7" height="86" rx="3.5" fill="#1faa6b"/><circle cx="150.0" cy="150" r="14" fill="#1faa6b"/><text x="150.0" y="155" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="150.0" dy="0">1</tspan></text><text x="172.0" y="145" font-size="9.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="172.0" dy="0">NIVEAU 1 · OFF</tspan></text><text x="172.0" y="162" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="172.0" dy="0">Faire cesser l'exposition, fixer la preuve</tspan></text><text x="172.0" y="180" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="172.0" dy="0">Informer l'opérateur : droit de retrait (L. 4131-1, sans sanction L. 4131-3).</tspan><tspan x="172.0" dy="14.5">Demander l'arrêt et la consignation au chef d'atelier, oralement, tout de suite.</tspan><tspan x="172.0" dy="14.5">Photos et vidéo datées, identification machine, personnes présentes.</tspan></text><path d="M380,212 L380,238" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-dgi)"/><polygon points="380,238.0 490.0,268 380,298.0 270.0,268" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="380" y="264.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="380" dy="0">Machine arrêtée</tspan><tspan x="380" dy="15">et consignée ?</tspan></text><rect x="700" y="244" width="330" height="62" rx="14" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><text x="865.0" y="266" font-size="12.5" font-weight="800" fill="#177a4d" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="865.0" dy="0">OUI · Mail miroir dans l'heure</tspan></text><text x="865.0" y="282" font-size="11" font-weight="400" fill="#2f464c" text-anchor="middle"><tspan x="865.0" dy="0">Constat, mesures, demandes durables, DUERP.</tspan><tspan x="865.0" dy="13.5">Vaut signalement du risque (L. 4131-4).</tspan></text><path d="M490,268 L700,268" fill="none" stroke="#1faa6b" stroke-width="2" marker-end="url(#arr-dgi)"/><text x="595.0" y="261" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="middle"><tspan x="595.0" dy="0">oui</tspan></text><path d="M380,298 L380,324" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-dgi)"/><text x="388" y="306" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="388" dy="0">non</tspan></text><rect x="120.0" y="324" width="520" height="100" rx="12" fill="#fff" stroke="#c9780f" stroke-width="2"/><rect x="120.0" y="324" width="7" height="100" rx="3.5" fill="#c9780f"/><circle cx="150.0" cy="348" r="14" fill="#c9780f"/><text x="150.0" y="353" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="150.0" dy="0">3</tspan></text><text x="172.0" y="343" font-size="9.5" font-weight="800" fill="#c9780f" text-anchor="start"><tspan x="172.0" dy="0">NIVEAU 3 · PROCÉDURE</tspan></text><text x="172.0" y="360" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="172.0" dy="0">Inscription au registre des dangers graves et imminents</tspan></text><text x="172.0" y="378" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="172.0" dy="0">Un seul membre du CSE, sans vote (L. 4131-2, D. 4132-1). Daté, signé.</tspan><tspan x="172.0" dy="14.5">3 mentions obligatoires : postes concernés · nature et cause du danger ·</tspan><tspan x="172.0" dy="14.5">nom des travailleurs exposés. Photo de la page.</tspan><tspan x="172.0" dy="14.5">Pas de registre ? Mail miroir qui en tient lieu, recopié ensuite.</tspan></text><path d="M380,424 L380,444" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-dgi)"/><rect x="120.0" y="444" width="520" height="72" rx="12" fill="#fff" stroke="#c9780f" stroke-width="2"/><rect x="120.0" y="444" width="7" height="72" rx="3.5" fill="#c9780f"/><circle cx="150.0" cy="468" r="14" fill="#c9780f"/><text x="150.0" y="473" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="150.0" dy="0">4</tspan></text><text x="172.0" y="463" font-size="9.5" font-weight="800" fill="#c9780f" text-anchor="start"><tspan x="172.0" dy="0">NIVEAU 3 · PROCÉDURE</tspan></text><text x="172.0" y="480" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="172.0" dy="0">Enquête immédiate, conjointe, et son compte rendu</tspan></text><text x="172.0" y="498" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="172.0" dy="0">L'employeur enquête « immédiatement » avec l'élu (L. 4132-2). Temps payé (L. 2315-11).</tspan><tspan x="172.0" dy="14.5">Compte rendu signé à chaud, sinon mail miroir sous 24 h.</tspan></text><path d="M380,516 L380,542" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-dgi)"/><polygon points="380,542.0 505.0,572 380,602.0 255.0,572" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="380" y="568.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="380" dy="0">Accord sur le danger</tspan><tspan x="380" dy="15">et les mesures ?</tspan></text><rect x="700" y="548" width="330" height="48" rx="24.0" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><text x="865.0" y="570" font-size="12.5" font-weight="800" fill="#177a4d" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="865.0" dy="0">OUI · Fin de la procédure</tspan></text><text x="865.0" y="586" font-size="11" font-weight="400" fill="#2f464c" text-anchor="middle"><tspan x="865.0" dy="0">Mention au registre, DUERP, point en réunion SSCT</tspan></text><path d="M505,572 L700,572" fill="none" stroke="#1faa6b" stroke-width="2" marker-end="url(#arr-dgi)"/><text x="602.5" y="565" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="middle"><tspan x="602.5" dy="0">oui</tspan></text><path d="M380,602 L380,628" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-dgi)"/><text x="388" y="610" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="388" dy="0">non</tspan></text><rect x="120.0" y="628" width="520" height="86" rx="12" fill="#fff" stroke="#5b6cff" stroke-width="2"/><rect x="120.0" y="628" width="7" height="86" rx="3.5" fill="#5b6cff"/><circle cx="150.0" cy="652" r="14" fill="#5b6cff"/><text x="150.0" y="657" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="150.0" dy="0">5</tspan></text><text x="172.0" y="647" font-size="9.5" font-weight="800" fill="#5b6cff" text-anchor="start"><tspan x="172.0" dy="0">NIVEAU 4 · INSPECTION</tspan></text><text x="172.0" y="664" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="172.0" dy="0">Réunion du CSE dans les 24 heures (L. 4132-3)</tspan></text><text x="172.0" y="682" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="172.0" dy="0">L'employeur informe immédiatement l'inspection et la Carsat, qui peuvent siéger.</tspan><tspan x="172.0" dy="14.5">L'élu appelle et écrit lui-même à l'agent de contrôle : registre, photos, dossier d'une page,</tspan><tspan x="172.0" dy="14.5">deux créneaux proposés, vote de la majorité des élus (L. 2314-3).</tspan></text><path d="M380,714 L380,740" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-dgi)"/><polygon points="380,740.0 505.0,770 380,800.0 255.0,770" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="380" y="766.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="380" dy="0">Accord employeur /</tspan><tspan x="380" dy="15">majorité du CSE ?</tspan></text><rect x="700" y="746" width="330" height="48" rx="24.0" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><text x="865.0" y="768" font-size="12.5" font-weight="800" fill="#177a4d" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="865.0" dy="0">OUI · Fin de la procédure</tspan></text><text x="865.0" y="784" font-size="11" font-weight="400" fill="#2f464c" text-anchor="middle"><tspan x="865.0" dy="0">Mesures et conditions d'exécution au procès-verbal</tspan></text><path d="M505,770 L700,770" fill="none" stroke="#1faa6b" stroke-width="2" marker-end="url(#arr-dgi)"/><text x="602.5" y="763" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="middle"><tspan x="602.5" dy="0">oui</tspan></text><path d="M380,800 L380,826" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-dgi)"/><text x="388" y="808" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="388" dy="0">non</tspan></text><rect x="120.0" y="826" width="254" height="78" rx="12" fill="#fff" stroke="#5b6cff" stroke-width="2"/><rect x="120.0" y="826" width="7" height="78" rx="3.5" fill="#5b6cff"/><circle cx="150.0" cy="850" r="14" fill="#5b6cff"/><text x="150.0" y="855" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="150.0" dy="0">6</tspan></text><text x="172.0" y="845" font-size="9.5" font-weight="800" fill="#5b6cff" text-anchor="start"><tspan x="172.0" dy="0">NIVEAU 4 · INSPECTION</tspan></text><text x="172.0" y="862" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="172.0" dy="0">Saisine de l'inspecteur</tspan></text><text x="172.0" y="880" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="172.0" dy="0">Par l'employeur, sans délai (L. 4132-4).</tspan><tspan x="172.0" dy="14.5">Sinon : entrave, et l'élu saisit lui-même.</tspan></text><path d="M374.0,865 L386.0,865" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-dgi)"/><rect x="386.0" y="826" width="254" height="78" rx="12" fill="#fff" stroke="#d8453a" stroke-width="2"/><rect x="386.0" y="826" width="7" height="78" rx="3.5" fill="#d8453a"/><circle cx="416.0" cy="850" r="14" fill="#d8453a"/><text x="416.0" y="855" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="416.0" dy="0">7</tspan></text><text x="438.0" y="845" font-size="9.5" font-weight="800" fill="#d8453a" text-anchor="start"><tspan x="438.0" dy="0">NIVEAU 5 · JUSTICE</tspan></text><text x="438.0" y="862" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="438.0" dy="0">Mise en demeure ou référé</tspan></text><text x="438.0" y="880" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="438.0" dy="0">DREETS (L. 4721-1) · juge : mise hors</tspan><tspan x="438.0" dy="14.5">service, saisie, fermeture (L. 4732-1).</tspan></text><rect x="700" y="620" width="330" height="96" rx="10" fill="#fde9e7" stroke="#d8453a" stroke-width="1.5" stroke-dasharray="5 4"/><text x="712" y="639" font-size="11.5" font-weight="800" fill="#d8453a" text-anchor="start"><tspan x="712" dy="0">SI L'ACCIDENT SURVIENT MALGRÉ TOUT</tspan></text><text x="712" y="655" font-size="11" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="712" dy="0">Faute inexcusable de l'employeur de droit :</tspan><tspan x="712" dy="13.5">le risque avait été signalé (L. 4131-4).</tspan><tspan x="712" dy="13.5">Enquête du CSE, arbre des causes.</tspan><tspan x="712" dy="13.5">Chaque manquement = entrave (L. 2317-1).</tspan></text><rect x="700" y="330" width="330" height="96" rx="10" fill="#e6f4f5" stroke="#15909f" stroke-width="1.5" stroke-dasharray="5 4"/><text x="712" y="349" font-size="11.5" font-weight="800" fill="#15909f" text-anchor="start"><tspan x="712" dy="0">LE SALARIÉ, DE SON CÔTÉ</tspan></text><text x="712" y="365" font-size="11" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="712" dy="0">Droit de retrait : « motif raisonnable de penser »,</tspan><tspan x="712" dy="13.5">il n'a pas à prouver le danger (L. 4131-1).</tspan><tspan x="712" dy="13.5">L'employeur ne peut pas lui demander de</tspan><tspan x="712" dy="13.5">reprendre tant que le danger persiste.</tspan></text></svg></div>
+        <p class="logi-hint">Losanges : les questions à se poser. Vert : ça marche, on trace et on s'arrête. Ambre : ça ne marche pas, on monte d'un niveau. Le détail de chaque étape est dans le parcours ci-dessous. Version haute définition pour la salle : <a href="logigrammes/logigramme-dgi-cse.png" target="_blank" rel="noopener">PNG</a> · <a href="logigrammes/logigramme-dgi-cse.svg" target="_blank" rel="noopener">SVG</a>.</p>
+      </div>
+
+      <div class="note n-no">
+        <span class="ni">⛔</span>
+        <div>
+          <span class="tag">L'exception à la règle d'or</span>
+          <p>Ici, le niveau 1 dure dix minutes, pas trois semaines. Le danger grave et imminent est la seule situation où la sécurité des personnes passe avant la gradation : on fait cesser l'exposition d'abord, on discute ensuite. Mais même ici, on n'oublie ni le « off » ni l'écrit : ils prennent simplement des formes rapides.</p>
+        </div>
+      </div>
+
+      <div class="volets">
+        <div class="volet a"><h4><i class="fa-solid fa-person-walking-arrow-right" style="color:var(--coral)"></i> Le salarié : droit de retrait</h4><p>Le travailleur alerte immédiatement l'employeur et <b>peut se retirer</b> d'une situation dont il a un <b>motif raisonnable de penser</b> qu'elle présente un danger grave et imminent (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006903155" target="_blank" rel="noopener">L. 4131-1</a>, code du travail). Il n'a pas à prouver le danger. Aucune sanction ni retenue de salaire n'est possible (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006903157" target="_blank" rel="noopener">L. 4131-3</a>).</p></div>
+        <div class="volet b"><h4><i class="fa-solid fa-bell" style="color:var(--teal-2)"></i> L'élu : droit d'alerte</h4><p>Le représentant du personnel au CSE qui constate une cause de danger grave et imminent <b>en alerte immédiatement l'employeur</b> et consigne son avis par écrit (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653297" target="_blank" rel="noopener">L. 4131-2</a>, code du travail). Le premier protège une personne, le second déclenche une procédure. Les deux se combinent.</p></div>
+      </div>
+
+      <div class="flow">
+
+        <div class="fstep l1">
+          <div class="fdot">1</div>
+          <div class="fcard">
+            <button><span class="lvl l1">Niveau 1</span><span class="ft">Faire cesser l'exposition, tout de suite, et fixer la preuve</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p><span class="who">Qui</span> L'élu présent, sur-le-champ.</p>
+              <ul>
+                <li>Informez l'opérateur du danger et de son droit de retrait. Ne lui donnez pas d'ordre : vous n'êtes pas son chef. Dites-lui ce que la loi lui permet.</li>
+                <li>Allez voir le chef d'atelier, puis le responsable de site : « la presse 3 travaille sans carter et sans arrêt d'urgence accessible, je vous demande de l'arrêter et de la consigner le temps de remettre la protection ». C'est le « off » de ce cas : oral, immédiat, courtois, mais sans ambiguïté.</li>
+                <li>Pendant ce temps, <b>fixez la preuve</b> : photos et courte vidéo datées (la machine, le carter absent, le bac devant l'arrêt d'urgence, l'identification de la machine), nom des personnes présentes, heure. Demandez la notice, le dernier rapport de vérification périodique, le registre de sécurité.</li>
+              </ul>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>La machine est arrêtée et consignée. Confirmez par un mail miroir dans l'heure (étape 2) : la situation était dangereuse, elle a été traitée, il faut qu'elle ne se reproduise pas.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>« On finit la série », « on n'a pas la pièce », « ça fait dix ans qu'on travaille comme ça » : passez immédiatement à l'étape 3, l'inscription au registre. Pas dans deux jours, maintenant.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l2">
+          <div class="fdot">2</div>
+          <div class="fcard">
+            <button><span class="lvl l2">Niveau 2</span><span class="ft">Le mail miroir, même quand tout s'est bien passé</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Si l'employeur a réagi, le réflexe est de passer à autre chose. C'est une erreur : la situation reviendra à la prochaine pièce coincée. Dans l'heure, un mail au responsable de site, copie au président et au secrétaire du CSE : ce qui a été constaté, ce qui a été fait, ce qui est demandé pour la suite (remise en état, formation, consigne sur le décoincement, inscription au DUERP, point en réunion SSCT).</p>
+              <p>Ce mail vaut <b>signalement du risque</b> au sens de l'article <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653293" target="_blank" rel="noopener">L. 4131-4</a> (code du travail) : si un accident survient plus tard sur cette machine parce que la protection a de nouveau été retirée, la faute inexcusable de l'employeur sera <b>de droit</b>. Chaque signalement écrit du CSE devient une présomption de faute inexcusable ; le support le dit, et il ajoute que le savoir change la pratique des élus.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">3</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">L'inscription au registre des dangers graves et imminents</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p><span class="who">Qui</span> Un seul membre du CSE. Aucun vote préalable, aucune majorité : le support insiste, c'est la ligne du tableau des alertes à retenir avant toutes les autres, parce qu'elle protège le salarié en danger et l'élu qui la déclenche.</p>
+              <p>L'avis est consigné sur un <b>registre spécial</b>, aux pages numérotées et authentifiées par le tampon du comité, tenu par l'employeur à la disposition des élus (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036484010" target="_blank" rel="noopener">D. 4132-1</a> et <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036484007" target="_blank" rel="noopener">D. 4132-2</a>, code du travail). Il est <b>daté et signé</b>, et il comporte <b>trois mentions obligatoires</b> :</p>
+              <ul class="chk-list" data-list="dgi-registre">
+                <li><label><input type="checkbox"><span><b>1° Les postes de travail concernés</b> : « presse hydraulique nº 3, atelier découpe, poste opérateur ».</span></label></li>
+                <li><label><input type="checkbox"><span><b>2° La nature et la cause du danger</b> : « risque d'écrasement et d'amputation des mains, carter de protection retiré, arrêt d'urgence inaccessible ».</span></label></li>
+                <li><label><input type="checkbox"><span><b>3° Le nom des travailleurs exposés</b> : l'opérateur en poste et ceux qui se relaient sur la machine.</span></label></li>
+                <li><label><input type="checkbox"><span>Date, heure, signature, et la mention de l'article L. 4131-2. Une alerte incomplète est contestable : recopiez les trois mentions dans votre carnet avant même d'ouvrir le registre.</span></label></li>
+              </ul>
+              <h5>Le registre n'existe pas, ou personne ne sait où il est</h5>
+              <p>Cela arrive souvent. Ne renoncez pas : envoyez immédiatement un <b>mail miroir tenant lieu d'inscription</b>, au président du CSE, copie au secrétaire, avec les trois mentions et la demande d'ouverture du registre. Recopiez-le au registre dès qu'il existe, en mentionnant la date du mail. L'absence de registre est un manquement de l'employeur, pas un obstacle à votre alerte. Le modèle est dans <a href="#ecrits">la section « Les écrits »</a>.</p>
+              <p>Prenez une photo de la page du registre une fois remplie et signée.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">4</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">L'enquête immédiate, conjointe, et son compte rendu</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>L'employeur procède <b>immédiatement</b> à une enquête <b>avec</b> le représentant qui a signalé le danger, et prend les dispositions nécessaires pour y remédier (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653288" target="_blank" rel="noopener">L. 4132-2</a>, code du travail). Le temps que vous y passez est payé comme temps de travail et n'est pas déduit de vos heures de délégation (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262458" target="_blank" rel="noopener">L. 2315-11</a>, 1°).</p>
+              <h5>Le compte rendu d'enquête</h5>
+              <ul>
+                <li>À chaud, sur place, une page : constats (avec les photos), causes identifiées (pièce en attente, consigne de décoincement inexistante, pression de production), mesures immédiates (consignation, remise du carter), mesures durables (procédure de décoincement, formation, vérification périodique), responsable et date pour chacune.</li>
+                <li>Signé par les deux enquêteurs. Copie au secrétaire du CSE, copie dans votre dossier. Si l'employeur refuse de signer ou de rédiger : mail miroir tenant lieu de compte rendu, sous 24 heures (modèle dans <a href="#ecrits">« Les écrits »</a>).</li>
+              </ul>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>Accord sur la réalité du danger et sur les mesures : la procédure s'arrête là. Demandez la mention au registre (« mesures prises le … »), l'inscription au DUERP, un point à la prochaine réunion SSCT.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b><b>Divergence</b> sur la réalité du danger ou sur la façon de le faire cesser (l'employeur refuse d'arrêter la machine) : la réunion du CSE dans les 24 heures est de droit (étape 5).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l4">
+          <div class="fdot">5</div>
+          <div class="fcard">
+            <button><span class="lvl l4">Niveau 4</span><span class="ft">La réunion dans les 24 heures, et comment faire venir l'inspecteur du travail</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>En cas de divergence, le CSE est <b>réuni d'urgence, dans un délai n'excédant pas vingt-quatre heures</b>. L'employeur <b>informe immédiatement</b> l'agent de contrôle de l'inspection du travail et l'agent de prévention de la Carsat, <b>qui peuvent assister à la réunion</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653284" target="_blank" rel="noopener">L. 4132-3</a>, code du travail). Vingt-quatre heures : le support le note, c'est le délai le plus court de tout le code du travail en matière de CSE.</p>
+              <p>Deux difficultés pratiques : l'employeur oublie, tarde ou « n'a pas trouvé le bon interlocuteur » ; et l'agent de contrôle, libre d'organiser ses contrôles (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033025397" target="_blank" rel="noopener">L. 8112-1</a>), ne vient pas à une réunion dont il apprend l'existence trois heures avant, sans dossier.</p>
+              <h5>Sept gestes pour maximiser ses chances de le voir siéger</h5>
+              <ul class="chk-list" data-list="dgi-inspecteur">
+                <li><label><input type="checkbox"><span><b>Appelez-le vous-même</b> dès l'inscription au registre, sans attendre l'employeur. Le numéro de l'unité de contrôle figure sur l'affichage obligatoire de l'entreprise. Vous ne vous substituez pas à l'employeur, vous l'informez d'un fait.</span></label></li>
+                <li><label><input type="checkbox"><span><b>Envoyez-lui dans l'heure</b> un mail court avec la photo de la page du registre, les photos de la machine, et la chronologie. Objet explicite : « Alerte DGI L. 4131-2, [entreprise], presse nº 3, réunion CSE sous 24 h ».</span></label></li>
+                <li><label><input type="checkbox"><span><b>Proposez deux créneaux</b> pour la réunion, et demandez à l'employeur de fixer celui qui convient à l'agent. Une réunion à 8 h le lendemain matin a plus de chances qu'une réunion à 17 h le jour même.</span></label></li>
+                <li><label><input type="checkbox"><span><b>Vérifiez que l'employeur l'a informé</b> : demandez-lui copie de son mail à l'inspection et à la Carsat. S'il ne l'a pas fait, votre propre mail y a pourvu, et son silence sera au procès-verbal.</span></label></li>
+                <li><label><input type="checkbox"><span><b>Informez aussi la Carsat</b> (service prévention) et le <b>médecin du travail</b> : eux aussi peuvent venir, et leur présence encourage celle de l'inspecteur.</span></label></li>
+                <li><label><input type="checkbox"><span><b>Préparez le dossier d'une page</b> qu'il lira dans sa voiture : le constat, les textes (L. 4131-2, L. 4132-2 à L. 4132-4, D. 4132-1), la position de l'employeur, les mesures que le CSE demande. Un agent qui arrive avec le dossier lu siège utilement.</span></label></li>
+                <li><label><input type="checkbox"><span><b>Faites voter les élus</b> : à la demande de la majorité de la délégation du personnel, l'agent de contrôle est invité aux réunions SSCT du CSE (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043893890" target="_blank" rel="noopener">L. 2314-3</a>), et il l'est de droit aux réunions consécutives à un accident ayant entraîné au moins huit jours d'arrêt. Rappelez-lui que la réunion de 24 heures l'est aussi, au titre de L. 4132-3. S'il ne peut pas venir, demandez-lui un écrit ou un appel pendant la réunion : sa position, même transmise, pèse sur le vote.</span></label></li>
+              </ul>
+              <h5>Pendant la réunion</h5>
+              <p>L'ordre du jour est unique : l'alerte. Le CSE délibère sur la réalité du danger et sur les mesures. Le vote se fait à la <b>majorité des membres</b>. Tout est consigné au procès-verbal, y compris la présence ou l'absence de l'inspecteur et de la Carsat, et la façon dont ils ont été informés.</p>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>Accord entre l'employeur et la majorité du comité sur les mesures et leurs conditions d'exécution : fin de la procédure. Registre, DUERP, suivi à la réunion suivante.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>Désaccord persistant : c'est l'étape 6, et c'est l'employeur qui doit saisir l'inspecteur.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l4">
+          <div class="fdot">6</div>
+          <div class="fcard">
+            <button><span class="lvl l4">Niveau 4</span><span class="ft">La saisine de l'inspecteur du travail : mise en demeure ou référé</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>À défaut d'accord entre l'employeur et la majorité du CSE, <b>l'inspecteur du travail est saisi immédiatement par l'employeur</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653278" target="_blank" rel="noopener">L. 4132-4</a>, code du travail). Le support le souligne : c'est l'<b>employeur</b> qui saisit, pas l'élu. S'il ne le fait pas, c'est une entrave, et vous saisissez vous-même l'agent de contrôle en lui signalant cette carence, avec le procès-verbal de la réunion.</p>
+              <p>L'inspecteur dispose alors de deux outils :</p>
+              <ul>
+                <li>La <b>mise en demeure</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033025270" target="_blank" rel="noopener">L. 4721-1</a>, code du travail) : prise sur son rapport par le directeur régional (la DREETS, qui a remplacé la Direccte le 1ᵉʳ avril 2021 ; l'arborescence du support porte encore l'ancien nom), pour non-respect des principes généraux de prévention.</li>
+                <li>Le <b>référé judiciaire</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032376259" target="_blank" rel="noopener">L. 4732-1</a>, code du travail) : le juge ordonne toutes mesures propres à faire cesser le risque, <b>mise hors service, immobilisation, saisie</b> de la machine, voire fermeture temporaire de l'atelier, sous astreinte.</li>
+              </ul>
+              <p>Les quatre issues possibles de l'arborescence du support : mesures prises et fin de procédure ; accord en CSE et fin de procédure ; inspecteur qui ne retient pas le danger et fin de procédure ; inspecteur qui retient le danger, et alors mise en demeure ou référé.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l5">
+          <div class="fdot">7</div>
+          <div class="fcard">
+            <button><span class="lvl l5">Niveau 5</span><span class="ft">Et après : l'accident qu'on n'a pas su empêcher, l'entrave, le pénal</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <ul>
+                <li><b>Si l'accident survient malgré tout</b> : la faute inexcusable est de droit, puisque le risque avait été signalé (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653293" target="_blank" rel="noopener">L. 4131-4</a>). Votre registre, votre mail miroir et le procès-verbal sont les pièces du dossier du salarié. Le CSE mène l'enquête d'accident grave (temps payé, <a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262458" target="_blank" rel="noopener">L. 2315-11</a>, 3°) et construit l'arbre des causes (fiche <a href="analyse-at.html#arbre">L'analyse des AT</a>).</li>
+                <li><b>L'entrave</b> : refus d'enquêter, refus de réunir sous 24 heures, refus de saisir l'inspecteur, registre inexistant malgré la demande. Chaque manquement est un fait d'entrave au fonctionnement régulier du comité (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035634273" target="_blank" rel="noopener">L. 2317-1</a>), à signaler à l'agent de contrôle, qui peut dresser procès-verbal et informer le procureur.</li>
+                <li><b>Le pénal de la sécurité</b> : au-delà de l'entrave, le non-respect des règles de santé et de sécurité sur les équipements de travail est lui-même pénalement sanctionné, et la mise en danger d'autrui peut être poursuivie. Ce sont des qualifications que l'inspecteur et le procureur apprécient ; votre rôle est de leur fournir les faits datés.</li>
+              </ul>
+              <div class="note n-ok" style="margin-top:12px">
+                <span class="ni"><i class="fa-solid fa-shield-halved" style="color:var(--green)"></i></span>
+                <div><span class="tag">Ce que vous avez gagné, même si l'affaire va au bout</span><p>Une exposition arrêtée, un registre qui fait foi, un salarié protégé pour le retrait comme pour l'indemnisation, et un employeur qui ne pourra plus dire qu'il ne savait pas.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /case-dgi -->
+
+    <!-- ================= CAS 3 : INFORMATION / CONSULTATION ================= -->
+    <div class="casepanel" id="case-info">
+      <div class="note n-ex">
+        <span class="ni"><i class="fa-solid fa-file-circle-question" style="color:var(--indigo)"></i></span>
+        <div>
+          <span class="tag">La situation</span>
+          <p>L'ordre du jour de la prochaine réunion porte « consultation sur le déménagement du service logistique et la nouvelle organisation en 2 × 8 ». Vous avez reçu une présentation de six diapositives. Pas de plan des locaux, pas d'étude des postes, pas d'impact sur les horaires ni sur les effectifs, pas d'avis du médecin du travail. Vous demandez les documents ; la réponse : « tout est dans la présentation, on vous demande un avis mardi ». Vous sentez que l'on vous demande de signer un chèque en blanc.</p>
+        </div>
+      </div>
+
+      <div class="logi" id="logi-info">
+        <div class="logi-bar">
+          <div><span class="kicker" style="font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-2)">Logigramme</span><b>Le parcours en un coup d'œil : agir avant la fin du délai</b></div>
+          <div class="logi-actions">
+            <button class="btn btn-ghost btn-sm" data-logi-zoom="logi-info"><i class="fa-solid fa-expand"></i> Plein écran</button>
+            <button class="btn btn-ghost btn-sm" data-logi-png="logi-info"><i class="fa-solid fa-image"></i> Image PNG</button>
+            <button class="btn btn-ghost btn-sm" data-logi-svg="logi-info"><i class="fa-solid fa-download"></i> SVG</button>
+          </div>
+        </div>
+        <div class="logi-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 930" role="img" aria-label="Logigramme du cas nº 3 : pas d'informations, le comité ne peut pas rendre d'avis" style="font-family:Inter,-apple-system,sans-serif;width:100%;height:auto;display:block"><title>Logigramme du cas nº 3 : pas d'informations, le comité ne peut pas rendre d'avis</title><defs><marker id="arr-info" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b7178"/></marker></defs><rect width="1060" height="930" fill="#fff" rx="14"/><text x="24" y="30" font-size="17" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="24" dy="0">Cas nº 3 · Pas d'informations : agir avant que le délai n'expire</tspan></text><rect x="24" y="44" width="12" height="12" rx="3" fill="#1faa6b"/><text x="41" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="41" dy="0">N1 · OFF</tspan></text><rect x="117.6" y="44" width="12" height="12" rx="3" fill="#15909f"/><text x="134.6" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="134.6" dy="0">N2 · ÉCRIT</tspan></text><rect x="225.6" y="44" width="12" height="12" rx="3" fill="#c9780f"/><text x="242.6" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="242.6" dy="0">N3 · PROCÉDURE</tspan></text><rect x="362.4" y="44" width="12" height="12" rx="3" fill="#5b6cff"/><text x="379.4" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="379.4" dy="0">N4 · INSPECTION</tspan></text><rect x="506.4" y="44" width="12" height="12" rx="3" fill="#d8453a"/><text x="523.4" y="54" font-size="10.5" font-weight="700" fill="#5b7178" text-anchor="start"><tspan x="523.4" dy="0">N5 · JUSTICE</tspan></text><rect x="150.0" y="70" width="460" height="36" rx="18" fill="#10242a"/><text x="380" y="93" font-size="12.5" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="380" dy="0">Consultation à l'ordre du jour, documents absents ou incomplets</tspan></text><path d="M380,106 L380,126" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-info)"/><rect x="120.0" y="126" width="520" height="86" rx="12" fill="#fff" stroke="#15909f" stroke-width="2"/><rect x="120.0" y="126" width="7" height="86" rx="3.5" fill="#15909f"/><circle cx="150.0" cy="150" r="14" fill="#15909f"/><text x="150.0" y="155" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="150.0" dy="0">1</tspan></text><text x="172.0" y="145" font-size="9.5" font-weight="800" fill="#15909f" text-anchor="start"><tspan x="172.0" dy="0">NIVEAU 2 · ÉCRIT</tspan></text><text x="172.0" y="162" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="172.0" dy="0">Vérifier ce que la loi exige, lister ce qui manque</tspan></text><text x="172.0" y="180" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="172.0" dy="0">Consultation préalable (L. 2312-14) · informations précises et écrites,</tspan><tspan x="172.0" dy="14.5">délai d'examen suffisant, réponse motivée (L. 2312-15).</tspan><tspan x="172.0" dy="14.5">Liste datée, document par document : c'est la première pièce du dossier.</tspan></text><path d="M380,212 L380,232" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-info)"/><rect x="120.0" y="232" width="520" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="2"/><rect x="120.0" y="232" width="7" height="72" rx="3.5" fill="#1faa6b"/><circle cx="150.0" cy="256" r="14" fill="#1faa6b"/><text x="150.0" y="261" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="150.0" dy="0">2</tspan></text><text x="172.0" y="251" font-size="9.5" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="172.0" dy="0">NIVEAU 1 · OFF</tspan></text><text x="172.0" y="268" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="172.0" dy="0">Demander « en off », puis mail miroir de demande d'informations</tspan></text><text x="172.0" y="286" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="172.0" dy="0">Proposer un calendrier : information à cette réunion, consultation à la suivante.</tspan><tspan x="172.0" dy="14.5">Rappeler que le délai court à compter de la communication (R. 2312-5).</tspan></text><path d="M380,304 L380,330" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-info)"/><polygon points="380,330.0 490.0,360 380,390.0 270.0,360" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="380" y="356.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="380" dy="0">Documents</tspan><tspan x="380" dy="15">reçus ?</tspan></text><rect x="700" y="336" width="330" height="62" rx="14" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><text x="865.0" y="358" font-size="12.5" font-weight="800" fill="#177a4d" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="865.0" dy="0">OUI · Le comité rend son avis</tspan></text><text x="865.0" y="374" font-size="11" font-weight="400" fill="#2f464c" text-anchor="middle"><tspan x="865.0" dy="0">Favorable ou non, sur pièces. Noter la date de</tspan><tspan x="865.0" dy="13.5">communication : elle fixe l'échéance de l'avis.</tspan></text><path d="M490,360 L700,360" fill="none" stroke="#1faa6b" stroke-width="2" marker-end="url(#arr-info)"/><text x="595.0" y="353" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="middle"><tspan x="595.0" dy="0">oui</tspan></text><path d="M380,390 L380,416" fill="none" stroke="#a4710c" stroke-width="2" marker-end="url(#arr-info)"/><text x="388" y="398" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="388" dy="0">non</tspan></text><rect x="120.0" y="416" width="520" height="100" rx="12" fill="#fff" stroke="#c9780f" stroke-width="2"/><rect x="120.0" y="416" width="7" height="100" rx="3.5" fill="#c9780f"/><circle cx="150.0" cy="440" r="14" fill="#c9780f"/><text x="150.0" y="445" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="150.0" dy="0">3</tspan></text><text x="172.0" y="435" font-size="9.5" font-weight="800" fill="#c9780f" text-anchor="start"><tspan x="172.0" dy="0">NIVEAU 3 · PROCÉDURE</tspan></text><text x="172.0" y="452" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="172.0" dy="0">En séance : « le comité n'est pas en mesure de rendre un avis »</tspan></text><text x="172.0" y="470" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="172.0" dy="0">Déclaration lue par le secrétaire, résolution votée, consignée au PV (L. 2315-34).</tspan><tspan x="172.0" dy="14.5">Pas un refus : l'impossibilité prévue par la loi. Réponse motivée exigée</tspan><tspan x="172.0" dy="14.5">sur chaque document. Position : le délai n'a pas commencé à courir.</tspan></text><path d="M380,516 L380,542" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-info)"/><polygon points="380,542.0 505.0,572 380,602.0 255.0,572" fill="#fff" stroke="#10242a" stroke-width="1.8"/><text x="380" y="568.5" font-size="12" font-weight="700" fill="#10242a" text-anchor="middle"><tspan x="380" dy="0">Employeur complète</tspan><tspan x="380" dy="15">et reporte ?</tspan></text><rect x="700" y="548" width="330" height="48" rx="24.0" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><text x="865.0" y="570" font-size="12.5" font-weight="800" fill="#177a4d" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="865.0" dy="0">OUI · Fin</tspan></text><text x="865.0" y="586" font-size="11" font-weight="400" fill="#2f464c" text-anchor="middle"><tspan x="865.0" dy="0">Consultation à une réunion ultérieure, avis rendu</tspan></text><path d="M505,572 L700,572" fill="none" stroke="#1faa6b" stroke-width="2" marker-end="url(#arr-info)"/><text x="602.5" y="565" font-size="11.5" font-weight="800" fill="#1faa6b" text-anchor="middle"><tspan x="602.5" dy="0">oui</tspan></text><path d="M380,602 L380,634" fill="none" stroke="#a4710c" stroke-width="2"/><text x="390" y="622" font-size="11.5" font-weight="800" fill="#a4710c" text-anchor="start"><tspan x="390" dy="0">non : trois leviers en parallèle, tous AVANT la fin du délai</tspan></text><path d="M136.0,634 L624.0,634" fill="none" stroke="#5b7178" stroke-width="2"/><path d="M136.0,634 L136.0,660" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-info)"/><path d="M380.0,634 L380.0,660" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-info)"/><path d="M624.0,634 L624.0,660" fill="none" stroke="#5b7178" stroke-width="2" marker-end="url(#arr-info)"/><rect x="20.0" y="660" width="232" height="110" rx="12" fill="#fff" stroke="#c9780f" stroke-width="2"/><rect x="20.0" y="660" width="7" height="110" rx="3.5" fill="#c9780f"/><circle cx="50.0" cy="684" r="14" fill="#c9780f"/><text x="50.0" y="689" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="50.0" dy="0">4</tspan></text><text x="72.0" y="679" font-size="9.5" font-weight="800" fill="#c9780f" text-anchor="start"><tspan x="72.0" dy="0">NIVEAU 3 · PROCÉDURE</tspan></text><text x="72.0" y="696" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="72.0" dy="0">L'expert habilité</tspan></text><text x="72.0" y="714" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="72.0" dy="0">Projet important (L. 2315-94, 2°).</tspan><tspan x="72.0" dy="14.5">Délai porté à 2 mois (R. 2312-6).</tspan><tspan x="72.0" dy="14.5">Accès aux documents.</tspan><tspan x="72.0" dy="14.5">Financement 80/20 (L. 2315-80).</tspan></text><rect x="264.0" y="660" width="232" height="110" rx="12" fill="#fff" stroke="#d8453a" stroke-width="2"/><rect x="264.0" y="660" width="7" height="110" rx="3.5" fill="#d8453a"/><circle cx="294.0" cy="684" r="14" fill="#d8453a"/><text x="294.0" y="689" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="294.0" dy="0">5</tspan></text><text x="316.0" y="679" font-size="9.5" font-weight="800" fill="#d8453a" text-anchor="start"><tspan x="316.0" dy="0">NIVEAU 5 · JUSTICE</tspan></text><text x="316.0" y="696" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="316.0" dy="0">Président du TJ</tspan></text><text x="316.0" y="714" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="316.0" dy="0">Procédure accélérée au fond</tspan><tspan x="316.0" dy="14.5">(L. 2312-15) : communication</tspan><tspan x="316.0" dy="14.5">ordonnée. Demander la</tspan><tspan x="316.0" dy="14.5">prolongation du délai.</tspan></text><rect x="508.0" y="660" width="232" height="110" rx="12" fill="#fff" stroke="#5b6cff" stroke-width="2"/><rect x="508.0" y="660" width="7" height="110" rx="3.5" fill="#5b6cff"/><circle cx="538.0" cy="684" r="14" fill="#5b6cff"/><text x="538.0" y="689" font-size="13" font-weight="800" fill="#fff" text-anchor="middle"><tspan x="538.0" dy="0">6</tspan></text><text x="560.0" y="679" font-size="9.5" font-weight="800" fill="#5b6cff" text-anchor="start"><tspan x="560.0" dy="0">NIVEAU 4 · INSPECTION</tspan></text><text x="560.0" y="696" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,sans-serif"><tspan x="560.0" dy="0">Inspection, entrave</tspan></text><text x="560.0" y="714" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="560.0" dy="0">Signalement avec pièces.</tspan><tspan x="560.0" dy="14.5">Entrave : L. 2317-1, 7 500 €,</tspan><tspan x="560.0" dy="14.5">citation directe (art. 388 CPP).</tspan><tspan x="560.0" dy="14.5">Nommer qui a refusé quoi.</tspan></text><rect x="20.0" y="796" width="720" height="62" rx="10" fill="#fde9e7" stroke="#d8453a" stroke-width="1.5" stroke-dasharray="5 4"/><text x="32.0" y="815" font-size="11.5" font-weight="800" fill="#d8453a" text-anchor="start"><tspan x="32.0" dy="0">LE PIÈGE</tspan></text><text x="32.0" y="831" font-size="11" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="32.0" dy="0">À l'expiration du délai (1 mois, 2 avec expert, 3 en central), le comité est réputé consulté et avoir rendu un avis</tspan><tspan x="32.0" dy="13.5">négatif (L. 2312-16, R. 2312-6). Ne pas répondre ne bloque rien : c'est l'inverse. Le juge se saisit avant l'échéance.</tspan></text><rect x="700" y="120" width="330" height="78" rx="10" fill="#e2f6ec" stroke="#177a4d" stroke-width="1.5" stroke-dasharray="5 4"/><text x="712" y="139" font-size="11.5" font-weight="800" fill="#177a4d" text-anchor="start"><tspan x="712" dy="0">LA PHRASE À RETENIR</tspan></text><text x="712" y="155" font-size="11" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="712" dy="0">« Nous ne refusons pas de donner notre avis.</tspan><tspan x="712" dy="13.5">Nous ne pouvons pas le donner, parce que la loi</tspan><tspan x="712" dy="13.5">nous impose des informations précises et écrites</tspan><tspan x="712" dy="13.5">que nous n'avons pas. »</tspan></text></svg></div>
+        <p class="logi-hint">Losanges : les questions à se poser. Vert : ça marche, on trace et on s'arrête. Ambre : ça ne marche pas, on monte d'un niveau. Le détail de chaque étape est dans le parcours ci-dessous. Version haute définition pour la salle : <a href="logigrammes/logigramme-info-cse.png" target="_blank" rel="noopener">PNG</a> · <a href="logigrammes/logigramme-info-cse.svg" target="_blank" rel="noopener">SVG</a>.</p>
+      </div>
+
+      <div class="note n-warn">
+        <span class="ni">⚠️</span>
+        <div>
+          <span class="tag">Le piège du délai</span>
+          <p>Beaucoup d'élus croient que ne pas répondre bloque le projet. C'est l'inverse : <b>à l'expiration du délai, le CSE est réputé avoir été consulté et avoir rendu un avis négatif</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035609780" target="_blank" rel="noopener">L. 2312-16</a>, code du travail), et l'employeur peut décider. Un mois dans le cas général, deux mois avec un expert, trois mois avec expertises au niveau central et d'établissement (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036411558" target="_blank" rel="noopener">R. 2312-6</a>). Tout ce qui suit consiste à agir <b>avant</b> que ce délai n'expire, ou à démontrer qu'il n'a jamais commencé à courir.</p>
+        </div>
+      </div>
+
+      <div class="flow">
+
+        <div class="fstep l2">
+          <div class="fdot">1</div>
+          <div class="fcard">
+            <button><span class="lvl l2">Niveau 2</span><span class="ft">Vérifier ce que la loi exige, et lister précisément ce qui manque</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>La consultation est <b>préalable</b> à la décision de l'employeur (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262404" target="_blank" rel="noopener">L. 2312-14</a>, code du travail). Un aménagement important modifiant les conditions de santé, de sécurité ou de travail relève de la consultation ponctuelle du comité (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043975196" target="_blank" rel="noopener">L. 2312-8</a>). Et pour rendre son avis, le comité dispose <b>d'un délai d'examen suffisant et d'informations précises et écrites</b>, transmises ou mises à disposition par l'employeur, ainsi que de <b>la réponse motivée</b> de l'employeur à ses observations (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038791194" target="_blank" rel="noopener">L. 2312-15</a>). Le support résume : « informé » ne veut pas dire « consulté ».</p>
+              <h5>Faites la liste, document par document</h5>
+              <ul class="chk-list" data-list="info-docs">
+                <li><label><input type="checkbox"><span>La description précise du projet : périmètre, calendrier, effectifs concernés, ce qui change pour chaque poste.</span></label></li>
+                <li><label><input type="checkbox"><span>Les plans, implantations, flux, et l'étude ergonomique des postes.</span></label></li>
+                <li><label><input type="checkbox"><span>L'impact sur les horaires, la rémunération, les temps de trajet, la santé (travail posté, travail de nuit).</span></label></li>
+                <li><label><input type="checkbox"><span>L'avis du médecin du travail et la mise à jour envisagée du DUERP.</span></label></li>
+                <li><label><input type="checkbox"><span>Les mesures d'accompagnement et de prévention prévues, avec leur coût.</span></label></li>
+                <li><label><input type="checkbox"><span>Le cas échéant, les informations qui doivent figurer dans la BDESE et la date de leur mise à disposition.</span></label></li>
+              </ul>
+              <p class="chk-meta">Cette liste, datée, est la première pièce du dossier. Le juge compare toujours ce qui a été demandé à ce qui a été fourni.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l1">
+          <div class="fdot">2</div>
+          <div class="fcard">
+            <button><span class="lvl l1">Niveau 1</span><span class="ft">Demander « en off », puis confirmer par un mail miroir</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Le secrétaire, ou vous-même, va voir le président du CSE avant la réunion : « nous voulons rendre un avis utile, il nous manque ces six documents, pouvez-vous nous les transmettre pour que la réunion de mardi soit une vraie réunion d'information, et fixer la consultation à la suivante ? » Vous proposez un calendrier, vous ne bloquez rien.</p>
+              <p>Le jour même, un <b>mail miroir</b> au président, copie aux membres du CSE : la liste des documents demandés, la date de la demande, la proposition de calendrier. Il constitue la preuve que l'information était insuffisante et que le comité l'a dit à temps. Le modèle est dans <a href="#ecrits">la section « Les écrits »</a>.</p>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>Les documents arrivent, la consultation est reportée. Le délai court à compter de leur communication (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045680873" target="_blank" rel="noopener">R. 2312-5</a>) : notez cette date, elle fixe l'échéance de votre avis.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>Refus, documents partiels, ou « vous avez tout ce qu'il faut » : la réunion aura lieu, et c'est en réunion que vous jouerez le niveau 3.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">3</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">En réunion : déclarer que l'avis ne peut pas être rendu, et le faire consigner</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Le comité ne « refuse » pas de rendre un avis : il <b>constate qu'il n'est pas en mesure</b> de le rendre, faute des informations précises et écrites que la loi impose. La nuance est essentielle : un refus ressemble à une obstruction ; un constat motivé ressemble à ce qu'il est, l'application de l'article L. 2312-15.</p>
+              <h5>Comment procéder en séance</h5>
+              <ul>
+                <li>Le secrétaire lit une <b>déclaration</b> préparée à l'avance (modèle dans <a href="#ecrits">« Les écrits »</a>) : le rappel des textes, la liste des documents demandés et la date de la demande, le constat que le comité n'est pas en mesure de rendre un avis éclairé, la demande de communication et de report, et la position du comité selon laquelle <b>le délai de consultation n'a pas commencé à courir</b> en l'absence des informations.</li>
+                <li>Les élus votent une <b>résolution</b> reprenant la déclaration. Une résolution adoptée pèse plus qu'une déclaration individuelle.</li>
+                <li>Le tout est consigné au <b>procès-verbal</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262447" target="_blank" rel="noopener">L. 2315-34</a>, code du travail), déclaration incluse : la loi prévoit expressément que les déclarations y sont consignées. Vérifiez le projet de procès-verbal ; si l'employeur conteste la rédaction, le secrétaire rédige, l'employeur fait ses observations, il ne réécrit pas.</li>
+                <li>Demandez à l'employeur sa <b>réponse motivée</b> sur chaque document demandé : elle est due (L. 2312-15). Un refus non motivé, ou un « ce document n'existe pas », va au procès-verbal.</li>
+              </ul>
+              <div class="branch">
+                <div class="b ok"><b><i class="fa-solid fa-circle-check"></i> Ça marche</b>L'employeur complète et reporte. Le comité rend son avis, favorable ou non, sur la base des pièces. Il est dans son rôle.</div>
+                <div class="b ko"><b><i class="fa-solid fa-arrow-turn-up"></i> Ça ne marche pas</b>L'employeur maintient qu'il a informé et laisse le délai courir. Vous avez alors deux niveaux à jouer en parallèle, et vite : l'expert (étape 4) et le juge (étape 5).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l3">
+          <div class="fdot">4</div>
+          <div class="fcard">
+            <button><span class="lvl l3">Niveau 3</span><span class="ft">L'expert : allonger le délai et obtenir les documents autrement</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Pour un <b>projet important</b> modifiant les conditions de santé, de sécurité ou de travail, le CSE peut décider, par résolution, de recourir à un <b>expert habilité</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043975185" target="_blank" rel="noopener">L. 2315-94</a>, code du travail, 2°). Deux effets immédiats :</p>
+              <ul>
+                <li>Le délai de consultation passe à <b>deux mois</b> (R. 2312-6).</li>
+                <li>L'expert a accès aux informations nécessaires à sa mission ; l'employeur qui les lui refuse s'expose à ce que le juge les ordonne, et son refus devient une pièce du dossier.</li>
+              </ul>
+              <p>La décision se prend en réunion, à la majorité des titulaires présents, avec un cahier des charges qui vise précisément les informations manquantes. Le financement est partagé pour un projet important (80 % employeur, 20 % budget de fonctionnement du comité, sauf budget insuffisant), et intégral pour l'employeur en cas de risque grave. Le financement des expertises relève des articles L. 2315-80 et suivants du code du travail.</p>
+              <p>Attention : la CSSCT ne peut jamais décider d'une expertise ni rendre l'avis, ce sont des attributions que le CSE ne délègue pas (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035626459" target="_blank" rel="noopener">L. 2315-38</a>). C'est le comité qui vote.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l5">
+          <div class="fdot">5</div>
+          <div class="fcard">
+            <button><span class="lvl l5">Niveau 5</span><span class="ft">Le président du tribunal judiciaire, avant la fin du délai</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>C'est le recours que la loi a prévu exactement pour cette situation : le comité qui estime <b>ne pas disposer d'éléments suffisants</b> saisit le président du tribunal judiciaire, statuant selon la <b>procédure accélérée au fond</b>, pour qu'il <b>ordonne la communication par l'employeur des éléments manquants</b> (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038791194" target="_blank" rel="noopener">L. 2312-15</a>, code du travail, quatrième alinéa).</p>
+              <h5>Les trois règles à connaître avant de saisir</h5>
+              <ul>
+                <li><b>La saisine ne prolonge pas le délai</b> par elle-même. Il faut donc saisir <b>avant son expiration</b>, et le plus tôt possible.</li>
+                <li>Le juge <b>peut</b> décider la prolongation du délai en cas de difficultés particulières d'accès aux informations. Demandez-la expressément dans l'assignation.</li>
+                <li>Le CSE agit par son <b>secrétaire</b>, mandaté par une résolution (ou par un membre désigné). Les frais d'avocat et de procédure relèvent du <b>budget de fonctionnement</b>. Prévenez votre organisation syndicale : elle a l'habitude de ces procédures.</li>
+              </ul>
+              <p>Ce que le juge lira : votre liste de documents datée (étape 1), le mail miroir (étape 2), la déclaration et la résolution au procès-verbal (étape 3), la réponse de l'employeur ou son absence. C'est la chaîne complète, et c'est elle qui obtient l'ordonnance.</p>
+              <p>L'employeur qui met en œuvre le projet avant la fin de la consultation s'expose en outre à ce que le juge en ordonne la <b>suspension</b> tant que le comité n'a pas été régulièrement consulté.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep l4">
+          <div class="fdot">6</div>
+          <div class="fcard">
+            <button><span class="lvl l4">Niveau 4</span><span class="ft">En parallèle : l'inspection du travail et le délit d'entrave</span><i class="fa-solid fa-chevron-down chev"></i></button>
+            <div class="fbody">
+              <p>Ne pas fournir d'informations précises et écrites lors d'une consultation, remplacer une consultation par une simple information, consulter alors que le projet est déjà arrêté : la jurisprudence citée dans le support y voit une <b>entrave</b> (chambre criminelle, 27 mars 2012, nº 11-80.565 ; 6 décembre 1994, nº 93-42.473 ; 30 mars 2021, nº 20-81.030). L'entrave au fonctionnement régulier du CSE est punie de 7 500 € d'amende (<a class="lf" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035634273" target="_blank" rel="noopener">L. 2317-1</a>, code du travail), le quintuple pour la personne morale.</p>
+              <ul>
+                <li><b>Signalez</b> la situation à l'agent de contrôle, pièces jointes : ordre du jour, présentation reçue, liste des documents demandés, procès-verbal. Il peut adresser des observations à l'employeur, ce qui suffit souvent, ou dresser procès-verbal et informer le procureur.</li>
+                <li><b>Les trois voies pénales</b> du support restent ouvertes au comité : plainte simple (article 85 du code de procédure pénale, trois mois de silence valent classement), plainte avec constitution de partie civile, ou <b>citation directe</b> devant le tribunal correctionnel (article 388), la voie la plus utilisée en matière d'entrave parce que les faits sont simples et se prouvent par écrit.</li>
+              </ul>
+              <p>Le support rappelle deux limites utiles. L'entrave suppose un élément intentionnel : une erreur de bonne foi, corrigée aussitôt, n'en est pas une, d'où l'importance de vos demandes écrites, qui ôtent à l'employeur l'excuse de l'ignorance. Et la personne morale n'est condamnée que si l'organe ou le représentant qui a commis le manquement est identifié (article 121-2 du code pénal) : nommez, dans vos écrits, qui a refusé quoi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note n-ok">
+        <span class="ni"><i class="fa-solid fa-comment-dots" style="color:var(--green)"></i></span>
+        <div>
+          <span class="tag">La phrase à retenir, pour un nouvel élu</span>
+          <p>« Nous ne refusons pas de donner notre avis. Nous ne pouvons pas le donner, parce que la loi nous impose de le rendre sur des informations précises et écrites que nous n'avons pas. Donnez-les nous, et nous le rendrons. »</p>
+        </div>
+      </div>
+    </div><!-- /case-info -->
+  </section>
+
+  <!-- ===== LES ÉCRITS ===== -->
+  <section id="ecrits">
+    <div class="sec-head">
+      <div class="sec-ico t-amber"><i class="fa-solid fa-file-pen"></i></div>
+      <div><div class="kicker">Modèles copiables</div><h2>Les écrits, à chaque niveau</h2></div>
+    </div>
+    <p class="lead">Sept modèles courts, un par geste. Les passages <mark style="background:var(--amber-l);color:#7a5406;border-radius:3px;padding:0 3px">surlignés</mark> sont à remplacer ; les mentions obligatoires sont en gras dans les commentaires. Copiez, collez dans votre messagerie, relisez : un écrit factuel, daté, sans adjectif, vaut plus qu'une longue lettre. Pour la saisine formelle au titre de l'article L. 2312-59, utilisez le <a href="alertes.html#generateur">générateur de courrier de la fiche « Les alertes »</a>.</p>
+
+    <div class="modele">
+      <div class="mh"><span class="lvl l2">Niveau 2</span><b>1 · Le mail miroir après un échange « en off »</b><button class="btn btn-ghost btn-sm" data-copy-target="#m1"><i class="fa-regular fa-copy"></i> Copier</button></div>
+      <pre id="m1">Objet : Suite à notre échange de ce jour, <mark>[situation, service]</mark>
+
+Madame, Monsieur <mark>[nom]</mark>,
+
+Je vous confirme la teneur de notre échange de ce jour, <mark>[date, heure, lieu]</mark>, en présence de <mark>[personnes]</mark>.
+
+Je vous ai signalé la situation suivante : <mark>[faits, datés, sans qualification : « depuis la réorganisation du [date], le service X… »]</mark>.
+
+Je vous ai demandé : <mark>[mesures précises demandées]</mark>.
+
+Vous m'avez indiqué : <mark>[réponse ou engagement de l'employeur, avec la date convenue pour le retour]</mark>.
+
+Nous avons convenu d'un point le <mark>[date]</mark>. Je reste à votre disposition pour y contribuer.
+
+<mark>[Prénom Nom]</mark>, membre <mark>[titulaire / suppléant]</mark> du CSE
+Copie : moi-même<mark>[, secrétaire du CSE si le sujet dépasse la personne]</mark></pre>
+      <p class="gen-warn">Le mail miroir ne change pas de ton par rapport à l'échange : il le fixe. Si l'employeur ne répond pas à la date convenue, le mail suivant commence par « Mon message du [date] étant resté sans réponse… ».</p>
+    </div>
+
+    <div class="modele">
+      <div class="mh"><span class="lvl l3">Niveau 3</span><b>2 · Le mail miroir tenant lieu de compte rendu d'enquête conjointe</b><button class="btn btn-ghost btn-sm" data-copy-target="#m2"><i class="fa-regular fa-copy"></i> Copier</button></div>
+      <pre id="m2">Objet : Compte rendu de l'enquête du <mark>[date]</mark>, alerte du <mark>[date]</mark> (article <mark>[L. 2312-59 / L. 4131-2]</mark> du code du travail)
+
+Monsieur le Président,
+
+À la suite de mon alerte du <mark>[date]</mark>, l'enquête prévue à l'article <mark>[L. 2312-59 / L. 4132-2]</mark> du code du travail a été menée le <mark>[date]</mark>, de <mark>[heure]</mark> à <mark>[heure]</mark>, par <mark>[noms et qualités des enquêteurs]</mark>.
+
+En l'absence de compte rendu conjoint à ce jour, je consigne ci-dessous ce qui a été constaté et décidé.
+
+1. Faits examinés : <mark>[…]</mark>
+2. Personnes entendues et documents consultés : <mark>[…]</mark>
+3. Constats partagés : <mark>[…]</mark>
+4. Points de désaccord : <mark>[formulés tels quels, position de chacun]</mark>
+5. Mesures décidées : <mark>[mesure, responsable, date]</mark>
+
+Sauf observation écrite de votre part sous huit jours, ce compte rendu sera versé au dossier tel quel et je demanderai l'inscription d'un point « suivi de l'alerte du <mark>[date]</mark> » à l'ordre du jour de la prochaine réunion du comité.
+
+<mark>[Prénom Nom]</mark>, membre du CSE
+Copie : secrétaire du CSE, moi-même</pre>
+      <p class="gen-warn">Le silence de l'employeur ne vaut pas accord en droit. Il rend simplement très difficile, plus tard, de soutenir qu'il disait autre chose. Datez, listez, n'interprétez pas.</p>
+    </div>
+
+    <div class="modele">
+      <div class="mh"><span class="lvl l3">Niveau 3</span><b>3 · L'inscription au registre des dangers graves et imminents (et le mail qui en tient lieu si le registre manque)</b><button class="btn btn-ghost btn-sm" data-copy-target="#m3"><i class="fa-regular fa-copy"></i> Copier</button></div>
+      <pre id="m3">ALERTE POUR DANGER GRAVE ET IMMINENT
+Article L. 4131-2 du code du travail, avis consigné en application de l'article D. 4132-1
+
+Date et heure : <mark>[jj/mm/aaaa, hh:mm]</mark>
+Auteur : <mark>[Prénom Nom]</mark>, membre <mark>[titulaire / suppléant]</mark> du CSE
+
+1° Postes de travail concernés : <mark>[machine, atelier, poste : « presse hydraulique nº 3, atelier découpe, poste opérateur »]</mark>
+
+2° Nature et cause du danger : <mark>[« risque d'écrasement et d'amputation des mains ; carter de protection retiré ; arrêt d'urgence rendu inaccessible par un bac de pièces »]</mark>
+
+3° Nom des travailleurs exposés : <mark>[noms des opérateurs en poste et se relayant sur la machine]</mark>
+
+Constats à l'appui : <mark>[photos jointes, personnes présentes, propos recueillis]</mark>
+Mesures immédiates demandées : <mark>[arrêt et consignation de la machine, remise en place de la protection, consigne de décoincement]</mark>
+
+Signature : <mark>[…]</mark>
+
+--- Si le registre n'est pas disponible, envoyer ce texte par mail ---
+Objet : Alerte pour danger grave et imminent (L. 4131-2), <mark>[machine, atelier]</mark>
+Monsieur le Président, le registre spécial prévu à l'article D. 4132-1 du code du travail n'ayant pu être mis à ma disposition ce jour, je vous notifie par le présent message l'alerte ci-dessus, que je recopierai au registre dès son ouverture. Je vous demande de procéder immédiatement à l'enquête prévue à l'article L. 4132-2 avec moi-même, et d'informer sans délai l'agent de contrôle de l'inspection du travail et l'agent de prévention de la Carsat.
+Copie : secrétaire du CSE, moi-même</pre>
+      <p class="gen-warn">Les trois mentions numérotées sont obligatoires. Photographiez la page du registre une fois remplie et signée.</p>
+    </div>
+
+    <div class="modele">
+      <div class="mh"><span class="lvl l4">Niveau 4</span><b>4 · Le mail à l'agent de contrôle de l'inspection du travail</b><button class="btn btn-ghost btn-sm" data-copy-target="#m4"><i class="fa-regular fa-copy"></i> Copier</button></div>
+      <pre id="m4">Objet : <mark>[Alerte DGI L. 4131-2 / Alerte L. 2312-59 / Défaut d'information-consultation]</mark>, <mark>[entreprise, établissement, adresse]</mark>, <mark>[réunion CSE sous 24 h le … à … / demande d'intervention]</mark>
+
+Madame, Monsieur l'Inspecteur / l'Inspectrice du travail,
+
+Membre <mark>[titulaire / suppléant]</mark> du comité social et économique de <mark>[entreprise, établissement, effectif]</mark>, je vous informe de la situation suivante.
+
+Le <mark>[date]</mark>, j'ai constaté <mark>[faits, en trois lignes, datés]</mark>. J'ai alerté l'employeur le <mark>[date, heure]</mark> par <mark>[registre DGI / mail / lettre]</mark> (copie jointe). <mark>[L'enquête conjointe a eu lieu le … / n'a pas eu lieu à ce jour]</mark>. <mark>[Il existe une divergence sur … / L'employeur maintient que …]</mark>.
+
+<mark>[Cas DGI :]</mark> Le comité est réuni en application de l'article L. 4132-3 du code du travail le <mark>[date, heure, lieu]</mark>. Votre présence, ou celle d'un agent de votre unité, y serait précieuse ; un second créneau est possible le <mark>[date, heure]</mark>. J'ai demandé à l'employeur de vous en informer ; en cas de silence de sa part, le présent message y pourvoit.
+
+<mark>[Autres cas :]</mark> Je sollicite <mark>[un contrôle / un entretien / votre présence à la réunion SSCT du …, demandée par la majorité des élus en application de l'article L. 2314-3]</mark>.
+
+Pièces jointes : <mark>[chronologie datée, copie de l'alerte, photos, compte rendu ou mail en tenant lieu, procès-verbal, résolution]</mark>.
+
+Je reste joignable au <mark>[téléphone]</mark>.
+
+<mark>[Prénom Nom]</mark>, membre du CSE de <mark>[entreprise]</mark>
+Copie : médecin du travail<mark>[, agent de prévention de la Carsat]</mark></pre>
+      <p class="gen-warn">Court, factuel, pièces jointes. L'agent de contrôle est libre de ses suites (L. 8112-1) : il vient d'autant plus volontiers que le dossier est prêt et que la demande est précise.</p>
+    </div>
+
+    <div class="modele">
+      <div class="mh"><span class="lvl l2">Niveau 2</span><b>5 · La demande d'informations avant une consultation</b><button class="btn btn-ghost btn-sm" data-copy-target="#m5"><i class="fa-regular fa-copy"></i> Copier</button></div>
+      <pre id="m5">Objet : Consultation sur <mark>[projet]</mark>, réunion du <mark>[date]</mark> : informations nécessaires à l'avis du comité
+
+Monsieur le Président,
+
+L'ordre du jour de la réunion du <mark>[date]</mark> prévoit la consultation du comité sur <mark>[projet]</mark>. Le comité a reçu le <mark>[date]</mark> : <mark>[liste de ce qui a été transmis]</mark>.
+
+En application de l'article L. 2312-15 du code du travail, le comité dispose, pour rendre son avis, d'informations précises et écrites et d'un délai d'examen suffisant. Pour être en mesure de rendre un avis éclairé, il lui manque :
+1. <mark>[document, information]</mark>
+2. <mark>[…]</mark>
+3. <mark>[…]</mark>
+
+Je vous remercie de transmettre ces éléments au comité <mark>[avant le … / dans un délai de … jours]</mark>. Conformément à l'article R. 2312-5 du code du travail, le délai de consultation court à compter de la communication des informations prévues pour la consultation ; à ce jour, faute de ces éléments, le comité considère qu'il n'a pas commencé à courir. Nous vous proposons que la réunion du <mark>[date]</mark> soit consacrée à l'information du comité, et que la consultation soit inscrite à l'ordre du jour de la réunion du <mark>[date]</mark>.
+
+<mark>[Prénom Nom]</mark>, secrétaire du CSE <mark>[ou : membre du CSE]</mark>
+Copie : membres du CSE</pre>
+    </div>
+
+    <div class="modele">
+      <div class="mh"><span class="lvl l3">Niveau 3</span><b>6 · La déclaration en séance : « le comité n'est pas en mesure de rendre un avis »</b><button class="btn btn-ghost btn-sm" data-copy-target="#m6"><i class="fa-regular fa-copy"></i> Copier</button></div>
+      <pre id="m6">DÉCLARATION DES ÉLUS DU CSE, à consigner au procès-verbal (article L. 2315-34 du code du travail)
+Réunion du <mark>[date]</mark>, point <mark>[n°]</mark> : consultation sur <mark>[projet]</mark>
+
+Le comité social et économique rappelle qu'en application de l'article L. 2312-15 du code du travail, il émet ses avis en disposant d'un délai d'examen suffisant et d'informations précises et écrites transmises ou mises à disposition par l'employeur, ainsi que de la réponse motivée de l'employeur à ses observations.
+
+Par courrier du <mark>[date]</mark>, le comité a demandé la communication des éléments suivants : <mark>[liste]</mark>. À ce jour, <mark>[ces éléments n'ont pas été communiqués / seuls … ont été communiqués]</mark>.
+
+En conséquence, le comité constate qu'il n'est pas en mesure de rendre un avis éclairé sur <mark>[projet]</mark>. Il ne s'agit pas d'un refus de rendre un avis, mais de l'impossibilité de le rendre dans les conditions prévues par la loi.
+
+Le comité demande à l'employeur la communication des éléments manquants, sa réponse motivée sur chacun d'eux, et l'inscription de la consultation à l'ordre du jour d'une réunion ultérieure. Il considère que, faute des informations prévues pour la consultation, le délai mentionné à l'article R. 2312-5 du code du travail n'a pas commencé à courir. Il se réserve la possibilité de saisir le président du tribunal judiciaire sur le fondement de l'article L. 2312-15 du code du travail <mark>[et de recourir à un expert habilité sur le fondement de l'article L. 2315-94]</mark>.
+
+Résolution : les membres élus du comité adoptent la présente déclaration <mark>[par … voix pour, … contre, … abstentions]</mark> et mandatent le secrétaire pour <mark>[la transmettre à l'inspection du travail / engager toute procédure utile]</mark>.</pre>
+      <p class="gen-warn">À lire par le secrétaire, à voter, à vérifier dans le projet de procès-verbal. La formule « il ne s'agit pas d'un refus » est ce qui distingue l'application de la loi d'une obstruction.</p>
+    </div>
+
+    <div class="modele">
+      <div class="mh"><span class="lvl l5">Niveau 5</span><b>7 · L'avertissement écrit au salarié avant que l'élu saisisse le conseil de prud'hommes (L. 2312-59)</b><button class="btn btn-ghost btn-sm" data-copy-target="#m7"><i class="fa-regular fa-copy"></i> Copier</button></div>
+      <pre id="m7">Objet : Suite de l'alerte du <mark>[date]</mark> : saisine du conseil de prud'hommes
+
+<mark>[Prénom]</mark>,
+
+Comme convenu, je vous informe par écrit de la suite que j'envisage de donner à l'alerte que j'ai déclenchée le <mark>[date]</mark> au titre de l'article L. 2312-59 du code du travail.
+
+<mark>[L'employeur n'a pas procédé à l'enquête / L'enquête a eu lieu le … mais aucune mesure n'a été prise / L'employeur conteste la réalité de l'atteinte]</mark>. Aucune solution n'a été trouvée avec lui.
+
+L'article L. 2312-59 me permet, en tant que membre de la délégation du personnel, de saisir le bureau de jugement du conseil de prud'hommes, qui statue selon la procédure accélérée au fond et peut ordonner toute mesure propre à faire cesser l'atteinte, à la condition que vous en soyez averti(e) par écrit et que vous ne vous y opposiez pas.
+
+Je vous demande donc de me faire connaître, par retour et par écrit, si vous vous opposez à cette saisine. Sans opposition de votre part avant le <mark>[date]</mark>, je l'engagerai. Vous pouvez à tout moment, si vous le préférez, saisir vous-même le conseil ; je vous accompagnerai de la même manière.
+
+<mark>[Prénom Nom]</mark>, membre du CSE</pre>
+      <p class="gen-warn">Jamais contre le salarié : conservez cet avertissement et sa réponse, ils conditionnent la recevabilité de l'action de l'élu.</p>
+    </div>
+  </section>
+
+  <!-- ===== QUI APPELER ===== -->
+  <section id="acteurs">
+    <div class="sec-head">
+      <div class="sec-ico t-green"><i class="fa-solid fa-address-book"></i></div>
+      <div><div class="kicker">Les relais</div><h2>Qui appeler, et à quel moment</h2></div>
+    </div>
+    <p class="lead">L'élu n'est pas seul, et sa valeur ajoutée tient souvent à savoir passer le relais au bon moment. La fiche <a href="acteurs.html">Les acteurs de la prévention</a> les présente en détail ; voici quand ils entrent dans les trois parcours.</p>
+    <div class="acteurs">
+      <div class="acteur"><div class="ai t-green"><i class="fa-solid fa-user-doctor"></i></div><div><b>Le médecin du travail (SPST)</b><span>Visite à la demande du salarié, constat de l'état de santé, propositions d'aménagement, alerte à l'employeur, fiche d'entreprise. Assiste de droit aux réunions SSCT, avec voix consultative.</span><span class="quand">Dès le niveau 1, dans le cas RPS ; en réunion aux niveaux 3 et 4</span></div></div>
+      <div class="acteur"><div class="ai t-indigo"><i class="fa-solid fa-user-tie"></i></div><div><b>L'agent de contrôle de l'inspection du travail</b><span>Veille à l'application du code du travail, constate les infractions, met en demeure via la DREETS, saisit le juge en référé, informe le procureur. Peut convoquer et présider le CSE si l'employeur est défaillant.</span><span class="quand">Niveau 4 ; immédiatement en cas de DGI</span></div></div>
+      <div class="acteur"><div class="ai t-teal"><i class="fa-solid fa-building-shield"></i></div><div><b>L'agent de prévention de la Carsat</b><span>Visite, conseille, peut siéger à la réunion DGI, pèse par la tarification AT/MP, finance des actions (subventions Prévention, FIPU).</span><span class="quand">Niveau 4, cas DGI et cas RPS collectif</span></div></div>
+      <div class="acteur"><div class="ai t-amber"><i class="fa-solid fa-people-line"></i></div><div><b>L'organisation syndicale</b><span>Défenseur syndical, conventions avec des avocats, expérience des procédures, appui pour la communication aux salariés.</span><span class="quand">Dès le niveau 3, indispensable au niveau 5</span></div></div>
+      <div class="acteur"><div class="ai t-coral"><i class="fa-solid fa-magnifying-glass-chart"></i></div><div><b>L'expert habilité</b><span>Mandaté par résolution du CSE pour un risque grave ou un projet important ; accède aux documents ; allonge le délai de consultation à deux mois.</span><span class="quand">Niveau 3, cas RPS collectif et cas consultation</span></div></div>
+      <div class="acteur"><div class="ai t-red"><i class="fa-solid fa-scale-balanced"></i></div><div><b>L'avocat, le juge, le procureur</b><span>Prud'hommes (individuel), tribunal judiciaire (CSE), tribunal correctionnel (entrave, harcèlement). Le Défenseur des droits si une discrimination s'y ajoute.</span><span class="quand">Niveau 5, avec le dossier des niveaux 2 à 4</span></div></div>
+    </div>
+    <div class="note n-info" style="margin-top:14px">
+      <span class="ni"><i class="fa-solid fa-book-open" style="color:var(--teal-2)"></i></span>
+      <div><span class="tag">Les ressources documentaires</span><p>La brochure INRS <b>ED 6403</b> (grille RPS-DU), la brochure INRS <b>ED 6163</b> (arbre des causes), les fiches de <b>code.travail.gouv.fr</b> (modèles de courrier de signalement) et de <b>service-public.fr</b> (accident du travail, dépôt de plainte). Le support de formation les cite planche par planche.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== RÉGLEMENTATION ===== -->
+  <section id="regl">
+    <div class="sec-head">
+      <div class="sec-ico t-indigo"><i class="fa-solid fa-book-open"></i></div>
+      <div><div class="kicker">Réglementation</div><h2>Les textes cités, avec leur lien</h2></div>
+    </div>
+    <p class="lead">Tous les articles renvoient à leur version en vigueur sur Légifrance. Le code est indiqué pour chacun : la plupart relèvent du code du travail, quelques-uns du code de la sécurité sociale, du code pénal, du code civil et du code de procédure pénale.</p>
+
+    <h3 class="sub">Les alertes et la procédure de danger grave et imminent (code du travail)</h3>
+    <div class="regl">
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038791189" target="_blank" rel="noopener"><span class="code">L2312-59</span><span>Alerte pour atteinte aux droits des personnes, enquête conjointe, prud'hommes</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006903155" target="_blank" rel="noopener"><span class="code">L4131-1</span><span>Droit de retrait du travailleur, motif raisonnable</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653297" target="_blank" rel="noopener"><span class="code">L4131-2</span><span>Droit d'alerte DGI du représentant au CSE</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006903157" target="_blank" rel="noopener"><span class="code">L4131-3</span><span>Aucune sanction ni retenue pour le retrait</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653293" target="_blank" rel="noopener"><span class="code">L4131-4</span><span>Faute inexcusable de droit après signalement du risque</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653288" target="_blank" rel="noopener"><span class="code">L4132-2</span><span>Consignation écrite, enquête immédiate conjointe</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653284" target="_blank" rel="noopener"><span class="code">L4132-3</span><span>Divergence : réunion sous 24 h, inspection et Carsat informées</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653278" target="_blank" rel="noopener"><span class="code">L4132-4</span><span>Désaccord : saisine de l'inspecteur par l'employeur, mise en demeure ou référé</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036484010" target="_blank" rel="noopener"><span class="code">D4132-1</span><span>Registre spécial : pages numérotées, trois mentions obligatoires</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036484007" target="_blank" rel="noopener"><span class="code">D4132-2</span><span>Registre tenu à la disposition des représentants</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033025270" target="_blank" rel="noopener"><span class="code">L4721-1</span><span>Mise en demeure du directeur régional (DREETS)</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032376259" target="_blank" rel="noopener"><span class="code">L4732-1</span><span>Référé de l'inspecteur : mise hors service, saisie, fermeture</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033025397" target="_blank" rel="noopener"><span class="code">L8112-1</span><span>Missions et indépendance des agents de contrôle</span></a>
+    </div>
+
+    <h3 class="sub">Le fonctionnement du CSE et la consultation (code du travail)</h3>
+    <div class="regl">
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043975196" target="_blank" rel="noopener"><span class="code">L2312-8</span><span>Consultation sur l'organisation, les aménagements importants</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035609774" target="_blank" rel="noopener"><span class="code">L2312-13</span><span>Inspections et enquêtes du CSE</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262404" target="_blank" rel="noopener"><span class="code">L2312-14</span><span>La consultation précède la décision</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038791194" target="_blank" rel="noopener"><span class="code">L2312-15</span><span>Informations précises et écrites, réponse motivée, saisine du président du TJ</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035609780" target="_blank" rel="noopener"><span class="code">L2312-16</span><span>Délais de consultation, avis réputé négatif</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045680873" target="_blank" rel="noopener"><span class="code">R2312-5</span><span>Point de départ du délai : la communication des informations</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036411558" target="_blank" rel="noopener"><span class="code">R2312-6</span><span>Un mois, deux mois avec expert, trois mois</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043893890" target="_blank" rel="noopener"><span class="code">L2314-3</span><span>Médecin du travail, inspection et Carsat aux réunions SSCT</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262458" target="_blank" rel="noopener"><span class="code">L2315-11</span><span>Temps payé : DGI, enquêtes après accident grave ou incidents répétés</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036761943" target="_blank" rel="noopener"><span class="code">L2315-27</span><span>Quatre réunions SSCT, réunion à la demande de deux membres, convocation par l'inspecteur</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035624861" target="_blank" rel="noopener"><span class="code">L2315-29</span><span>Ordre du jour conjoint, inscription de plein droit des consultations</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262447" target="_blank" rel="noopener"><span class="code">L2315-34</span><span>Procès-verbal, déclarations consignées, réponse motivée</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035626459" target="_blank" rel="noopener"><span class="code">L2315-38</span><span>CSSCT : ni expertise ni avis par délégation</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036761916" target="_blank" rel="noopener"><span class="code">L2315-61</span><span>Budget de fonctionnement (frais de procédure)</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036761908" target="_blank" rel="noopener"><span class="code">L2315-80</span><span>Financement des expertises : 100 % ou 80/20</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043975185" target="_blank" rel="noopener"><span class="code">L2315-94</span><span>Expertise : risque grave, projet important</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035634273" target="_blank" rel="noopener"><span class="code">L2317-1</span><span>Délit d'entrave : 7 500 €, un an de prison pour l'entrave à la constitution</span></a>
+    </div>
+
+    <h3 class="sub">Santé, harcèlement, accident du travail</h3>
+    <div class="regl">
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035640828" target="_blank" rel="noopener"><span class="code">L4121-1</span><span>Code du travail · Obligation de sécurité, santé physique et mentale</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019913" target="_blank" rel="noopener"><span class="code">L4121-2</span><span>Code du travail · Les neuf principes généraux de prévention</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006900818" target="_blank" rel="noopener"><span class="code">L1152-1</span><span>Code du travail · Définition du harcèlement moral</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029144897" target="_blank" rel="noopener"><span class="code">L1152-4</span><span>Code du travail · Obligation de prévention du harcèlement</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019902" target="_blank" rel="noopener"><span class="code">L1154-1</span><span>Code du travail · Charge de la preuve aménagée</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762126" target="_blank" rel="noopener"><span class="code">L1471-1</span><span>Code du travail · Prescriptions, exception pour le harcèlement</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043909039" target="_blank" rel="noopener"><span class="code">L4624-1</span><span>Code du travail · Suivi individuel de l'état de santé</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045676635" target="_blank" rel="noopener"><span class="code">R4624-34</span><span>Code du travail · Visite à la demande du travailleur, sans sanction possible</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047452603" target="_blank" rel="noopener"><span class="code">L411-1 CSS</span><span>Code de la sécurité sociale · Définition de l'accident du travail</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041399093" target="_blank" rel="noopener"><span class="code">L431-2 CSS</span><span>Code de la sécurité sociale · Prescription de deux ans, interruption</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743183" target="_blank" rel="noopener"><span class="code">L441-1 CSS</span><span>Code de la sécurité sociale · Information de l'employeur par la victime</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743085" target="_blank" rel="noopener"><span class="code">L441-2 CSS</span><span>Code de la sécurité sociale · Déclaration par l'employeur, ou par la victime sous deux ans</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038423383" target="_blank" rel="noopener"><span class="code">R441-3 CSS</span><span>Code de la sécurité sociale · Déclaration sous 48 heures</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743112" target="_blank" rel="noopener"><span class="code">L452-1 CSS</span><span>Code de la sécurité sociale · Faute inexcusable, indemnisation complémentaire</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029336939" target="_blank" rel="noopener"><span class="code">222-33-2 CP</span><span>Code pénal · Harcèlement moral : deux ans, 30 000 €</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019017112" target="_blank" rel="noopener"><span class="code">2224 CC</span><span>Code civil · Prescription de droit commun, cinq ans</span></a>
+      <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049531911" target="_blank" rel="noopener"><span class="code">8 CPP</span><span>Code de procédure pénale · Prescription des délits, six ans</span></a>
+    </div>
+  </section>
+
+  <!-- ===== FIABILITÉ ===== -->
+  <section id="fiabilite">
+    <div class="sec-head">
+      <div class="sec-ico t-green"><i class="fa-solid fa-clipboard-check"></i></div>
+      <div><div class="kicker">Fiabilité</div><h2>D'où vient ce mémo, et jusqu'où lui faire confiance</h2></div>
+    </div>
+    <div class="fiab">
+      <div class="score">A<small>Textes</small></div>
+      <div><b>Les articles cités</b> ont tous été relus dans leur version en vigueur sur Légifrance le 18 septembre 2026 (via l'API officielle PISTE), et chaque lien pointe vers cette version. Les délais (24 heures, 48 heures, un mois, deux ans, cinq ans, six ans) sont ceux des textes. Une réserve : l'article 8 du code de procédure pénale, sur la prescription des délits, est affiché « en vigueur, abrogation différée au 1ᵉʳ janvier 2029 » dans le cadre de la recodification en cours ; la règle des six ans est celle applicable aujourd'hui.</div>
+    </div>
+    <div class="fiab" style="border-color:#f0debb;background:var(--amber-l)">
+      <div class="score" style="color:#a4710c">B<small>Jurisprudence</small></div>
+      <div><b>Les décisions citées</b> (entrave, chambre criminelle 27 mars 2012, 6 décembre 1994, 30 mars 2021 ; chambre sociale 13 mai 2026 ; preuve déloyale, assemblée plénière 22 décembre 2023) sont celles du support de formation, où les décisions récentes ont été consultées en texte intégral. Elles sont des repères, pas une garantie : chaque espèce s'apprécie au cas par cas, et la jurisprudence évolue. Vérifiez avant de vous en prévaloir devant un juge.</div>
+    </div>
+    <div class="fiab" style="border-color:#bfe0e2;background:var(--teal-l)">
+      <div class="score" style="color:var(--teal-d)">B<small>Méthode</small></div>
+      <div><b>Les conseils de méthode</b> (mail miroir, compte rendu unilatéral, gestes pour faire venir l'inspecteur, déclaration en séance) ne sont pas des obligations légales : ce sont des pratiques de terrain, issues du support de formation Destination Prévention et de l'expérience des élus. Elles ne remplacent ni un avocat ni votre organisation syndicale, en particulier au niveau 5. Le support lui-même signale des textes en révision (réforme de l'indemnisation AT/MP au 1ᵉʳ novembre 2026) : les montants d'indemnisation ne figurent volontairement pas dans ce mémo.</div>
+    </div>
+    <div class="note n-info" style="margin-top:14px">
+      <span class="ni"><i class="fa-solid fa-link" style="color:var(--teal-2)"></i></span>
+      <div><span class="tag">Sur ce site</span><p>Ce mémo prolonge les fiches <a href="alertes.html">Les alertes</a> (avec le générateur de courrier L. 2312-59), <a href="cse-cssct.html#info-consultation">Du CSE à la CSSCT</a> pour l'information et la consultation, <a href="reglementation.html#faute">La réglementation SSCT</a> pour la faute inexcusable, <a href="analyse-at.html">L'analyse des AT</a>, <a href="inspection.html">L'inspection CSSCT</a>, <a href="rps.html">Les risques psychosociaux</a> et <a href="modeles.html">Modèles et documents</a>. Il reprend les parties 2, 3, 7, 8, 9 et 10 du support de formation CSE SSCT de Destination Prévention (version du 17 septembre 2026).</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Une situation qui ne rentre dans aucun des trois cas ?</h2>
+    <p>Décrivez-la en quelques lignes, avec les dates. La réponse suivra la même échelle : d'abord ce qui peut se régler par le dialogue, ensuite ce qui doit s'écrire, enfin ce qui relève de l'inspection ou du juge.</p>
+    <a class="mail" href="mailto:mickael@destination-prevention.fr?subject=M%C3%A9mo%20des%20proc%C3%A9dures%20CSE"><i class="fa-regular fa-envelope"></i> mickael@destination-prevention.fr</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="fmark"><img src="logo.svg" alt="" style="width:42px;height:42px"></div>
+  <p><b>Destination Prévention</b> · Formation CSE : attributions &amp; fonctionnement<br>
+  Une question ? <a href="mailto:mickael@destination-prevention.fr">mickael@destination-prevention.fr</a> · <a href="index.html">Retour au sommaire</a></p>
+  <div class="disc">Ce mémo est un support pédagogique de formation. Il ne constitue pas un conseil juridique individualisé et ne remplace ni l'avis d'un avocat, ni celui de votre organisation syndicale, ni la lecture des textes en vigueur. Les cases cochées restent dans votre navigateur et ne sont transmises à personne.</div>
+</footer>
+
+<div id="logi-overlay" role="dialog" aria-modal="true" aria-label="Logigramme en plein écran">
+  <div class="ov-bar"><b id="ov-title">Logigramme</b>
+    <button class="btn btn-ghost btn-sm" data-ov-zoom="-"><i class="fa-solid fa-minus"></i></button>
+    <button class="btn btn-ghost btn-sm" data-ov-zoom="+"><i class="fa-solid fa-plus"></i></button>
+    <button class="btn btn-ghost btn-sm" data-ov-zoom="fit">Ajuster</button>
+    <button class="btn btn-primary btn-sm" id="ov-close"><i class="fa-solid fa-xmark"></i> Fermer</button>
+  </div>
+  <div class="ov-body" id="ov-body"></div>
+</div>
+
+<div id="toast"></div>
+<button class="btt" id="btt" aria-label="Retour en haut">↑</button>
+
+<script src="app.js"></script>
+<script>
+(function(){
+  // ----- Sélecteur des trois cas -----
+  var btns = document.querySelectorAll('.casebtn');
+  var panels = document.querySelectorAll('.casepanel');
+  function showCase(k, scroll){
+    btns.forEach(function(b){ var on = b.getAttribute('data-case')===k; b.classList.toggle('on', on); b.setAttribute('aria-selected', on?'true':'false'); });
+    panels.forEach(function(p){ p.classList.toggle('show', p.id==='case-'+k); });
+    try{ localStorage.setItem('dp-proc-case', k); }catch(e){}
+    if(scroll){ var t=document.getElementById('case-'+k); if(t){ var y=t.getBoundingClientRect().top+window.scrollY-90; window.scrollTo({top:y,behavior:'smooth'}); } }
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ showCase(b.getAttribute('data-case'), true); }); });
+  // cas demandé par l'URL (#case-dgi) ou mémorisé
+  var h = location.hash.replace('#','');
+  if(/^case-(rps|dgi|info)$/.test(h)){ showCase(h.replace('case-',''), false); }
+  else { try{ var m=localStorage.getItem('dp-proc-case'); if(m && document.getElementById('case-'+m)) showCase(m,false); }catch(e){} }
+
+  // ----- Étapes dépliables -----
+  document.querySelectorAll('.fcard > button').forEach(function(b){
+    b.addEventListener('click', function(){ b.parentElement.classList.toggle('open'); });
+  });
+  // Ouvrir la première étape de chaque parcours
+  document.querySelectorAll('.flow').forEach(function(f){ var first=f.querySelector('.fcard'); if(first) first.classList.add('open'); });
+
+  // ----- Cases à cocher mémorisées (navigateur uniquement) -----
+  document.querySelectorAll('.chk-list[data-list]').forEach(function(ul){
+    var key='dp-proc-'+ul.getAttribute('data-list');
+    var boxes=ul.querySelectorAll('input[type=checkbox]');
+    var saved=[]; try{ saved=JSON.parse(localStorage.getItem(key)||'[]'); }catch(e){}
+    boxes.forEach(function(b,i){ if(saved[i]) b.checked=true; b.addEventListener('change', function(){
+      var arr=[]; boxes.forEach(function(x){ arr.push(x.checked?1:0); });
+      try{ localStorage.setItem(key, JSON.stringify(arr)); }catch(e){}
+    }); });
+  });
+
+  // ----- Copie des modèles -----
+  var toast=document.getElementById('toast');
+  function say(msg){ if(!toast) return; toast.textContent=msg; toast.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){ toast.classList.remove('show'); },1800); }
+  document.querySelectorAll('[data-copy-target]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var pre=document.querySelector(btn.getAttribute('data-copy-target'));
+      if(!pre) return;
+      var txt=pre.textContent;
+      function done(){ say('Modèle copié ✓ Remplacez les passages entre crochets.'); }
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt); done(); }); }
+      else { fallback(txt); done(); }
+    });
+  });
+  function fallback(t){ var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta); }
+
+
+  // ----- Logigrammes : plein écran, PNG, SVG -----
+  var ov=document.getElementById('logi-overlay'), ovBody=document.getElementById('ov-body'), ovTitle=document.getElementById('ov-title');
+  var zoom=1400;
+  function svgOf(id){ var box=document.getElementById(id); return box ? box.querySelector('svg') : null; }
+  function serialize(svg){
+    var c=svg.cloneNode(true);
+    c.setAttribute('xmlns','http://www.w3.org/2000/svg');
+    c.removeAttribute('style');
+    var vb=c.getAttribute('viewBox').split(' ');
+    c.setAttribute('width', vb[2]); c.setAttribute('height', vb[3]);
+    // polices : Inter et Plus Jakarta Sans si installées, sinon système
+    var st=document.createElementNS('http://www.w3.org/2000/svg','style');
+    st.textContent='text{font-family:Inter,"Plus Jakarta Sans",-apple-system,"Segoe UI",Arial,sans-serif}';
+    c.insertBefore(st, c.firstChild);
+    return '<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(c);
+  }
+  function fname(id, ext){ return 'logigramme-'+id.replace('logi-','')+'-cse.'+ext; }
+  function dl(blob, name){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },500); }
+  function openOv(id){
+    var svg=svgOf(id); if(!svg) return;
+    ovBody.innerHTML=''; var c=svg.cloneNode(true); ovBody.appendChild(c);
+    ovTitle.textContent=svg.querySelector('title') ? svg.querySelector('title').textContent : 'Logigramme';
+    zoom=Math.max(900, Math.min(1400, window.innerWidth-32)); ovBody.style.setProperty('--zoom', zoom+'px');
+    ov.classList.add('show'); document.body.style.overflow='hidden';
+  }
+  document.querySelectorAll('.logi-svg').forEach(function(el){ el.style.cursor='zoom-in'; el.title='Agrandir'; el.addEventListener('click', function(){ openOv(el.parentElement.id); }); });
+  document.querySelectorAll('[data-logi-zoom]').forEach(function(b){ b.addEventListener('click', function(){ openOv(b.getAttribute('data-logi-zoom')); }); });
+  document.querySelectorAll('[data-logi-zoom-old]').forEach(function(b){ b.addEventListener('click', function(){
+    var svg=svgOf(b.getAttribute('data-logi-zoom')); if(!svg) return;
+    ovBody.innerHTML=''; var c=svg.cloneNode(true); ovBody.appendChild(c);
+    ovTitle.textContent=svg.querySelector('title') ? svg.querySelector('title').textContent : 'Logigramme';
+    zoom=Math.max(900, Math.min(1400, window.innerWidth-32)); ovBody.style.setProperty('--zoom', zoom+'px');
+    ov.classList.add('show'); document.body.style.overflow='hidden';
+  }); });
+  function closeOv(){ ov.classList.remove('show'); document.body.style.overflow=''; }
+  document.getElementById('ov-close').addEventListener('click', closeOv);
+  ov.addEventListener('click', function(e){ if(e.target===ov || e.target===ovBody) closeOv(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && ov.classList.contains('show')) closeOv(); });
+  document.querySelectorAll('[data-ov-zoom]').forEach(function(b){ b.addEventListener('click', function(){
+    var k=b.getAttribute('data-ov-zoom');
+    if(k==='+') zoom=Math.min(3200, zoom*1.25); else if(k==='-') zoom=Math.max(600, zoom/1.25); else zoom=Math.max(600, window.innerWidth-32);
+    ovBody.style.setProperty('--zoom', Math.round(zoom)+'px');
+  }); });
+  document.querySelectorAll('[data-logi-svg]').forEach(function(b){ b.addEventListener('click', function(){
+    var id=b.getAttribute('data-logi-svg'), svg=svgOf(id); if(!svg) return;
+    dl(new Blob([serialize(svg)],{type:'image/svg+xml;charset=utf-8'}), fname(id,'svg')); say('Logigramme SVG téléchargé ✓');
+  }); });
+  document.querySelectorAll('[data-logi-png]').forEach(function(b){ b.addEventListener('click', function(){
+    var id=b.getAttribute('data-logi-png'), svg=svgOf(id); if(!svg) return;
+    var vb=svg.getAttribute('viewBox').split(' ').map(Number), scale=2;
+    var img=new Image(); var url=URL.createObjectURL(new Blob([serialize(svg)],{type:'image/svg+xml;charset=utf-8'}));
+    img.onload=function(){
+      var cv=document.createElement('canvas'); cv.width=vb[2]*scale; cv.height=vb[3]*scale;
+      var ctx=cv.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,cv.width,cv.height); ctx.drawImage(img,0,0,cv.width,cv.height);
+      URL.revokeObjectURL(url);
+      try{ cv.toBlob(function(bl){ if(bl){ dl(bl, fname(id,'png')); say('Image PNG téléchargée ✓'); } else { say('PNG impossible ici, SVG téléchargé'); dl(new Blob([serialize(svg)],{type:'image/svg+xml'}), fname(id,'svg')); } },'image/png'); }
+      catch(e){ say('PNG impossible ici, SVG téléchargé'); dl(new Blob([serialize(svg)],{type:'image/svg+xml'}), fname(id,'svg')); }
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); say('PNG impossible ici, SVG téléchargé'); dl(new Blob([serialize(svg)],{type:'image/svg+xml'}), fname(id,'svg')); };
+    img.src=url;
+  }); });
+
+  // ----- Ouvrir l'étape ciblée par un lien interne -----
+  window.addEventListener('hashchange', function(){ var h=location.hash.replace('#',''); if(/^case-(rps|dgi|info)$/.test(h)) showCase(h.replace('case-',''), true); });
+})();
+</script>
+</body>
+</html>
