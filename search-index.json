@@ -499,6 +499,22 @@
   "page": "rps.html",
   "title": "Les risques psychosociaux",
   "kicker": "Module 10 · Santé mentale",
+  "id": "rps-du",
+  "heading": "Évaluer les RPS avec l'outil RPS-DU",
+  "text": "La méthode Évaluer les RPS avec l'outil RPS-DU Les risques psychosociaux s'évaluent et s'inscrivent au document unique comme n'importe quel autre risque (article L. 4121-3 (code du travail)). Reste la question que tout le monde pose en séance : concrètement, on fait comment ? La méthode RPS-DU répond à celle-là. Elle a été conçue pour les entreprises d'au moins 50 salariés, à partir des travaux du collège d'expertise présidé par Michel Gollac, et elle produit exactement ce qui manque à la plupart des documents uniques : des lignes RPS par unité de travail, écrites à partir du travail réel. ⚠️ La confusion à éviter dès la première minute Ce n'est pas un questionnaire individuel que l'on distribue aux salariés et que l'on compte ensuite. C'est un guide d'entretien collectif , par unité de travail : la grille sert à faire parler du travail, et ce sont les échanges qui sont consignés. Un employeur qui vous annonce un « questionnaire RPS anonyme en ligne » ne fait pas cette démarche, il en fait une autre, souvent plus confortable pour lui et beaucoup moins utile pour le plan d'action. Les cinq étapes 1 Préparer Définir et écrire les règles du jeu avant de commencer : qui est impliqué, quel découpage d'unités de travail, quels indicateurs déjà disponibles (absentéisme, turnover, accidents, restrictions d'aptitude, alertes du médecin du travail). L'employeur s'engage par écrit sur les"
+ },
+ {
+  "page": "rps.html",
+  "title": "Les risques psychosociaux",
+  "kicker": "Module 10 · Santé mentale",
+  "id": "sante",
+  "heading": "Le lien entre exposition et pathologie",
+  "text": "Ce que dit l'épidémiologie Le lien entre exposition et pathologie C'est l'objection que vous entendrez tôt ou tard : « les RPS, ce n'est pas de la sécurité, c'est du ressenti ». La réponse tient dans les études de population. Une synthèse des revues systématiques et des méta-analyses publiées ces vingt dernières années a été publiée par l'INRS en décembre 2024 : elle mesure, exposition par exposition, l'excès de risque de survenue de pathologies physiques et mentales. Comment lire les chiffres Les valeurs ci-dessous sont des rapports de risque. 1,30 signifie un excès de risque de 30 % chez les personnes exposées par rapport aux personnes non exposées. 2,53 signifie un risque multiplié par 2,5 . Les liens repris ici sont ceux que la synthèse classe au niveau de certitude le plus élevé : au moins une revue systématique, une méta-analyse ou un consortium concluant à l'existence d'un lien, appuyés sur au moins cinq études longitudinales de bonne qualité. Santé physique Atteinte Exposition Excès de risque Cardiopathies ischémiques Temps de travail supérieur à 48 h par semaine + 12 % Cardiopathies ischémiques Insécurité de la situation de travail + 32 % Accidents vasculaires cérébraux Temps de travail supérieur à 48 h par semaine + 21 % Obésité et surpoids Temps de travail supérieur à 48 h par semaine + 17 % Diabète de type 2 Insécurité de la situation de travail + 15 % TMS du dos Te"
+ },
+ {
+  "page": "rps.html",
+  "title": "Les risques psychosociaux",
+  "kicker": "Module 10 · Santé mentale",
   "id": "role-elu",
   "heading": "Le rôle de l'élu et l'alerte",
   "text": "Mission de l'élu Le rôle de l'élu et l'alerte L'élu CSE est souvent le premier interlocuteur du salarié en souffrance. Son rôle est d'écouter, de repérer, de proposer — et si nécessaire, d'activer les mécanismes d'alerte prévus par la loi. Repérer les signaux 1 Observer les indicateurs collectifs Hausse de l'absentéisme, turnover important, recours accru aux arrêts de courte durée, accidents du travail répétés, baisse de la qualité de production : autant de signaux d'alerte à surveiller dans les données RH et les rapports de situation. 2 Recueillir la parole des salariés Être disponible, créer un climat de confiance pour que les salariés osent s'exprimer. Prendre le temps d'écouter sans juger ni promettre ce qu'on ne peut tenir. Respecter la confidentialité des témoignages. 3 Proposer en CSE Inscrire les RPS à l'ordre du jour du CSE, demander des données chiffrées à l'employeur, proposer un diagnostic ou l'intervention d'un expert, formuler des recommandations écrites et tracées. 4 Déclencher l'alerte si nécessaire En cas d'atteinte aux droits des personnes ou à leur santé mentale : droit d'alerte L2312-59 . En cas de détresse aiguë avec danger immédiat : droit d'alerte pour danger"
@@ -534,6 +550,14 @@
   "id": "aide",
   "heading": "Comment utiliser ces outils",
   "text": "Mode d'emploi Comment utiliser ces outils 1 Le bon de délégation Imprimez-le et conservez un exemplaire à chaque prise d'heures. 2 Le courrier d'alerte Répondez aux questions, le courrier conforme à l'article L2312-59 se génère automatiquement. 3 Relisez et adaptez Ces modèles sont des bases : adaptez-les à votre situation avant envoi. 4 Gardez une preuve Privilégiez la lettre recommandée ou la remise contre décharge. ✉️ Un doute ? Pour une relecture ou un accompagnement personnalisé, écrivez à mickael@destination-prevention.fr ."
+ },
+ {
+  "page": "modeles.html",
+  "title": "Modèles & documents",
+  "kicker": "Outils pratiques",
+  "id": "support",
+  "heading": "Le diaporama de la formation",
+  "text": "Support de session Le diaporama de la formation Le support projeté pendant la formation CSE SSCT, dans sa version en vigueur. Il suit le même déroulé que les modules de ce site : du cadre et de la réglementation jusqu'aux risques psychosociaux, avec les articles du code du travail, les cas d'analyse et les exercices. ℹ️ Pour vos réunions Vous pouvez réutiliser les planches dans vos propres réunions de CSE ou de CSSCT, en gardant la mention de la source. Le fichier s'ouvre avec PowerPoint, LibreOffice Impress, Keynote ou Google Slides ; certaines animations au clic ne sont fidèles qu'avec PowerPoint. Diaporama Formation CSE SSCT, support complet Destination Prévention, version 5. Environ 200 planches : le CSE et la CSSCT, la réglementation et les neuf principes, les acteurs, le DUERP et le PAPRIPACT, l'analyse des accidents et l'arbre des causes, l'inspection, les alertes, les TMS et les risques psychosociaux. ⬇ Télécharger le diaporama (7,1 Mo)"
  },
  {
   "page": "procedures.html",

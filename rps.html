@@ -11,6 +11,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="styles.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" rel="stylesheet"/>
+<style>
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.dl a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:.92rem;border-radius:11px;padding:11px 16px;transition:.18s;border:1px solid var(--line)}
+.dl a.pdf{background:#fdecea;color:#b3261e;border-color:#f3c9c4}
+.dl a:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.docrow{border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:12px 0;background:#fbfdfd}
+.docrow h3{margin:0 0 4px;color:var(--teal-d);font-size:1.12rem}
+.docrow p{margin:0;color:var(--muted);font-size:.93rem}
+.pill{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;border-radius:6px;padding:2px 9px;margin-bottom:6px;background:var(--coral)}
+</style>
 </head>
 <body>
 <div id="progress"></div>
@@ -23,6 +33,8 @@
 <a href="#stress">Stress au travail</a>
 <a href="#harcelement">Harcèlement</a>
 <a href="#prevention">Prévenir les RPS</a>
+      <a href="#rps-du">Méthode RPS-DU</a>
+      <a href="#sante">Exposition et santé</a>
 <a href="#role-elu">Rôle de l'élu</a>
 <a href="#regl">Réglementation</a>
       <a href="outils-instances.html">En séance</a>
@@ -131,6 +143,192 @@
 </div>
 <div class="note n-ok"><span class="ni">📋</span><div><span class="tag">Méthode en 3 temps</span><p><b>1. Diagnostiquer</b> — Réaliser un diagnostic RPS participatif (questionnaires, groupes de travail, analyse des données sociales : absentéisme, turnover, AT) et l'intégrer au DUER.<br/><b>2. Planifier</b> — Définir un plan d'action hiérarchisé avec mesures collectives prioritaires, délais et responsables.<br/><b>3. Suivre</b> — Évaluer l'efficacité des mesures à intervalles réguliers et ajuster. Le CSE est consulté à chaque étape.</p></div></div>
 </section>
+  <!-- ===================== LA MÉTHODE RPS-DU ===================== -->
+<section id="rps-du">
+    <div class="sec-head">
+      <div class="sec-ico t-teal"><i class="fa-solid fa-clipboard-list"></i></div>
+      <div><div class="kicker">La méthode</div><h2>Évaluer les RPS avec l'outil RPS-DU</h2></div>
+    </div>
+    <p class="lead">Les risques psychosociaux s'évaluent et s'inscrivent au document unique comme n'importe quel autre risque (article L. 4121-3 (code du travail)). Reste la question que tout le monde pose en séance : concrètement, on fait comment ? La méthode RPS-DU répond à celle-là. Elle a été conçue pour les entreprises d'au moins 50 salariés, à partir des travaux du collège d'expertise présidé par Michel Gollac, et elle produit exactement ce qui manque à la plupart des documents uniques : des lignes RPS par unité de travail, écrites à partir du travail réel.</p>
+
+    <div class="note n-warn">
+      <span class="ni">⚠️</span>
+      <div>
+        <span class="tag">La confusion à éviter dès la première minute</span>
+        <p>Ce n'est <b>pas un questionnaire individuel</b> que l'on distribue aux salariés et que l'on compte ensuite. C'est un <b>guide d'entretien collectif</b>, par unité de travail : la grille sert à faire parler du travail, et ce sont les échanges qui sont consignés. Un employeur qui vous annonce un « questionnaire RPS anonyme en ligne » ne fait pas cette démarche, il en fait une autre, souvent plus confortable pour lui et beaucoup moins utile pour le plan d'action.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Les cinq étapes</h3>
+    <div class="tl">
+      <div class="step"><div class="dot">1</div><b>Préparer</b>Définir et écrire les règles du jeu avant de commencer : qui est impliqué, quel découpage d'unités de travail, quels indicateurs déjà disponibles (absentéisme, turnover, accidents, restrictions d'aptitude, alertes du médecin du travail). L'employeur s'engage par écrit sur les moyens, la protection de la parole et la mise en œuvre des actions.</div>
+      <div class="step"><div class="dot">2</div><b>Évaluer</b>Des entretiens collectifs par unité de travail, animés en binôme, deux à quatre heures. La grille est passée en revue, chaque réponse est illustrée par des situations concrètes, et la synthèse est validée avec le groupe. Le résultat est transcrit dans le document unique.</div>
+      <div class="step"><div class="dot">3</div><b>Élaborer le plan d'actions</b>Des actions qui ciblent les situations de travail décrites, hiérarchisées et planifiées, avec un responsable, un délai, un coût et un critère d'évaluation pour chacune.</div>
+      <div class="step"><div class="dot">4</div><b>Mettre en œuvre</b>Le plan est piloté, l'avancement est présenté en réunion de CSE, et l'ensemble du personnel est informé de ce qui a été décidé et de ce qui avance.</div>
+      <div class="step"><div class="dot">5</div><b>Suivre et évaluer</b>On mesure les effets des mesures prises, on suit les mêmes indicateurs qu'à l'étape 1, et on réévalue les conditions d'exposition. Sans cette étape, la démarche s'éteint au bout de six mois.</div>
+    </div>
+
+    <h3 class="sub">Les sept familles de facteurs, et les 26 questions</h3>
+    <p class="lead" style="margin-top:0">La grille reprend les six familles du rapport Gollac, en séparant en deux la famille « intensité et temps de travail ». Chaque famille se décline en sous-thèmes, chaque sous-thème en une question, soit 26 questions au total.</p>
+    <div class="feat">
+      <div class="f"><div class="fi t-coral">1</div><div><b>Intensité et complexité du travail</b><span>Contraintes de rythme, objectifs flous ou hors d'atteinte, instructions contradictoires, interruptions, polyvalence subie, responsabilités.</span></div></div>
+      <div class="f"><div class="fi t-coral">2</div><div><b>Horaires de travail difficiles</b><span>Durée, travail de nuit, horaires atypiques ou imprévisibles, extension de la disponibilité, conciliation avec la vie personnelle.</span></div></div>
+      <div class="f"><div class="fi t-amber">3</div><div><b>Exigences émotionnelles</b><span>Contact avec la souffrance ou la détresse, relation au public tendue, agressions et incivilités, obligation de cacher ses émotions.</span></div></div>
+      <div class="f"><div class="fi t-amber">4</div><div><b>Faible autonomie au travail</b><span>Marges de manœuvre, participation aux décisions qui concernent le poste, utilisation et développement des compétences, monotonie.</span></div></div>
+      <div class="f"><div class="fi t-teal">5</div><div><b>Rapports sociaux au travail dégradés</b><span>Soutien des collègues et de l'encadrement, reconnaissance, équité des décisions, clarté des rôles, violences internes.</span></div></div>
+      <div class="f"><div class="fi t-teal">6</div><div><b>Conflits de valeurs</b><span>Travail empêché, qualité empêchée, tâches contraires à ses valeurs professionnelles ou personnelles, sentiment d'inutilité.</span></div></div>
+      <div class="f"><div class="fi t-indigo">7</div><div><b>Insécurité de l'emploi et du travail</b><span>Crainte pour son emploi, changements d'organisation mal accompagnés, incertitude sur l'avenir du poste et du métier.</span></div></div>
+      <div class="f"><div class="fi t-green">+</div><div><b>Ce qui fonctionne bien</b><span>La grille sert aussi à repérer les ressources à préserver. Une question sans problème est une information, pas une case vide.</span></div></div>
+    </div>
+
+    <h3 class="sub">Comment on répond, et ce qui compte vraiment</h3>
+    <div class="dd">
+      <div class="col can">
+        <h4><i class="fa-solid fa-circle-check"></i> Ce que la méthode demande</h4>
+        <ul>
+          <li>Quatre réponses possibles par question : jamais, parfois, souvent, toujours (ou non, plutôt non, plutôt oui, oui).</li>
+          <li>Un codage au choix de l'entreprise : symboles, couleurs ou chiffres de 1 à 4.</li>
+          <li>Sous chaque question, un espace libre : c'est là qu'on note les situations concrètes décrites par le groupe.</li>
+          <li>Une synthèse par unité de travail, validée avec les participants avant de quitter la salle.</li>
+          <li>Le report des résultats dans le document unique, puis dans le programme annuel de prévention.</li>
+        </ul>
+      </div>
+      <div class="col cant">
+        <h4><i class="fa-solid fa-circle-xmark"></i> Ce que la méthode ne fait pas</h4>
+        <ul>
+          <li>Elle ne cote pas la gravité des conséquences : seules les conditions d'exposition sont appréciées.</li>
+          <li>Elle ne mesure pas l'état de santé des personnes, et elle ne diagnostique personne.</li>
+          <li>Elle ne cherche ni responsable ni coupable : les explications par le caractère ou la personnalité sont écartées.</li>
+          <li>Elle ne produit pas une note globale de l'entreprise : le résultat est une photographie par unité de travail.</li>
+          <li>Elle ne remplace pas un questionnaire médical, ni une expertise, ni une enquête après un signalement.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note n-info">
+      <span class="ni"><i class="fa-solid fa-comments" style="color:var(--teal-2)"></i></span>
+      <div>
+        <span class="tag">Les deux questions d'ouverture, dans cet ordre</span>
+        <p>« Qu'est-ce qui pose problème, crée des tensions, entrave le travail ? » puis « qu'est-ce qui fonctionne bien, est apprécié, facilite le travail ? ». Et la question de clôture, celle qui fait souvent remonter l'essentiel : « y a-t-il des points que nous n'avons pas abordés et qu'il vous semble important de signaler ? »</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Ce que l'élu doit obtenir, et vérifier</h3>
+    <div class="feat">
+      <div class="f"><div class="fi t-teal">1</div><div><b>Un engagement écrit avant de commencer</b><span>Moyens, calendrier, protection de la parole, mise en œuvre des actions. Une démarche mal cadrée ne se rattrape pas en cours de route.</span></div></div>
+      <div class="f"><div class="fi t-teal">2</div><div><b>Une animation en binôme, si possible paritaire</b><span>Une personne côté direction ou ressources humaines, un membre du CSE. Demandez à en être, c'est là que le travail réel se dit.</span></div></div>
+      <div class="f"><div class="fi t-teal">3</div><div><b>L'anonymat des propos et la confidentialité</b><span>La synthèse est organisée par facteur de risque, pas par personne. Rien de ce qui permettrait d'identifier un salarié n'y entre sans son accord.</span></div></div>
+      <div class="f"><div class="fi t-teal">4</div><div><b>La restitution aux salariés</b><span>Ceux qui ont parlé doivent savoir ce qui a été retenu et ce qui a été décidé. Sans retour, il n'y aura pas de deuxième tour.</span></div></div>
+      <div class="f"><div class="fi t-teal">5</div><div><b>Des lignes RPS dans le document unique</b><span>Unité de travail, facteur, conditions d'exposition, mesures existantes, actions à mener. Un document unique sans ligne RPS est incomplet.</span></div></div>
+      <div class="f"><div class="fi t-teal">6</div><div><b>Un point permanent à l'ordre du jour</b><span>Le suivi RPS inscrit à chaque réunion : c'est ce qui empêche la démarche de s'arrêter après la première vague d'entretiens.</span></div></div>
+    </div>
+
+    <div class="note n-ok">
+      <span class="ni"><i class="fa-solid fa-scale-balanced" style="color:var(--green)"></i></span>
+      <div>
+        <span class="tag">Vos appuis juridiques pour l'exiger</span>
+        <p>L'employeur évalue les risques et le comité y contribue ; le CSE est consulté sur le document unique et sur ses mises à jour (article L. 4121-3 (code du travail)). Le comité procède à l'analyse des risques professionnels et peut susciter toute initiative utile, le refus de l'employeur devant être motivé (article L. 2312-9 (code du travail)). Les résultats débouchent sur le programme annuel de prévention, avec pour chaque mesure ses conditions d'exécution, ses indicateurs et son coût (article L. 4121-3-1 (code du travail)).</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Les documents de la méthode</h3>
+    <div class="note n-info">
+      <span class="ni">ℹ️</span>
+      <div>
+        <span class="tag">Source</span>
+        <p>Ces deux documents sont des publications de l'<b>INRS</b>, mises à disposition ici pour les stagiaires de la formation. Ils restent la propriété de leur éditeur : ne les diffusez pas au-delà de votre comité, et vérifiez sur <a href="https://www.inrs.fr" target="_blank" rel="noopener">inrs.fr</a> qu'une édition plus récente n'est pas parue.</p>
+      </div>
+    </div>
+    <div class="docrow">
+      <span class="pill">Brochure</span>
+      <h3>Évaluer les facteurs de risques psychosociaux : l'outil RPS-DU</h3>
+      <p>INRS, ED 6403, 2ᵉ édition, septembre 2022. La démarche en cinq étapes, la grille d'évaluation complète par unité de travail, le tableau de synthèse et le tableau de suivi des actions avec des exemples de pistes d'action.</p>
+      <div class="dl"><a class="pdf" href="ressources/INRS-ED-6403-evaluer-les-facteurs-de-RPS-outil-RPS-DU.pdf" download>⬇ Télécharger le PDF (468 Ko)</a></div>
+    </div>
+    <div class="docrow">
+      <span class="pill" style="background:var(--green)">Grille</span>
+      <h3>La grille d'évaluation RPS-DU, en Excel</h3>
+      <p>La même grille, à remplir pendant les entretiens collectifs : 26 questions, les quatre modalités de réponse et, sous chaque question, la zone de texte où consigner les situations concrètes et les pistes d'amélioration.</p>
+      <div class="dl"><a class="pdf" style="background:#e2f6ec;color:#177a4d;border-color:#bfe3cd" href="ressources/INRS-grille-evaluation-RPS-DU.xlsx" download>⬇ Télécharger le classeur Excel (53 Ko)</a></div>
+    </div>
+</section>
+
+  <!-- ===================== EXPOSITIONS ET SANTÉ ===================== -->
+<section id="sante">
+    <div class="sec-head">
+      <div class="sec-ico t-red"><i class="fa-solid fa-heart-pulse"></i></div>
+      <div><div class="kicker">Ce que dit l'épidémiologie</div><h2>Le lien entre exposition et pathologie</h2></div>
+    </div>
+    <p class="lead">C'est l'objection que vous entendrez tôt ou tard : « les RPS, ce n'est pas de la sécurité, c'est du ressenti ». La réponse tient dans les études de population. Une synthèse des revues systématiques et des méta-analyses publiées ces vingt dernières années a été publiée par l'INRS en décembre 2024 : elle mesure, exposition par exposition, l'excès de risque de survenue de pathologies physiques et mentales.</p>
+
+    <div class="note n-info">
+      <span class="ni"><i class="fa-solid fa-calculator" style="color:var(--teal-2)"></i></span>
+      <div>
+        <span class="tag">Comment lire les chiffres</span>
+        <p>Les valeurs ci-dessous sont des rapports de risque. <b>1,30 signifie un excès de risque de 30 %</b> chez les personnes exposées par rapport aux personnes non exposées. <b>2,53 signifie un risque multiplié par 2,5</b>. Les liens repris ici sont ceux que la synthèse classe au <b>niveau de certitude le plus élevé</b> : au moins une revue systématique, une méta-analyse ou un consortium concluant à l'existence d'un lien, appuyés sur au moins cinq études longitudinales de bonne qualité.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Santé physique</h3>
+    <table class="tbl">
+      <thead><tr><th>Atteinte</th><th>Exposition</th><th>Excès de risque</th></tr></thead>
+      <tbody>
+        <tr><td>Cardiopathies ischémiques</td><td>Temps de travail supérieur à 48 h par semaine</td><td>+ 12 %</td></tr>
+        <tr><td>Cardiopathies ischémiques</td><td>Insécurité de la situation de travail</td><td>+ 32 %</td></tr>
+        <tr><td>Accidents vasculaires cérébraux</td><td>Temps de travail supérieur à 48 h par semaine</td><td>+ 21 %</td></tr>
+        <tr><td>Obésité et surpoids</td><td>Temps de travail supérieur à 48 h par semaine</td><td>+ 17 %</td></tr>
+        <tr><td>Diabète de type 2</td><td>Insécurité de la situation de travail</td><td>+ 15 %</td></tr>
+        <tr><td>TMS du dos</td><td>Temps de travail supérieur à 48 h par semaine</td><td>+ 62 %</td></tr>
+        <tr><td>TMS du dos</td><td>Manque de soutien social</td><td>+ 42 %</td></tr>
+        <tr><td>TMS du dos</td><td>Demande psychologique élevée</td><td>+ 32 %</td></tr>
+        <tr><td>TMS, toutes localisations</td><td>Manque de latitude décisionnelle</td><td>+ 21 %</td></tr>
+        <tr><td>TMS des membres inférieurs</td><td>Manque de soutien social</td><td>+ 62 %</td></tr>
+        <tr><td>Accouchement prématuré</td><td>Temps de travail supérieur à 40 h par semaine</td><td>+ 21 %</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Santé mentale</h3>
+    <table class="tbl">
+      <thead><tr><th>Atteinte</th><th>Exposition</th><th>Excès de risque</th></tr></thead>
+      <tbody>
+        <tr><td>Burnout</td><td>Demande psychologique élevée</td><td>risque multiplié par 2,5</td></tr>
+        <tr><td>Burnout</td><td>Manque de soutien social</td><td>+ 81 %</td></tr>
+        <tr><td>Burnout</td><td>Manque de latitude décisionnelle</td><td>+ 63 %</td></tr>
+        <tr><td>Troubles dépressifs</td><td>Job strain (forte demande et faible latitude)</td><td>+ 74 %</td></tr>
+        <tr><td>Troubles dépressifs</td><td>Déséquilibre entre efforts et récompenses</td><td>+ 68 %</td></tr>
+        <tr><td>Troubles dépressifs</td><td>Manque de latitude décisionnelle</td><td>+ 37 %</td></tr>
+        <tr><td>Dépression</td><td>Manque de latitude décisionnelle</td><td>+ 23 %</td></tr>
+        <tr><td>Troubles du sommeil</td><td>Demande psychologique élevée</td><td>+ 48 %</td></tr>
+        <tr><td>Troubles du sommeil</td><td>Violences internes</td><td>+ 62 %</td></tr>
+        <tr><td>Consommation de médicaments psychoactifs</td><td>Demande psychologique élevée</td><td>+ 16 %</td></tr>
+      </tbody>
+    </table>
+    <p class="lead" style="font-size:.95rem">La synthèse retient aussi, au même niveau de certitude, des liens entre les expositions psychosociales et les <b>accidents du travail</b>, la <b>consommation d'alcool</b>, les <b>idées suicidaires</b> et le <b>suicide</b>. Les expositions les plus souvent en cause sont, pour l'essentiel, celles que la grille RPS-DU fait remonter : la demande psychologique, le temps de travail, le manque d'autonomie, le manque de soutien social, les violences et l'insécurité de la situation de travail.</p>
+
+    <div class="note n-warn">
+      <span class="ni">⚠️</span>
+      <div>
+        <span class="tag">Trois précautions, à dire avant qu'on vous les oppose</span>
+        <p>Ces résultats sont des <b>liens statistiques de population</b>, pas un diagnostic individuel : ils n'établissent pas que telle personne est malade à cause de son travail. Ils ne valent pas non plus <b>reconnaissance en maladie professionnelle</b> : aucune pathologie psychique ne figure dans un tableau, la reconnaissance passe par le système complémentaire, avec le verrou des 25 % d'incapacité permanente prévisible. Enfin, ils portent sur des expositions, pas sur des personnes : c'est bien le travail qu'il s'agit de transformer.</p>
+      </div>
+    </div>
+
+    <div class="docrow">
+      <span class="pill" style="background:var(--red)">Article</span>
+      <h3>Effets des expositions psychosociales sur la santé des salariés</h3>
+      <p>INRS, TP 57, revue Références en santé au travail nº 180, décembre 2024. La synthèse épidémiologique complète, avec le tableau des liens entre expositions et pathologies et les niveaux de certitude, ainsi que les valeurs chiffrées et leurs intervalles de confiance.</p>
+      <div class="dl"><a class="pdf" href="ressources/INRS-TP-57-expositions-psychosociales-et-sante.pdf" download>⬇ Télécharger le PDF (1,2 Mo)</a></div>
+    </div>
+
+    <div class="note n-ok">
+      <span class="ni"><i class="fa-solid fa-clipboard-check" style="color:var(--green)"></i></span>
+      <div>
+        <span class="tag">Fiabilité</span>
+        <p><b>A pour les chiffres</b> : ils sont lus directement dans la synthèse publiée par l'INRS en décembre 2024, au niveau de certitude le plus élevé, et arrondis au point de pourcentage. <b>B pour la sélection</b> : le tableau d'origine compte plusieurs dizaines de croisements, ceux repris ici ont été choisis pour leur utilité en séance, les autres sont dans le document. <b>A pour les articles cités</b> (L. 4121-3, L. 4121-3-1, L. 2312-9 du code du travail), relus sur Légifrance le 19 septembre 2026.</p>
+      </div>
+    </div>
+</section>
+
 <section id="role-elu">
 <div class="sec-head">
 <div class="sec-ico t-coral"><i class="fa-solid fa-people-group"></i></div>
@@ -195,3 +393,4 @@
 <script src="app.js"></script>
 </body>
 </html>
+<meta name="robots" content="noindex,nofollow,noarchive">
