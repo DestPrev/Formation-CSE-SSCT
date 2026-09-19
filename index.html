@@ -12,6 +12,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+<style>
+.ppt-banner{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--teal-d,#0e6b78),var(--teal-2,#15909f));border-radius:22px;padding:30px 32px;margin:0 0 30px;color:#fff;box-shadow:0 18px 40px -22px rgba(14,107,120,.7)}
+.ppt-banner .pb-kick{font-size:.72rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#a9e0e7}
+.ppt-banner h2{margin:8px 0 6px;font-size:1.5rem;line-height:1.25;color:#fff}
+.ppt-banner p{margin:0;color:#d6eef1;font-size:.97rem;line-height:1.55;max-width:62ch}
+.ppt-banner .pb-grid{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.ppt-banner .pb-txt{flex:1 1 320px;min-width:0}
+.ppt-banner .pb-cta{flex:0 0 auto;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.ppt-banner .pb-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:var(--teal-d,#0e6b78);font-weight:800;font-size:1rem;padding:15px 26px;border-radius:12px;text-decoration:none;white-space:nowrap;transition:transform .15s ease,box-shadow .15s ease}
+.ppt-banner .pb-btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}
+.ppt-banner .pb-meta{text-align:center;font-size:.78rem;color:#a9e0e7;font-weight:700;letter-spacing:.3px}
+@media(max-width:700px){.ppt-banner{padding:24px 20px}.ppt-banner .pb-cta{width:100%}.ppt-banner h2{font-size:1.28rem}}
+</style>
 </head>
 <body>
 <div id="progress"></div>
@@ -22,6 +35,7 @@
     <div class="links">
       <a href="#recherche">Recherche</a>
       <a href="#modules">Les modules</a>
+      <a href="ressources/Support-formation-CSE-SSCT-Destination-Prevention-v5.pptx" download>Diaporama</a>
       <a href="outils-instances.html">En séance</a>
       <a href="procedures.html">Procédures</a>
       <a href="modeles.html">Modèles</a>
@@ -40,6 +54,7 @@
     <h1>Formation <span class="hl">CSE SSCT</span><br>Santé, sécurité &amp; conditions de travail</h1>
     <p class="sub">Votre espace de référence en prévention. Tout ce qu'il faut pour exercer vos missions santé-sécurité d'élu : réglementation, DUER, accidents du travail, inspection, alertes, TMS et risques psychosociaux — étayé du Code du travail, avec exemples concrets.</p>
     <a class="tagchip" href="outils-instances.html"><i class="fa-solid fa-scale-balanced"></i> En réunion de CSE ou de CSSCT ? Ouvrez « Outils pour les instances »</a>
+    <a class="tagchip" href="ressources/Support-formation-CSE-SSCT-Destination-Prevention-v5.pptx" download><i class="fa-solid fa-file-powerpoint"></i> Télécharger le diaporama de la formation (PowerPoint, 7,2 Mo)</a>
     <div class="stats">
       <div class="stat"><div class="n">12</div><div class="l">modules thématiques</div></div>
       <div class="stat"><div class="n">30+</div><div class="l">articles du Code du travail liés</div></div>
@@ -49,6 +64,21 @@
 </header>
 
 <main class="wrap">
+
+  <div class="ppt-banner">
+    <div class="pb-grid">
+      <div class="pb-txt">
+        <div class="pb-kick"><i class="fa-solid fa-file-powerpoint"></i> Le support de la formation</div>
+        <h2>Téléchargez le diaporama projeté en session</h2>
+        <p>La version complète du support, celle que vous avez suivie pendant les cinq jours : du cadre réglementaire aux risques psychosociaux, avec les schémas, les articles cités et les cas pratiques. À garder sous la main pour préparer vos réunions.</p>
+      </div>
+      <div class="pb-cta">
+        <a class="pb-btn" href="ressources/Support-formation-CSE-SSCT-Destination-Prevention-v5.pptx" download><i class="fa-solid fa-download"></i> Télécharger le diaporama</a>
+        <div class="pb-meta">PowerPoint · 7,2 Mo · version 5</div>
+      </div>
+    </div>
+  </div>
+
 
   <section id="recherche">
     <div class="sec-head">
@@ -173,7 +203,7 @@
         <span class="go">Ouvrir la fiche →</span>
       </a>
 
-      <a class="mod" href="modeles.html#support">
+      <a class="mod" href="ressources/Support-formation-CSE-SSCT-Destination-Prevention-v5.pptx" download>
         <span class="num">OUTILS</span>
         <div class="mi t-amber"><i class="fa-solid fa-file-powerpoint"></i></div>
         <h3>Le diaporama de la formation</h3>
