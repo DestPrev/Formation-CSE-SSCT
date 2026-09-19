@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outils pour les instances : à ouvrir en séance · Formation CSE SSCT · Destination Prévention</title>
+<meta name="description" content="La page à ouvrir pendant une réunion de CSE ou de CSSCT : les articles L. 4121-1, L. 4121-2, L. 4121-3 et L. 4121-3-1 du code du travail, les phrases à dire quand on vous renvoie à votre manque d'expertise, et les 9 principes généraux de prévention classés en prévention primaire, secondaire et tertiaire.">
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+<style>
+/* ===== Page « en séance » : gros, simple, lisible au téléphone ===== */
+.seance .lead{font-size:1.1rem}
+/* Accès rapide */
+.jump{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:4px 0 0}
+@media(max-width:760px){.jump{grid-template-columns:1fr}}
+.jump a{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;font-family:"Plus Jakarta Sans";font-weight:800;font-size:1.08rem;line-height:1.25;box-shadow:var(--shadow-sm);transition:.2s}
+.jump a:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#bfe0e2}
+.jump a i{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;font-size:1.2rem}
+.jump .j1 i{background:linear-gradient(135deg,var(--teal-2),var(--teal-d))}
+.jump .j2 i{background:linear-gradient(135deg,#ff8a7d,var(--coral))}
+.jump .j3 i{background:linear-gradient(135deg,#3fd08c,var(--green))}
+.jump a span small{display:block;font-family:"Inter";font-weight:500;font-size:.86rem;color:var(--muted);margin-top:3px}
+
+/* Cartes d'article */
+.art{border:1px solid var(--line);border-left:6px solid var(--teal-2);border-radius:16px;background:#fff;padding:18px 20px;margin:14px 0;box-shadow:var(--shadow-sm)}
+.art h3{margin:0;font-size:1.3rem;font-weight:800;color:var(--teal-d);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.art .code{background:var(--teal);color:#fff;border-radius:9px;padding:3px 11px;font-size:.92rem;font-weight:800;letter-spacing:.3px}
+.art .quoi{font-size:1.06rem;color:var(--ink);margin:10px 0 0;font-weight:600}
+.art .verbatim{background:#fbfdfd;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0 0;font-size:1rem;line-height:1.65;color:#22343a}
+.art .verbatim b{color:var(--teal-d)}
+.art details{margin-top:10px}
+.art details summary{cursor:pointer;font-weight:700;color:var(--teal);font-size:.95rem;padding:8px 0;list-style:none;display:flex;align-items:center;gap:8px}
+.art details summary::-webkit-details-marker{display:none}
+.art details summary:before{content:"\25B8";transition:.2s;display:inline-block}
+.art details[open] summary:before{transform:rotate(90deg)}
+.art details .txt{font-size:.95rem;line-height:1.7;color:#2f464c;background:#fff;border:1px dashed var(--line);border-radius:12px;padding:14px 16px}
+.art .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+/* Phrases à dire */
+.dire{display:grid;gap:10px;margin:14px 0 0}
+.dire button{text-align:left;font-family:inherit;font-size:1.05rem;line-height:1.5;color:#22343a;background:#fff;border:2px solid var(--line);border-left:6px solid var(--coral);border-radius:14px;padding:16px 18px;cursor:pointer;transition:.18s;display:flex;gap:14px;align-items:flex-start}
+.dire button:hover{border-color:#bfe0e2;border-left-color:var(--coral);background:var(--teal-l);transform:translateX(3px)}
+.dire button .ci{flex:none;color:var(--muted);font-size:1rem;margin-top:3px}
+.dire button i.fa-copy{color:var(--teal-2)}
+.dire-hint{font-size:.86rem;color:var(--muted);margin:10px 0 0}
+
+/* Appuis juridiques */
+.appuis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:760px){.appuis{grid-template-columns:1fr}}
+.appui{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fbfdfd}
+.appui b{display:block;font-size:1rem;color:var(--teal-d);margin-bottom:4px}
+.appui span{font-size:.93rem;color:#3a5258}
+
+/* Visuel des 9 principes */
+.visuel{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px 16px 12px;margin:14px 0;box-shadow:var(--shadow-sm)}
+.visuel-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.visuel-bar b{display:block;font-family:"Plus Jakarta Sans";font-size:1.02rem;color:var(--teal-d)}
+.visuel-actions{display:flex;gap:8px;flex-wrap:wrap}
+.visuel-svg{border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:zoom-in}
+.visuel-svg svg{display:block;width:100%;height:auto}
+.visuel-hint{margin:8px 0 0;font-size:.84rem;color:var(--muted)}
+#ov{position:fixed;inset:0;background:rgba(16,36,42,.97);z-index:400;display:none;flex-direction:column}
+#ov.show{display:flex}
+#ov .ov-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#fff;flex-wrap:wrap}
+#ov .ov-bar b{flex:1;font-family:"Plus Jakarta Sans";min-width:180px}
+#ov .ov-body{flex:1;overflow:auto;padding:0 16px 16px}
+#ov .ov-body svg{display:block;width:var(--zoom,1200px);max-width:none;height:auto;margin:0 auto;background:#fff;border-radius:14px}
+.btn-sm{font-size:.84rem;padding:9px 14px;border-radius:10px}
+@media print{#ov{display:none!important}.art details .txt{display:block}}
+</style>
+</head>
+<body class="seance">
+<div id="progress"></div>
+
+<nav class="bar" id="nav">
+  <div class="wrap">
+    <a class="lg" href="index.html"><img class="mark" src="logo.svg" alt=""> Formation CSE SSCT</a>
+    <div class="links">
+      <a href="#articles">Les 4 articles</a>
+      <a href="#voix">Ce que je peux dire</a>
+      <a href="#principes">Les 9 principes</a>
+      <a href="procedures.html">Procédures</a>
+      <a href="alertes.html">Alertes</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">← Sommaire de la formation</a></div>
+    <div class="logo-wrap"><img src="logo.svg" alt="Destination Prévention" style="width:96px;height:96px"></div>
+    <span class="kick">Module 12 · À ouvrir pendant la réunion</span>
+    <h1>Outils pour <span class="hl">les instances</span></h1>
+    <p class="sub">Trois choses, et rien d'autre : les quatre articles qui fondent toute discussion santé-sécurité, ce que vous pouvez répondre quand on vous renvoie à votre manque d'expertise, et les 9 principes de prévention dans le bon ordre.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="acces">
+    <div class="jump">
+      <a class="j1" href="#articles"><i class="fa-solid fa-scale-balanced"></i><span>Les 4 articles<small>L. 4121-1, -2, -3 et -3-1</small></span></a>
+      <a class="j2" href="#voix"><i class="fa-solid fa-comment-dots"></i><span>Ce que je peux dire<small>Vous n'êtes pas un expert</small></span></a>
+      <a class="j3" href="#principes"><i class="fa-solid fa-list-ol"></i><span>Les 9 principes<small>Primaire, secondaire, tertiaire</small></span></a>
+    </div>
+  </section>
+
+  <!-- ===================== LES 4 ARTICLES ===================== -->
+  <section id="articles">
+    <div class="sec-head">
+      <div class="sec-ico t-teal"><i class="fa-solid fa-scale-balanced"></i></div>
+      <div><div class="kicker">Le socle</div><h2>Les 4 articles à avoir sous les yeux</h2></div>
+    </div>
+    <p class="lead">Ce sont les quatre articles qui fondent l'obligation de l'employeur en santé et sécurité. Chacun peut être lu à voix haute en séance. Le bouton « Copier » met le texte dans votre presse-papier, pour le coller dans un mail ou dans une déclaration.</p>
+
+    <div class="art">
+      <h3><span class="code">L. 4121-1</span> L'obligation de sécurité</h3>
+      <p class="quoi">C'est l'employeur, et lui seul, qui doit assurer la sécurité et protéger la santé physique <b>et mentale</b> des travailleurs.</p>
+      <div class="verbatim" id="a1">L'employeur prend les mesures nécessaires pour assurer la sécurité et protéger la santé physique et mentale des travailleurs. Ces mesures comprennent :<br>
+      1° Des actions de prévention des risques professionnels, y compris ceux mentionnés à l'article L. 4161-1 ;<br>
+      2° Des actions d'information et de formation ;<br>
+      3° La mise en place d'une organisation et de moyens adaptés.<br>
+      L'employeur veille à l'adaptation de ces mesures pour tenir compte du changement des circonstances et tendre à l'amélioration des situations existantes.</div>
+      <div class="acts">
+        <button class="btn btn-ghost btn-sm" data-copy-el="#a1"><i class="fa-regular fa-copy"></i> Copier le texte</button>
+        <a class="btn btn-ghost btn-sm" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035640828" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Légifrance</a>
+      </div>
+      <details><summary>Ce qu'il faut en retenir en séance</summary>
+        <div class="txt">Trois mots pèsent lourd. <b>« Nécessaires »</b> : la mesure se juge à son résultat, pas à son intention. <b>« Mentale »</b> : la charge de travail, l'organisation et les relations de travail entrent dans l'obligation au même titre qu'une machine. <b>« Tendre à l'amélioration des situations existantes »</b> : le fait qu'une situation dure depuis dix ans n'est pas un argument, c'est l'inverse.</div>
+      </details>
+    </div>
+
+    <div class="art">
+      <h3><span class="code">L. 4121-2</span> Les 9 principes généraux de prévention</h3>
+      <p class="quoi">L'ordre n'est pas décoratif : on commence par éviter le risque, et la protection individuelle arrive en dernier.</p>
+      <div class="verbatim" id="a2">L'employeur met en oeuvre les mesures prévues à l'article L. 4121-1 sur le fondement des principes généraux de prévention suivants :<br>
+      1° Eviter les risques ;<br>
+      2° Evaluer les risques qui ne peuvent pas être évités ;<br>
+      3° Combattre les risques à la source ;<br>
+      4° Adapter le travail à l'homme, en particulier en ce qui concerne la conception des postes de travail ainsi que le choix des équipements de travail et des méthodes de travail et de production, en vue notamment de limiter le travail monotone et le travail cadencé et de réduire les effets de ceux-ci sur la santé ;<br>
+      5° Tenir compte de l'état d'évolution de la technique ;<br>
+      6° Remplacer ce qui est dangereux par ce qui n'est pas dangereux ou par ce qui est moins dangereux ;<br>
+      7° Planifier la prévention en y intégrant, dans un ensemble cohérent, la technique, l'organisation du travail, les conditions de travail, les relations sociales et l'influence des facteurs ambiants, notamment les risques liés au harcèlement moral et au harcèlement sexuel, tels qu'ils sont définis aux articles L. 1152-1 et L. 1153-1, ainsi que ceux liés aux agissements sexistes définis à l'article L. 1142-2-1 ;<br>
+      8° Prendre des mesures de protection collective en leur donnant la priorité sur les mesures de protection individuelle ;<br>
+      9° Donner les instructions appropriées aux travailleurs.</div>
+      <div class="acts">
+        <button class="btn btn-ghost btn-sm" data-copy-el="#a2"><i class="fa-regular fa-copy"></i> Copier le texte</button>
+        <a class="btn btn-ghost btn-sm" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019913" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Légifrance</a>
+        <a class="btn btn-ghost btn-sm" href="#principes"><i class="fa-solid fa-image"></i> Voir le schéma</a>
+      </div>
+    </div>
+
+    <div class="art">
+      <h3><span class="code">L. 4121-3</span> L'évaluation des risques</h3>
+      <p class="quoi">L'employeur évalue les risques. Le CSE et la CSSCT y <b>contribuent</b>, et le comité est <b>consulté</b> sur le document unique et sur ses mises à jour.</p>
+      <div class="verbatim" id="a3">L'employeur, compte tenu de la nature des activités de l'établissement, évalue les risques pour la santé et la sécurité des travailleurs, y compris dans le choix des procédés de fabrication, des équipements de travail, des substances ou préparations chimiques, dans l'aménagement ou le réaménagement des lieux de travail ou des installations, dans l'organisation du travail et dans la définition des postes de travail. Cette évaluation des risques tient compte de l'impact différencié de l'exposition au risque en fonction du sexe.<br>
+      Apportent leur contribution à l'évaluation des risques professionnels dans l'entreprise :<br>
+      1° Dans le cadre du dialogue social dans l'entreprise, le comité social et économique et sa commission santé, sécurité et conditions de travail, s'ils existent, en application du 1° de l'article L. 2312-9. <b>Le comité social et économique est consulté sur le document unique d'évaluation des risques professionnels et sur ses mises à jour</b> ;<br>
+      2° Le ou les salariés mentionnés au premier alinéa du I de l'article L. 4644-1, s'ils ont été désignés ;<br>
+      3° Le service de prévention et de santé au travail auquel l'employeur adhère.</div>
+      <details><summary>Lire la fin de l'article</summary>
+        <div class="txt">Pour l'évaluation des risques professionnels, l'employeur peut également solliciter le concours des personnes et organismes mentionnés aux troisième et avant-dernier alinéas du même I.<br><br>
+        A la suite de cette évaluation, l'employeur met en oeuvre les actions de prévention ainsi que les méthodes de travail et de production garantissant un meilleur niveau de protection de la santé et de la sécurité des travailleurs. Il intègre ces actions et ces méthodes dans l'ensemble des activités de l'établissement et à tous les niveaux de l'encadrement.<br><br>
+        Lorsque les documents prévus pour l'application du présent article doivent faire l'objet d'une mise à jour, celle-ci peut être moins fréquente dans les entreprises de moins de onze salariés, sous réserve que soit garanti un niveau équivalent de protection de la santé et de la sécurité des travailleurs, dans des conditions fixées par décret en Conseil d'Etat après avis des organisations professionnelles concernées.</div>
+      </details>
+      <div class="acts">
+        <button class="btn btn-ghost btn-sm" data-copy-el="#a3"><i class="fa-regular fa-copy"></i> Copier le texte</button>
+        <a class="btn btn-ghost btn-sm" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043893923" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Légifrance</a>
+        <a class="btn btn-ghost btn-sm" href="duer.html"><i class="fa-solid fa-folder-open"></i> Fiche DUERP</a>
+      </div>
+    </div>
+
+    <div class="art">
+      <h3><span class="code">L. 4121-3-1</span> Le document unique et le programme annuel</h3>
+      <p class="quoi">Le DUERP recense tous les risques, il débouche sur le PAPRIPACT au-dessus de 50 salariés, et il se conserve au moins 40 ans.</p>
+      <div class="verbatim" id="a4">I. Le document unique d'évaluation des risques professionnels répertorie l'ensemble des risques professionnels auxquels sont exposés les travailleurs et assure la traçabilité collective de ces expositions.<br>
+      II. L'employeur transcrit et met à jour dans le document unique les résultats de l'évaluation des risques pour la santé et la sécurité des travailleurs à laquelle il procède en application de l'article L. 4121-3.<br>
+      III. Les résultats de cette évaluation débouchent :<br>
+      1° Pour les entreprises dont l'effectif est supérieur ou égal à cinquante salariés, sur un programme annuel de prévention des risques professionnels et d'amélioration des conditions de travail qui :<br>
+      a) <b>Fixe la liste détaillée des mesures devant être prises au cours de l'année à venir</b>, qui comprennent les mesures de prévention des effets de l'exposition aux facteurs de risques professionnels ainsi que, pour chaque mesure, <b>ses conditions d'exécution, des indicateurs de résultat et l'estimation de son coût</b> ;<br>
+      b) Identifie les ressources de l'entreprise pouvant être mobilisées ;<br>
+      c) Comprend un calendrier de mise en œuvre ;<br>
+      2° Pour les entreprises dont l'effectif est inférieur à cinquante salariés, sur la définition d'actions de prévention des risques et de protection des salariés. La liste de ces actions est consignée dans le document unique d'évaluation des risques professionnels et ses mises à jour.</div>
+      <details><summary>Lire la suite : accompagnement de branche, conservation 40 ans, dépôt numérique, transmission au SPST</summary>
+        <div class="txt">IV. Les organismes et instances mis en place par la branche peuvent accompagner les entreprises dans l'élaboration et la mise à jour du document unique d'évaluation des risques professionnels prévu au I, dans la définition du programme annuel de prévention des risques professionnels et d'amélioration des conditions de travail prévu au 1° du III ainsi que dans la définition des actions de prévention et de protection prévues au 2° du même III au moyen de méthodes et référentiels adaptés aux risques considérés et d'outils d'aide à la rédaction.<br><br>
+        V. A. Le document unique d'évaluation des risques professionnels, dans ses versions successives, est conservé par l'employeur et tenu à la disposition des travailleurs, des anciens travailleurs ainsi que de toute personne ou instance pouvant justifier d'un intérêt à y avoir accès. La durée, qui ne peut être inférieure à quarante ans, et les modalités de conservation et de mise à disposition du document ainsi que la liste des personnes et instances sont fixées par décret en Conseil d'Etat.<br><br>
+        B. Pour la mise en œuvre des obligations mentionnées au A du présent V, le document unique d'évaluation des risques professionnels et ses mises à jour font l'objet d'un dépôt dématérialisé sur un portail numérique déployé et administré par un organisme géré par les organisations professionnelles d'employeurs représentatives au niveau national et interprofessionnel. Ce portail garantit la conservation et la mise à disposition du document unique conformément aux dispositions législatives et règlementaires en vigueur. Il préserve la confidentialité des données contenues dans le document unique et en restreint l'accès par l'intermédiaire d'une procédure d'authentification sécurisée réservée aux personnes et instances habilitées à déposer et mettre à jour le document sur le portail ainsi qu'aux personnes et instances justifiant d'un intérêt à y avoir accès.<br><br>
+        L'obligation de dépôt dématérialisé du document unique prévue au même premier alinéa est applicable : a) A compter du 1er juillet 2023, aux entreprises dont l'effectif est supérieur ou égal à cent cinquante salariés ; b) A compter de dates fixées par décret, en fonction des effectifs des entreprises, et au plus tard à compter du 1er juillet 2024 aux entreprises dont l'effectif est inférieur à cent cinquante salariés.<br><br>
+        VI. Le document unique d'évaluation des risques professionnels est transmis par l'employeur à chaque mise à jour au service de prévention et de santé au travail auquel il adhère.</div>
+      </details>
+      <div class="acts">
+        <button class="btn btn-ghost btn-sm" data-copy-el="#a4"><i class="fa-regular fa-copy"></i> Copier le texte</button>
+        <a class="btn btn-ghost btn-sm" href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043893919" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Légifrance</a>
+      </div>
+    </div>
+
+    <div class="note n-info">
+      <span class="ni"><i class="fa-solid fa-lightbulb" style="color:var(--teal-2)"></i></span>
+      <div>
+        <span class="tag">La question qui ouvre presque toutes les séances</span>
+        <p>« Cette situation figure-t-elle dans le document unique ? Si oui, à quelle cotation et avec quelle mesure ? Si non, pourquoi ? » L'employeur doit évaluer (L. 4121-3), transcrire (L. 4121-3-1) et consulter le comité sur le document. Trois articles, une seule question.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VOUS N'ÊTES PAS UN EXPERT ===================== -->
+  <section id="voix">
+    <div class="sec-head">
+      <div class="sec-ico t-coral"><i class="fa-solid fa-comment-dots"></i></div>
+      <div><div class="kicker">Votre légitimité</div><h2>Vous n'êtes pas un expert, et ce n'est pas votre rôle</h2></div>
+    </div>
+
+    <div class="note n-ok">
+      <span class="ni"><i class="fa-solid fa-user-group" style="color:var(--green)"></i></span>
+      <div>
+        <span class="tag">À relire avant d'entrer en séance</span>
+        <p>Vous n'êtes ni ingénieur, ni médecin, ni juriste. Vous n'avez pas à savoir exactement ce qu'il en est, ni à apporter la solution technique, ni à prouver ce que vous avancez. <b>Vous êtes là pour porter la voix des salariés.</b> Vous rapportez ce qui se passe au travail, vous posez des questions, vous demandez des éléments. C'est l'employeur qui évalue, qui décide et qui répond : l'obligation de sécurité est la sienne, pas la vôtre. Si un doute doit être levé, c'est son enquête et ses documents qui le lèveront, pas votre certitude.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Sur quoi cela repose, si on vous le conteste</h3>
+    <div class="appuis">
+      <div class="appui"><b>Votre mission est l'expression collective</b><span>Le CSE a pour mission d'assurer une expression collective des salariés permettant la prise en compte permanente de leurs intérêts dans les décisions (article L. 2312-8 (code du travail)).</span></div>
+      <div class="appui"><b>Analyser les risques est une attribution du comité</b><span>Le CSE procède à l'analyse des risques professionnels et peut susciter toute initiative qu'il estime utile ; le refus de l'employeur doit être motivé (article L. 2312-9 (code du travail)).</span></div>
+      <div class="appui"><b>L'évaluation appartient à l'employeur</b><span>C'est lui qui évalue les risques ; le comité et la CSSCT y contribuent et sont consultés sur le document unique (article L. 4121-3 (code du travail)).</span></div>
+      <div class="appui"><b>Vous avez droit aux éléments, et à une réponse motivée</b><span>Le comité rend ses avis en disposant d'un délai d'examen suffisant, d'informations précises et écrites, et de la réponse motivée de l'employeur (article L. 2312-15 (code du travail)).</span></div>
+      <div class="appui"><b>Alerter suppose un constat, pas une preuve</b><span>L'élu qui « constate » une atteinte saisit l'employeur (article L. 2312-59 (code du travail)) ; le salarié se retire sur un « motif raisonnable de penser » (article L. 4131-1 (code du travail)).</span></div>
+      <div class="appui"><b>Relater de bonne foi est protégé</b><span>Aucun salarié ne peut être sanctionné pour avoir témoigné ou relaté des faits de discrimination (article L. 1132-3) ou, de bonne foi, de harcèlement moral (article L. 1152-2 (code du travail)).</span></div>
+    </div>
+
+    <h3 class="sub">Les phrases à dire, prêtes à l'emploi</h3>
+    <p class="lead" style="margin-top:0">Touchez une phrase pour la copier. Elles sont écrites pour être dites telles quelles, calmement, et pour être reprises au procès-verbal.</p>
+    <div class="dire">
+      <button><i class="fa-regular fa-copy ci"></i><span>« Je ne suis pas expert, et je n'ai pas à l'être. Je vous remonte ce que vivent les salariés à leur poste. »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Je constate, je ne conclus pas. Je vous demande d'enquêter avec moi, comme le prévoit le code du travail. »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Ce que je signale est un fait rapporté par des salariés. S'il se révèle inexact, votre enquête le montrera. »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Je ne dispose pas des éléments pour me prononcer. Merci de les transmettre par écrit, conformément à l'article L. 2312-15 du code du travail. »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Ma question n'appelle pas une contre-expertise de ma part : elle appelle votre réponse motivée. »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Sur quel principe général de prévention repose cette mesure ? L'article L. 4121-2 commence par éviter le risque. »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Avez-vous cherché à supprimer le risque avant de chercher à en protéger les salariés ? »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Cette situation figure-t-elle au document unique ? À quelle cotation, et avec quelle mesure de prévention ? »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Je demande que ma déclaration soit consignée au procès-verbal. »</span></button>
+      <button><i class="fa-regular fa-copy ci"></i><span>« Je demande l'inscription de ce point à l'ordre du jour de la prochaine réunion. »</span></button>
+    </div>
+    <p class="dire-hint">Astuce : collez-les dans un mail au président du comité juste après la séance. Ce qui est dit s'oublie, ce qui est écrit reste.</p>
+
+    <div class="note n-warn">
+      <span class="ni">⚠️</span>
+      <div>
+        <span class="tag">Les trois limites, à connaître aussi</span>
+        <p>Cette liberté de parole n'est pas sans bornes, et le dire renforce votre position plutôt qu'elle ne l'affaiblit. Restez sur des <b>faits datés et situés</b>, sans qualifier juridiquement à la place du juge et sans mettre en cause une personne quand ce n'est pas nécessaire. La protection suppose la <b>bonne foi</b> : elle tombe pour qui relate des faits qu'il sait faux. Enfin, vous êtes tenu au secret sur les procédés de fabrication et à une obligation de <b>discrétion</b> sur les informations confidentielles présentées comme telles par l'employeur (article L. 2315-3 (code du travail)).</p>
+      </div>
+    </div>
+
+    <div class="note n-no">
+      <span class="ni">⛔</span>
+      <div>
+        <span class="tag">Si on vous empêche de parler</span>
+        <p>Refuser d'inscrire un point de droit à l'ordre du jour, refuser de répondre, écarter une déclaration du procès-verbal : le fait d'apporter une entrave au fonctionnement régulier du comité est puni de 7 500 € d'amende (article L. 2317-1 (code du travail)), le quintuple pour la personne morale. Faites constater le refus au procès-verbal, c'est votre première pièce. La suite est décrite dans le <a href="procedures.html"><b>Mémo des procédures</b></a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LES 9 PRINCIPES ===================== -->
+  <section id="principes">
+    <div class="sec-head">
+      <div class="sec-ico t-green"><i class="fa-solid fa-list-ol"></i></div>
+      <div><div class="kicker">Le schéma de séance</div><h2>Les 9 principes, et l'ordre qui compte</h2></div>
+    </div>
+    <p class="lead">Le schéma classe les neuf principes de l'article L. 4121-2 (code du travail) en prévention primaire, secondaire et tertiaire. Touchez-le pour l'agrandir, ou téléchargez-le pour le projeter.</p>
+
+    <div class="note n-ok">
+      <span class="ni"><i class="fa-solid fa-1" style="color:var(--green)"></i></span>
+      <div>
+        <span class="tag">Le réflexe, et il n'y en a qu'un</span>
+        <p><b>On commence toujours par le principe 1 : éviter le risque.</b> Tant qu'il n'est pas démontré qu'on ne peut pas supprimer le risque, aucune protection, aucune consigne et aucune formation ne le remplace. Un employeur qui propose des équipements de protection individuelle ou une formation sans avoir examiné la suppression du risque a sauté sept principes. C'est là qu'il faut le ramener, et c'est une question, pas une accusation : « qu'avez-vous examiné avant d'en arriver là ? »</p>
+      </div>
+    </div>
+
+    <div class="visuel" id="v-principes">
+      <div class="visuel-bar">
+        <div><span style="font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-2)">Schéma</span><b>Les 9 principes classés en prévention primaire, secondaire et tertiaire</b></div>
+        <div class="visuel-actions">
+          <button class="btn btn-ghost btn-sm" id="b-zoom"><i class="fa-solid fa-expand"></i> Plein écran</button>
+          <a class="btn btn-ghost btn-sm" href="visuels/9-principes-prevention.png" target="_blank" rel="noopener"><i class="fa-solid fa-image"></i> PNG</a>
+          <a class="btn btn-ghost btn-sm" href="visuels/9-principes-prevention.svg" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> SVG</a>
+        </div>
+      </div>
+      <div class="visuel-svg" id="v-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1012" role="img" aria-label="Les neuf principes généraux de prévention classés en prévention primaire, secondaire et tertiaire" style="font-family:Inter,-apple-system,sans-serif;width:100%;height:auto;display:block"><title>Les 9 principes généraux de prévention (L. 4121-2), classés primaire, secondaire, tertiaire</title><rect width="1100" height="1012" fill="#fff" rx="14"/><text x="28" y="38" font-size="22" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="28" dy="0">Les 9 principes généraux de prévention</tspan></text><text x="28" y="60" font-size="13" font-weight="400" fill="#5b7178" text-anchor="start"><tspan x="28" dy="0">Article L. 4121-2 (code du travail) : ce que l'employeur doit appliquer, dans cet ordre.</tspan></text><rect x="28" y="78" width="1044" height="72" rx="14" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2.5"/><circle cx="70" cy="114" r="22" fill="#1faa6b"/><text x="70" y="122" font-size="22" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="70" dy="0">1</tspan></text><text x="104" y="104" font-size="15" font-weight="800" fill="#177a4d" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="104" dy="0">TOUJOURS COMMENCER PAR LE PRINCIPE 1 : ÉVITER LE RISQUE</tspan></text><text x="104" y="126" font-size="12.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="104" dy="0">Tant qu'il n'est pas démontré qu'on ne peut pas supprimer le risque, aucune protection, aucune consigne et aucune formation ne le remplace.</tspan></text><text x="104" y="143" font-size="12.5" font-weight="700" fill="#177a4d" text-anchor="start"><tspan x="104" dy="0">La question à poser en séance : « avez-vous cherché à supprimer le risque avant d'en protéger les salariés ? »</tspan></text><path d="M46,190 L46,880" stroke="#dbe9ea" stroke-width="3"/><path d="M46,880 l-7,-12 h14 z" fill="#dbe9ea"/><g transform="translate(30,540) rotate(-90)"><text x="0" y="0" font-size="11.5" font-weight="800" fill="#5b7178" text-anchor="middle">ON NE DESCEND D'UN CRAN QU'APRÈS AVOIR ÉPUISÉ LE CRAN DU DESSUS</text></g><rect x="70" y="180" width="1002" height="428" rx="16" fill="#e2f6ec" stroke="#1faa6b" stroke-width="2"/><rect x="70" y="180" width="8" height="428" rx="4" fill="#1faa6b"/><text x="94" y="206" font-size="11" font-weight="800" fill="#1faa6b" text-anchor="start"><tspan x="94" dy="0">PRÉVENTION PRIMAIRE · LE VRAI TRAVAIL DE PRÉVENTION</tspan></text><text x="94" y="228" font-size="17" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="94" dy="0">Agir sur le travail lui-même, avant toute exposition</tspan></text><text x="94" y="248" font-size="12.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="94" dy="0">Objectif : supprimer le danger, ou le réduire à la source. Sept des neuf principes sont ici.</tspan></text><rect x="94" y="268" width="465.0" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="1.8"/><circle cx="120" cy="294" r="16" fill="#1faa6b"/><text x="120" y="299" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="120" dy="0">1</tspan></text><text x="146" y="292" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="146" dy="0">Éviter les risques</tspan></text><text x="146" y="310" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="146" dy="0">Supprimer le danger : ne pas faire la tâche ainsi,</tspan><tspan x="146" dy="14">ne pas utiliser ce produit, ne pas monter là-haut.</tspan></text><rect x="583.0" y="268" width="465.0" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="1.8"/><circle cx="609.0" cy="294" r="16" fill="#1faa6b"/><text x="609.0" y="299" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="609.0" dy="0">2</tspan></text><text x="635.0" y="292" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="635.0" dy="0">Évaluer les risques qui ne peuvent pas être évités</tspan></text><text x="635.0" y="310" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="635.0" dy="0">Ce qui reste après le principe 1 :</tspan><tspan x="635.0" dy="14">c'est le DUERP (L. 4121-3).</tspan></text><rect x="94" y="352" width="465.0" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="1.8"/><circle cx="120" cy="378" r="16" fill="#1faa6b"/><text x="120" y="383" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="120" dy="0">3</tspan></text><text x="146" y="376" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="146" dy="0">Combattre les risques à la source</tspan></text><text x="146" y="394" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="146" dy="0">Agir sur la cause, pas sur ses effets :</tspan><tspan x="146" dy="14">le bruit à la machine, pas le bouchon d'oreille.</tspan></text><rect x="583.0" y="352" width="465.0" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="1.8"/><circle cx="609.0" cy="378" r="16" fill="#1faa6b"/><text x="609.0" y="383" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="609.0" dy="0">4</tspan></text><text x="635.0" y="376" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="635.0" dy="0">Adapter le travail à l'homme</tspan></text><text x="635.0" y="394" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="635.0" dy="0">Conception des postes, choix des équipements,</tspan><tspan x="635.0" dy="14">des méthodes, limiter le travail cadencé.</tspan></text><rect x="94" y="436" width="465.0" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="1.8"/><circle cx="120" cy="462" r="16" fill="#1faa6b"/><text x="120" y="467" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="120" dy="0">5</tspan></text><text x="146" y="460" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="146" dy="0">Tenir compte de l'évolution de la technique</tspan></text><text x="146" y="478" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="146" dy="0">Ce qui était acceptable il y a dix ans</tspan><tspan x="146" dy="14">ne l'est plus si une solution existe aujourd'hui.</tspan></text><rect x="583.0" y="436" width="465.0" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="1.8"/><circle cx="609.0" cy="462" r="16" fill="#1faa6b"/><text x="609.0" y="467" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="609.0" dy="0">6</tspan></text><text x="635.0" y="460" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="635.0" dy="0">Remplacer ce qui est dangereux</tspan></text><text x="635.0" y="478" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="635.0" dy="0">Par ce qui ne l'est pas, ou l'est moins :</tspan><tspan x="635.0" dy="14">produit, matériel, mode opératoire.</tspan></text><rect x="94" y="520" width="954" height="72" rx="12" fill="#fff" stroke="#1faa6b" stroke-width="1.8"/><circle cx="120" cy="546" r="16" fill="#1faa6b"/><text x="120" y="551" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="120" dy="0">7</tspan></text><text x="146" y="544" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="146" dy="0">Planifier la prévention</tspan></text><text x="146" y="562" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="146" dy="0">Dans un ensemble cohérent : la technique, l'organisation du travail, les conditions de travail, les relations sociales et les facteurs ambiants,</tspan><tspan x="146" dy="14">y compris le harcèlement moral, le harcèlement sexuel et les agissements sexistes. C'est le PAPRIPACT.</tspan></text><rect x="70" y="628" width="1002" height="190" rx="16" fill="#fdf1da" stroke="#b8790c" stroke-width="2"/><rect x="70" y="628" width="8" height="190" rx="4" fill="#b8790c"/><text x="94" y="654" font-size="11" font-weight="800" fill="#b8790c" text-anchor="start"><tspan x="94" dy="0">PRÉVENTION SECONDAIRE · QUAND LE RISQUE SUBSISTE</tspan></text><text x="94" y="676" font-size="17" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="94" dy="0">Réduire l'exposition et les effets, faute d'avoir pu supprimer</tspan></text><text x="94" y="696" font-size="12.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="94" dy="0">On n'arrive ici que si les sept principes précédents ont été réellement examinés.</tspan></text><rect x="94" y="716" width="465.0" height="80" rx="12" fill="#fff" stroke="#b8790c" stroke-width="1.8"/><circle cx="120" cy="742" r="16" fill="#b8790c"/><text x="120" y="747" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="120" dy="0">8</tspan></text><text x="146" y="740" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="146" dy="0">Protection collective d'abord</tspan></text><text x="146" y="758" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="146" dy="0">La loi impose la priorité du collectif</tspan><tspan x="146" dy="14">sur l'individuel : garde-corps avant harnais,</tspan><tspan x="146" dy="14">aspiration avant masque.</tspan></text><rect x="583.0" y="716" width="465.0" height="80" rx="12" fill="#fff" stroke="#b8790c" stroke-width="1.8"/><circle cx="609.0" cy="742" r="16" fill="#b8790c"/><text x="609.0" y="747" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="609.0" dy="0">9</tspan></text><text x="635.0" y="740" font-size="13.5" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="635.0" dy="0">Donner les instructions appropriées</tspan></text><text x="635.0" y="758" font-size="11.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="635.0" dy="0">Information, formation, consignes.</tspan><tspan x="635.0" dy="14">Utile, mais une consigne ne supprime jamais</tspan><tspan x="635.0" dy="14">un risque : elle demande au salarié de s'en garder.</tspan></text><rect x="70" y="838" width="1002" height="146" rx="16" fill="#fde9e7" stroke="#d8453a" stroke-width="2"/><rect x="70" y="838" width="8" height="146" rx="4" fill="#d8453a"/><text x="94" y="864" font-size="11" font-weight="800" fill="#d8453a" text-anchor="start"><tspan x="94" dy="0">PRÉVENTION TERTIAIRE · APRÈS COUP</tspan></text><text x="94" y="886" font-size="17" font-weight="800" fill="#10242a" text-anchor="start" font-family="'Plus Jakarta Sans',Inter,-apple-system,sans-serif"><tspan x="94" dy="0">Limiter les conséquences une fois l'atteinte survenue</tspan></text><text x="94" y="906" font-size="12.5" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="94" dy="0">Secours, prise en charge, suivi médical, cellule d'écoute, adaptation du poste, maintien dans l'emploi.</tspan></text><rect x="94" y="918" width="954" height="46" rx="10" fill="#fff" stroke="#d8453a" stroke-width="1.8" stroke-dasharray="6 4"/><text x="110" y="939" font-size="12.5" font-weight="800" fill="#a8322a" text-anchor="start"><tspan x="110" dy="0">Ce niveau ne figure pas dans les 9 principes de l'article L. 4121-2.</tspan></text><text x="110" y="957" font-size="12" font-weight="400" fill="#2f464c" text-anchor="start"><tspan x="110" dy="0">Une entreprise qui n'a que du tertiaire (une cellule d'écoute, un défibrillateur, un suivi médical renforcé) n'a pas commencé à prévenir.</tspan></text></svg></div>
+      <p class="visuel-hint">Vert : la prévention primaire, celle qui agit sur le travail. Ambre : la prévention secondaire, quand le risque subsiste. Rouge : la prévention tertiaire, après coup, qui ne figure pas dans les neuf principes.</p>
+    </div>
+
+    <div class="note n-info">
+      <span class="ni"><i class="fa-solid fa-circle-info" style="color:var(--teal-2)"></i></span>
+      <div>
+        <span class="tag">Une nuance à porter, pas à cacher</span>
+        <p>Le classement primaire, secondaire et tertiaire ne figure pas dans le code du travail : c'est une lecture de prévention, utile pour situer une mesure, pas un texte à opposer. Ce qui est dans le code, et qui s'oppose, c'est <b>l'ordre des neuf principes</b> et la <b>priorité de la protection collective sur la protection individuelle</b> (article L. 4121-2, 8° (code du travail)). La protection collective peut d'ailleurs se discuter comme une mesure primaire lorsqu'elle supprime l'exposition : l'essentiel est de savoir ce qu'on a examiné avant d'y venir.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FIABILITÉ ===================== -->
+  <section id="fiabilite">
+    <div class="sec-head">
+      <div class="sec-ico t-indigo"><i class="fa-solid fa-clipboard-check"></i></div>
+      <div><div class="kicker">Fiabilité</div><h2>D'où viennent ces textes</h2></div>
+    </div>
+    <div class="note n-ok">
+      <span class="ni"><b style="color:#177a4d;font-family:'Plus Jakarta Sans';font-size:1.2rem">A</b></span>
+      <div>
+        <span class="tag">Les articles cités</span>
+        <p>Les quatre articles (L. 4121-1, L. 4121-2, L. 4121-3 et L. 4121-3-1) et les articles d'appui (L. 2312-8, L. 2312-9, L. 2312-15, L. 2312-59, L. 2315-3, L. 2317-1, L. 1132-3, L. 1152-2, L. 4131-1 du code du travail) ont été relus dans leur version en vigueur sur Légifrance le 19 septembre 2026, par l'interface officielle, et reproduits mot pour mot. Chaque lien pointe vers cette version.</p>
+      </div>
+    </div>
+    <div class="note n-warn">
+      <span class="ni"><b style="color:#a4710c;font-family:'Plus Jakarta Sans';font-size:1.2rem">B</b></span>
+      <div>
+        <span class="tag">Le classement primaire, secondaire, tertiaire</span>
+        <p>C'est une lecture de prévention, partagée par les acteurs de la santé au travail, mais qui ne figure pas dans le code. Le rattachement de la protection collective (8°) au niveau secondaire est un choix de présentation discutable : la frontière dépend de ce que la mesure supprime. Le schéma le signale.</p>
+      </div>
+    </div>
+    <div class="note n-info">
+      <span class="ni"><i class="fa-solid fa-link" style="color:var(--teal-2)"></i></span>
+      <div>
+        <span class="tag">Pour aller plus loin</span>
+        <p><a href="reglementation.html">La réglementation SSCT</a> pour l'obligation de sécurité et la faute inexcusable, <a href="duer.html">DUERP et PAPRIPACT</a> pour le document unique, <a href="alertes.html">Les alertes</a> pour les cinq droits d'alerte, et le <a href="procedures.html">Mémo des procédures</a> pour la suite à donner, du dialogue jusqu'au juge.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="fmark"><img src="logo.svg" alt="" style="width:42px;height:42px"></div>
+  <p><b>Destination Prévention</b> · Formation CSE SSCT : santé, sécurité et conditions de travail<br>
+  Une question ? <a href="mailto:mickael@destination-prevention.fr">mickael@destination-prevention.fr</a> · <a href="index.html">Retour au sommaire</a></p>
+  <div class="disc">Support pédagogique de formation. Il ne constitue pas un conseil juridique individualisé et ne remplace ni l'avis d'un avocat, ni celui de votre organisation syndicale, ni la lecture des textes en vigueur.</div>
+</footer>
+
+<div id="ov" role="dialog" aria-modal="true" aria-label="Schéma en plein écran">
+  <div class="ov-bar"><b id="ov-t">Les 9 principes généraux de prévention</b>
+    <button class="btn btn-ghost btn-sm" data-z="-"><i class="fa-solid fa-minus"></i></button>
+    <button class="btn btn-ghost btn-sm" data-z="+"><i class="fa-solid fa-plus"></i></button>
+    <button class="btn btn-ghost btn-sm" data-z="fit">Ajuster</button>
+    <button class="btn btn-primary btn-sm" id="ov-x"><i class="fa-solid fa-xmark"></i> Fermer</button>
+  </div>
+  <div class="ov-body" id="ov-b"></div>
+</div>
+
+<div id="toast"></div>
+<button class="btt" id="btt" aria-label="Retour en haut">↑</button>
+
+<script src="app.js"></script>
+<script>
+(function(){
+  var toast=document.getElementById('toast');
+  function say(m){ if(!toast) return; toast.textContent=m; toast.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){ toast.classList.remove('show'); },1800); }
+  function copy(txt, msg){
+    function fb(){ var ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta); }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){ say(msg); }, function(){ fb(); say(msg); }); }
+    else { fb(); say(msg); }
+  }
+  // Copier le texte d'un article
+  document.querySelectorAll('[data-copy-el]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var el=document.querySelector(b.getAttribute('data-copy-el'));
+      if(!el) return;
+      var extra=b.closest('.art').querySelector('details .txt');
+      var t=el.innerText.trim();
+      if(extra && b.closest('.art').querySelector('details summary').textContent.indexOf('Lire')===0) t+='\n'+extra.innerText.trim();
+      var code=b.closest('.art').querySelector('.code').textContent.trim();
+      copy('Article '+code+' du code du travail\n\n'+t, 'Article copié ✓');
+    });
+  });
+  // Copier une phrase
+  document.querySelectorAll('.dire button').forEach(function(b){
+    b.addEventListener('click', function(){ copy(b.querySelector('span').textContent.trim().replace(/^«\s*|\s*»$/g,''), 'Phrase copiée ✓'); });
+  });
+  // Plein écran du schéma
+  var ov=document.getElementById('ov'), ovb=document.getElementById('ov-b'), zoom=1200;
+  function open(){
+    var svg=document.querySelector('#v-svg svg'); if(!svg) return;
+    ovb.innerHTML=''; ovb.appendChild(svg.cloneNode(true));
+    zoom=Math.max(900, Math.min(1400, window.innerWidth-32)); ovb.style.setProperty('--zoom', zoom+'px');
+    ov.classList.add('show'); document.body.style.overflow='hidden';
+  }
+  function close(){ ov.classList.remove('show'); document.body.style.overflow=''; }
+  document.getElementById('b-zoom').addEventListener('click', open);
+  document.getElementById('v-svg').addEventListener('click', open);
+  document.getElementById('ov-x').addEventListener('click', close);
+  ov.addEventListener('click', function(e){ if(e.target===ov||e.target===ovb) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && ov.classList.contains('show')) close(); });
+  document.querySelectorAll('[data-z]').forEach(function(b){ b.addEventListener('click', function(){
+    var k=b.getAttribute('data-z');
+    if(k==='+') zoom=Math.min(3200, zoom*1.25); else if(k==='-') zoom=Math.max(600, zoom/1.25); else zoom=Math.max(600, window.innerWidth-32);
+    ovb.style.setProperty('--zoom', Math.round(zoom)+'px');
+  }); });
+})();
+</script>
+</body>
+</html>

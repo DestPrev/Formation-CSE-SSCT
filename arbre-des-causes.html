@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arbre des causes — Module pédagogique et opérationnel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Fira+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#075767; --teal-2:#1F7078; --teal-3:#45818D; --teal-pale:#E8F4F5;
+  --orange:#F06C23; --orange-txt:#C33F14; --orange-light:#F58B60;
+  --ink:#1c2b2f; --ink-soft:#4a5c61; --line:#d3dfe2; --bg:#ffffff; --bg-soft:#f6f9fa;
+  --H:#C33F14; --O:#075767; --T:#1F7078;
+  --titre:'Lato','Trebuchet MS','Segoe UI',sans-serif;
+  --texte:'Fira Sans','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--texte);font-weight:400;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--titre);margin:0;line-height:1.2}
+p{margin:0 0 .8em}
+a{color:var(--orange-txt)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+button{font-family:var(--texte);font-size:.95rem;cursor:pointer}
+input,select,textarea{font-family:var(--texte);font-size:.95rem;color:var(--ink)}
+
+/* ---------- En-tête ---------- */
+header.app{background:var(--teal);color:#fff;padding:18px 26px 0}
+.hd-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;max-width:1440px;margin:0 auto}
+.hd-title h1{font-weight:900;font-size:1.5rem;letter-spacing:-.01em}
+.hd-title p{margin:2px 0 0;font-size:.9rem;color:#bfe0e5;font-weight:300}
+.hd-brand{font-family:var(--titre);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:#bfe0e5;text-align:right;line-height:1.5}
+nav.tabs{display:flex;gap:4px;max-width:1440px;margin:16px auto 0;flex-wrap:wrap}
+nav.tabs button{background:transparent;border:0;border-bottom:3px solid transparent;color:#bfe0e5;font-family:var(--titre);font-weight:700;font-size:.95rem;padding:10px 16px;border-radius:5px 5px 0 0}
+nav.tabs button:hover{color:#fff;background:rgba(255,255,255,.08)}
+nav.tabs button[aria-selected="true"]{background:var(--bg);color:var(--teal);border-bottom-color:var(--orange)}
+main{max-width:1440px;margin:0 auto;padding:26px}
+.panel[hidden]{display:none}
+
+/* ---------- Typo de contenu ---------- */
+.wrap{max-width:900px}
+h2.sec{font-size:1.55rem;font-weight:900;color:var(--teal);margin:0 0 6px}
+h2.sec .num{color:var(--orange);margin-right:.4em}
+.chapeau{font-size:1.02rem;color:var(--ink-soft);margin-bottom:26px;max-width:820px}
+h3.sub{font-family:var(--titre);font-weight:700;font-size:1.1rem;color:var(--teal);margin:30px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--teal-pale)}
+h4.mini{font-family:var(--titre);font-weight:700;font-size:.96rem;color:var(--teal-2);margin:18px 0 6px}
+ul.dp{margin:0 0 14px;padding-left:0;list-style:none}
+ul.dp li{position:relative;padding-left:20px;margin-bottom:7px}
+ul.dp li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+ol.dp{padding-left:20px;margin:0 0 14px}
+ol.dp li{margin-bottom:7px}
+.callout{background:var(--teal-pale);border-left:4px solid var(--teal);padding:14px 18px;border-radius:0 6px 6px 0;margin:16px 0}
+.callout.warn{background:#fdf0ea;border-left-color:var(--orange-txt)}
+.callout h4{font-family:var(--titre);font-weight:700;color:var(--teal);margin:0 0 6px;font-size:1rem}
+.callout.warn h4{color:var(--orange-txt)}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+table.dp{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+table.dp th{background:var(--teal);color:#fff;font-family:var(--titre);font-weight:700;text-align:left;padding:9px 12px;font-size:.94rem}
+table.dp td{border:1px solid var(--line);padding:9px 12px;vertical-align:top}
+table.dp tr:nth-child(even) td{background:var(--bg-soft)}
+.src{font-size:.875rem;color:var(--ink-soft);font-style:italic;margin-top:-6px}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.deux{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:8px;padding:16px 18px;background:#fff}
+.card.rouge{border-color:#e8bfae;background:#fdf5f2}
+.card.vert{border-color:#b9d4d8;background:#f1f8f9}
+.card h4{font-family:var(--titre);font-weight:700;margin:0 0 8px;font-size:.98rem}
+.card.rouge h4{color:var(--orange-txt)}
+.card.vert h4{color:var(--teal)}
+.tag{display:inline-block;font-family:var(--titre);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:20px;vertical-align:middle}
+.tag.H{background:#fceee8;color:#A83610} .tag.O{background:#dfeef1;color:var(--O)} .tag.T{background:#e6eff1;color:#2e646f}
+.tag.etat{background:#eceff0;color:#48585c;border:1px solid #c8d3d6}
+.tag.var{background:#E8F4F5;color:#075767}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
+.step{border:1px solid var(--line);border-top:4px solid var(--teal-3);border-radius:6px;padding:12px 14px;background:#fff}
+.step b{display:block;font-family:var(--titre);color:var(--teal);margin-bottom:4px;font-size:.95rem}
+.step span{font-size:.92rem;color:var(--ink-soft)}
+.legende{display:flex;gap:22px;flex-wrap:wrap;align-items:center;margin:12px 0;font-size:.92rem;color:var(--ink-soft)}
+.legende i{display:inline-block;width:34px;height:22px;border:2px solid #6b7b80;background:#E6E6E6;vertical-align:middle;margin-right:7px}
+.legende i.rond{border-radius:50%;width:26px;height:26px;background:#fff}
+/* ---------- Barres d'outils / boutons ---------- */
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 12px;background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;margin-bottom:14px}
+.btn{border:1px solid var(--teal);background:var(--teal);color:#fff;padding:10px 16px;border-radius:5px;font-weight:600;min-height:42px}
+.btn:hover{background:var(--teal-2);border-color:var(--teal-2)}
+.btn.ghost{background:#fff;color:var(--teal);border-color:#a9c3c8}
+.btn.ghost:hover{background:var(--teal-pale)}
+.btn.warn{background:var(--orange-txt);border-color:var(--orange-txt)}
+.btn.warn:hover{background:#a83610;border-color:#a83610}
+.btn.mini{padding:7px 12px;font-size:.875rem;min-height:36px}
+.btn:disabled{opacity:.42;cursor:not-allowed}
+.sep{width:1px;height:24px;background:var(--line);margin:0 4px}
+.hint{font-size:.875rem;color:var(--ink-soft)}
+
+/* ---------- Formulaires ---------- */
+.grid-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 16px;margin-bottom:8px}
+.field label{display:block;font-family:var(--titre);font-weight:700;font-size:.875rem;text-transform:uppercase;letter-spacing:.02em;color:var(--teal-2);margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;padding:7px 9px;border:1px solid #bcccd0;border-radius:5px;background:#fff}
+.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid var(--teal);outline-offset:1px;border-color:var(--teal-2)}
+.field textarea{resize:vertical;min-height:64px}
+fieldset.bloc{border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 16px}
+fieldset.bloc legend{font-family:var(--titre);font-weight:700;color:var(--teal);padding:0 8px;font-size:1rem}
+
+/* ---------- Recueil des faits ---------- */
+.recueil-layout{display:grid;grid-template-columns:minmax(340px,1fr) minmax(420px,1.3fr);gap:20px;align-items:start}
+@media(max-width:1000px){.recueil-layout{grid-template-columns:1fr}}
+.pill-row{display:flex;gap:6px;flex-wrap:wrap}
+.pill{border:1px solid #bcccd0;background:#fff;border-radius:20px;padding:8px 15px;font-size:.9rem;font-weight:600;color:var(--ink-soft);min-height:38px}
+.pill[aria-pressed="true"]{color:#fff}
+.pill.H[aria-pressed="true"]{background:var(--H);border-color:var(--H)}
+.pill.O[aria-pressed="true"]{background:var(--O);border-color:var(--O)}
+.pill.T[aria-pressed="true"]{background:var(--T);border-color:var(--T)}
+.pill.etat[aria-pressed="true"]{background:#55666b;border-color:#55666b}
+.pill.var[aria-pressed="true"]{background:#075767;border-color:#075767}
+.colonnes-toh{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start}
+@media(max-width:820px){.colonnes-toh{grid-template-columns:1fr}}
+.col-toh{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;min-height:120px}
+.col-toh > header{padding:9px 12px;color:#fff;font-family:var(--titre);font-weight:700;font-size:.94rem;display:flex;justify-content:space-between;align-items:center}
+.col-toh.H > header{background:var(--H)} .col-toh.O > header{background:var(--O)} .col-toh.T > header{background:var(--T)}
+.col-toh > header span.n{background:rgba(255,255,255,.25);border-radius:12px;padding:1px 9px;font-size:.8rem}
+.col-toh ul{list-style:none;margin:0;padding:8px;display:flex;flex-direction:column;gap:7px}
+.fait{border:1px solid var(--line);border-left-width:4px;border-radius:5px;padding:8px 10px;background:#fff;font-size:.95rem;position:relative}
+.fait.etat{border-left-color:#55666b}
+.fait.var{border-left-color:#075767}
+.fait .lbl{display:block;margin-bottom:4px;padding-right:76px}
+.fait .meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.fait .acts{display:flex;gap:4px;margin-left:auto}
+.fait button{border:0;background:#eef3f4;color:var(--teal);border-radius:4px;padding:5px 9px;font-size:.875rem;font-weight:600}
+.fait button:hover{background:var(--teal-pale)}
+.fait button.del:hover{background:#fbe4da;color:var(--orange-txt)}
+.fait.place{opacity:.7;background:#f7fafa}
+.fait.place::after{content:"dans l'arbre";position:absolute;top:7px;right:9px;font-size:.78rem;color:#2e646f;font-weight:600;background:#e6eff1;border-radius:10px;padding:1px 7px}
+.vide{color:#5c6c70;font-size:.9rem;font-style:italic;padding:14px 10px;text-align:center}
+/* ---------- Arbre ---------- */
+.arbre-layout{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start}
+@media(max-width:1080px){.arbre-layout{grid-template-columns:1fr}}
+.side{border:1px solid var(--line);border-radius:8px;background:#fff;overflow:hidden}
+.side > header{background:var(--teal);color:#fff;padding:10px 13px;font-family:var(--titre);font-weight:700;font-size:.95rem}
+.side .body{padding:12px 13px}
+.side + .side{margin-top:14px}
+.canvas-wrap{border:1px solid var(--line);border-radius:8px;background:#fff;overflow:auto;position:relative;
+  height:clamp(460px,calc(100vh - 300px),920px);resize:vertical;min-height:320px}
+#zoneTravail.fs{position:fixed;inset:0;z-index:60;background:#fff;padding:12px 16px;overflow:auto;margin:0}
+#zoneTravail.fs .arbre-layout{grid-template-columns:270px 1fr}
+#zoneTravail.fs .canvas-wrap{height:calc(100vh - 150px);max-height:none;resize:none}
+#zoneTravail.fs .side:nth-of-type(3){display:none}
+@media(max-width:1080px){#zoneTravail.fs .arbre-layout{grid-template-columns:1fr}#zoneTravail.fs .side{display:none}}
+#svgArbre{display:block;cursor:grab;background:
+  linear-gradient(90deg,#f2f6f7 1px,transparent 1px) 0 0/28px 28px,
+  linear-gradient(#f2f6f7 1px,transparent 1px) 0 0/28px 28px,#fff}
+.node-box{cursor:pointer}
+.node-box rect.shape,.node-box ellipse.shape{fill:#E6E6E6;stroke:#8b9a9e;stroke-width:1.6}
+.node-box[data-cat="H"] .shape{stroke:var(--H)} .node-box[data-cat="O"] .shape{stroke:var(--O)} .node-box[data-cat="T"] .shape{stroke:var(--T)}
+.node-box[data-cat="H"] .band{fill:var(--H)} .node-box[data-cat="O"] .band{fill:var(--O)} .node-box[data-cat="T"] .band{fill:var(--T)}
+.node-box[data-type="variation"] .shape{fill:#ffffff}
+.node-box[data-dommage="1"] .shape{fill:var(--teal);stroke:var(--teal)}
+.node-box[data-dommage="1"] text{fill:#fff;font-weight:700}
+.node-box.sel .shape{stroke:var(--orange-txt);stroke-width:3.6}
+.node-box text{font-family:'Fira Sans',sans-serif;font-size:11.5px;fill:#243237;pointer-events:none;text-anchor:middle}
+.lnk{fill:none;stroke:#6d7f84;stroke-width:1.6}
+.lnk.dashed{stroke-dasharray:6 4}
+.et-lbl{font-family:'Lato',sans-serif;font-size:10.5px;font-weight:700;fill:var(--orange-txt);text-anchor:middle}
+.pastille{font-family:'Lato',sans-serif;font-size:9.5px;font-weight:700;fill:#fff;text-anchor:middle;pointer-events:none}
+.dispo-list{display:flex;flex-direction:column;gap:6px;max-height:300px;overflow:auto}
+.dispo-list .fait{font-size:.9rem;cursor:pointer}
+.dispo-list .fait:hover{background:var(--teal-pale)}
+.selinfo{font-size:.92rem;background:var(--teal-pale);border-radius:6px;padding:9px 11px;margin-bottom:10px}
+.selinfo b{color:var(--teal);font-family:var(--titre)}
+.qbox{background:#fdf0ea;border-left:4px solid var(--orange-txt);border-radius:0 6px 6px 0;padding:11px 13px;margin-bottom:12px;font-size:.92rem}
+.qbox b{color:var(--orange-txt);font-family:var(--titre)}
+
+/* ---------- Plan d'actions ---------- */
+table.plan{width:100%;border-collapse:collapse;font-size:.95rem;background:#fff}
+table.plan th{background:var(--teal);color:#fff;font-family:var(--titre);font-weight:700;padding:9px 10px;text-align:left;font-size:.9rem}
+table.plan td{border:1px solid var(--line);padding:6px 8px;vertical-align:top}
+table.plan td input,table.plan td textarea{width:100%;border:1px solid transparent;background:transparent;padding:5px 6px;border-radius:4px}
+table.plan td input:hover,table.plan td textarea:hover{border-color:var(--line)}
+table.plan td input:focus,table.plan td textarea:focus{border-color:var(--teal-2);background:#fff;outline:3px solid var(--teal);outline-offset:1px}
+table.plan td textarea{resize:vertical;min-height:56px}
+table.plan tr:nth-child(even) td{background:var(--bg-soft)}
+.crit{font-size:.95rem}
+.crit li{margin-bottom:6px}
+.crit b{color:var(--teal)}
+.badge-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--orange-txt);color:#fff;font-family:var(--titre);font-weight:700;font-size:.85rem}
+
+/* ---------- Divers ---------- */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--teal);color:#fff;padding:12px 20px;border-radius:6px;font-size:.95rem;max-width:min(560px,92vw);box-shadow:0 6px 20px rgba(0,0,0,.22);transition:transform .28s;z-index:60}
+.toast.on{transform:translateX(-50%) translateY(0)}
+dialog.modal{border:0;border-radius:10px;padding:0;max-width:520px;width:92%;box-shadow:0 16px 50px rgba(0,0,0,.3)}
+dialog.modal::backdrop{background:rgba(7,87,103,.45)}
+dialog.modal header{background:var(--teal);color:#fff;padding:12px 18px;font-family:var(--titre);font-weight:700}
+dialog.modal .body{padding:18px}
+dialog.modal footer{padding:0 18px 18px;display:flex;gap:8px;justify-content:flex-end}
+footer.app{border-top:1px solid var(--line);margin-top:40px;padding:20px 26px;font-size:.875rem;color:var(--ink-soft);text-align:center;line-height:1.7}
+footer.app b{color:var(--teal)}
+
+.print-head{display:none}
+@media print{
+  header.app,nav.tabs,.toolbar,.side,.no-print,.toast,dialog{display:none!important}
+  .panel[hidden]{display:none}
+  .print-head{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--teal);padding-bottom:10px;margin-bottom:16px}
+  .print-head img{width:46px;height:46px}
+  .print-head h2{font-family:var(--titre);font-weight:900;color:var(--teal);font-size:1.25rem;margin:0}
+  .print-head p{margin:2px 0 0;font-size:.8rem;color:var(--ink-soft)}
+  .arbre-layout{grid-template-columns:1fr}
+  .canvas-wrap{border:0;overflow:visible}
+  #svgArbre{width:100%!important;height:auto!important;background:#fff!important}
+  main{padding:0;max-width:none}
+  body{font-size:12px}
+  .recueil-layout{grid-template-columns:1fr}
+  .recueil-layout > div:first-child{display:none}
+  .colonnes-toh{grid-template-columns:repeat(3,1fr)}
+  .fait .acts,.fait.place::after{display:none!important}
+  .fait .lbl{padding-right:0}
+  fieldset.bloc,.col-toh,table.plan tr{break-inside:avoid}
+  table.plan td input,table.plan td textarea{border:0;background:transparent}
+  footer.app{display:block;margin-top:20px;border-top:1px solid var(--line);padding:10px 0;font-size:9.5px}
+  a{color:var(--ink);text-decoration:none}
+  ::placeholder{color:transparent!important}
+  details{display:none}
+}
+</style>
+</head>
+<body>
+<div class="retour-site no-print" style="background:#0e6b78;color:#fff;font-family:'Fira Sans',system-ui,sans-serif;font-size:.92rem;padding:9px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="index.html" style="color:#fff;font-weight:600;text-decoration:none">&#8592; Formation CSE SSCT</a><span style="opacity:.55">|</span><a href="analyse-at.html" style="color:#fff;text-decoration:none;opacity:.92">Fiche « L'analyse des AT »</a><span style="opacity:.55">|</span><a href="procedures.html" style="color:#fff;text-decoration:none;opacity:.92">Mémo des procédures</a><span style="margin-left:auto;opacity:.85">Outil d'atelier, à utiliser en délégation d'enquête</span></div>
+<header class="app">
+  <div class="hd-top">
+    <div class="hd-title" style="display:flex;align-items:center;gap:16px">
+      <span class="logo-garde"><img src="data:image/png;base64,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" alt="Destination Prévention" width="58" height="58"></span>
+      <span>
+      <h1>L'arbre des causes</h1>
+      <p>Module pédagogique et opérationnel — analyse de l'accident du travail par l'arbre des causes</p>
+      </span>
+    </div>
+    <div class="hd-brand">Destination Prévention<br><span style="font-weight:400;letter-spacing:.02em;text-transform:none;font-size:.9em">Formation • Conseil • Prévention</span></div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-methode" aria-selected="true" data-panel="p-methode">1 · La méthode</button>
+    <button role="tab" id="tab-recueil" aria-selected="false" data-panel="p-recueil">2 · Recueil des faits</button>
+    <button role="tab" id="tab-arbre" aria-selected="false" data-panel="p-arbre">3 · Construction de l'arbre</button>
+    <button role="tab" id="tab-plan" aria-selected="false" data-panel="p-plan">4 · Plan d'actions</button>
+  </nav>
+</header>
+<main>
+<div class="print-head"><img src="data:image/png;base64,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" alt="Destination Prévention"><div><h2>Analyse d'accident — méthode de l'arbre des causes</h2><p>Destination Prévention — analyse d'accident du travail</p></div></div>
+<!-- ================= ONGLET 1 : LA MÉTHODE ================= -->
+<section class="panel" id="p-methode" role="tabpanel" aria-labelledby="tab-methode">
+<div class="wrap">
+
+  <h2 class="sec"><span class="num">1.</span>Pourquoi analyser un accident avec l'arbre des causes</h2>
+  <p class="chapeau">Un accident du travail n'a jamais une cause unique. Il est toujours le produit d'une combinaison de circonstances qui, prises séparément, n'auraient rien provoqué. Toute la difficulté de l'analyse consiste à retrouver ces circonstances et à montrer comment elles se sont enchaînées. L'arbre des causes est la méthode qui structure cette recherche et la représente graphiquement.</p>
+
+  <h3 class="sub">Comprendre le système, pas désigner un responsable</h3>
+  <p>L'accident se lit ici comme le <b>symptôme d'un dysfonctionnement de l'entreprise</b>. Pour le comprendre, il faut interroger toutes les composantes du système de travail — la technique, l'organisation, l'humain — et surtout leurs interactions. C'est ce qui fait apparaître la <b>pluricausalité</b> : l'accident, le presqu'accident et l'incident relèvent des mêmes mécanismes.</p>
+
+  <h4 class="mini">Ce que la méthode apporte</h4>
+  <ul class="dp">
+    <li>Elle oblige à chercher <b>au-delà du geste de l'opérateur et de la situation immédiate</b>. On ne s'arrête pas au fait le plus proche de la blessure : on remonte jusqu'à l'organisation du travail et au fonctionnement de l'entreprise.</li>
+    <li>Elle ouvre un débat collectif qui fait passer la discussion du « <b>pourquoi cet accident ?</b> » au « <b>que fait-on pour qu'il ne se reproduise pas ?</b> ».</li>
+    <li>Elle élargit l'éventail des mesures possibles, au lieu de se refermer sur l'équipement de protection individuelle et le rappel des consignes.</li>
+    <li>Elle produit un schéma, donc un support de communication compréhensible par tous, de l'opérateur à la direction.</li>
+  </ul>
+
+  <div class="callout warn">
+    <h4>Les cinq règles du jeu</h4>
+    <ul class="dp">
+      <li>On cherche à <b>comprendre un processus</b>, pas à établir des responsabilités. Une analyse qui dérive vers la faute s'arrête d'elle-même : plus personne ne parle.</li>
+      <li>On ne retient que <b>des faits</b> — jamais une interprétation, jamais un jugement de valeur.</li>
+      <li>On remonte <b>aussi loin en amont que possible</b> dans la genèse de l'accident.</li>
+      <li>On respecte l'ordre des étapes : d'abord recueillir et construire, <b>ensuite seulement</b> proposer des actions. Mélanger les deux fait perdre la moitié des causes.</li>
+      <li>On s'appuie sur un <b>cadre d'observation</b> qui balaie toute la situation de travail : I, T/A, Ma, Mi.</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">Le cadre d'observation I — T/A — Ma — Mi</h3>
+  <p>Quatre entrées pour n'oublier aucune dimension de la situation de travail. Elles servent à relancer un témoin qui bloque, et à vérifier en fin de recueil qu'on n'a pas exploré une seule piste.</p>
+  <div class="steps">
+    <div class="step"><b>I · L'individu</b><span>Qui ? La ou les personnes concernées : la victime, les collègues, l'encadrement, un intervenant extérieur.</span></div>
+    <div class="step"><b>T/A · La tâche, l'activité</b><span>Quoi ? Le travail réellement effectué — pas celui qui est prescrit. Les opérations, les gestes, les décisions qui ont conduit à la situation.</span></div>
+    <div class="step"><b>Ma · Le matériel</b><span>Avec quoi ? Machines, outils, équipements, matières, produits, moyens de protection.</span></div>
+    <div class="step"><b>Mi · Le milieu</b><span>Où et dans quel contexte ? Les espaces, l'état des sols, l'éclairage, le bruit, la coactivité — et l'environnement psychosocial.</span></div>
+  </div>
+
+  <h2 class="sec" style="margin-top:44px"><span class="num">2.</span>Étape 1 — Le recueil des faits</h2>
+  <p class="chapeau">Deux sources, jamais une seule. <b>L'observation</b> des lieux, de la machine, de l'outil, du contexte — et <b>les entretiens</b> avec la victime, les témoins, les collègues, l'encadrement. Le tout collecté le plus tôt possible et, autant que faire se peut, sur le lieu même de l'accident : les traces disparaissent vite, les souvenirs se reconstruisent encore plus vite.</p>
+
+  <h4 class="mini">Conduire les entretiens</h4>
+  <ul class="dp">
+    <li>Demander à la personne de préciser qui elle est, sa fonction, son statut, et le lien qu'elle avait avec la situation.</li>
+    <li>Dire d'emblée pourquoi on l'interroge, et rappeler clairement qu'il ne s'agit pas de chercher un coupable.</li>
+    <li>Expliquer à quoi vont servir les informations recueillies et qui les lira.</li>
+    <li>Prévenir qu'on prend des notes, et les relire ensemble à la fin.</li>
+    <li>Faire raconter le travail <b>tel qu'il se fait vraiment un jour ordinaire</b>, puis demander ce qui n'était pas ordinaire ce jour-là.</li>
+    <li>Laisser parler sans interrompre. Quand la personne sèche, relancer avec le cadre I, T/A, Ma, Mi plutôt qu'avec une question orientée.</li>
+    <li>Ne jamais commenter, ne jamais faire la leçon. Le premier jugement de valeur ferme l'entretien.</li>
+  </ul>
+
+  <h3 class="sub">Un fait, et rien qu'un fait</h3>
+  <p>Un <b>fait</b> est une information concise, observable ou vérifiable, qu'on peut mesurer ou décrire sans discussion. Ce n'est ni une interprétation, ni une opinion, ni un jugement de valeur. Et ce n'est pas non plus un <b>fait négatif</b> — une formulation en creux, du type « absence de… », « manque de… », « il n'a pas… ».</p>
+  <div class="callout">
+    <p style="margin:0"><b>Pourquoi le fait négatif est un piège.</b> Écrire « absence de protection » ne décrit pas ce qui s'est passé : cela décrit ce qu'il aurait fallu faire pour l'éviter. Autrement dit, on a glissé la solution dans le constat — et on s'est privé de chercher plus loin. La cause et le remède sont deux moments différents de l'analyse : ne pas les confondre.</p>
+  </div>
+  <div class="deux">
+    <div class="card rouge">
+      <h4>À proscrire — interprétations et faits négatifs</h4>
+      <ul class="dp" style="margin:0">
+        <li>Il manquait un éclairage correct.</li>
+        <li>Elle n'était pas assez formée.</li>
+        <li>Il était pressé.</li>
+        <li>La consigne n'a pas été respectée.</li>
+      </ul>
+    </div>
+    <div class="card vert">
+      <h4>À retenir — faits observables</h4>
+      <ul class="dp" style="margin:0">
+        <li>Deux tubes sur six étaient hors service dans l'allée.</li>
+        <li>Elle occupait ce poste depuis quatre jours.</li>
+        <li>Il devait livrer trois clients avant midi.</li>
+        <li>Il a démonté le carter pour dégager le bourrage.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub">États et variations</h3>
+  <p>Tous les faits ne jouent pas le même rôle. Il faut séparer les <b>faits habituels — les « états »</b> — des <b>faits inhabituels — les « variations »</b>. Les états sont là tous les jours : ils rendent l'accident possible, mais ils ne le déclenchent pas, sinon il se produirait tous les jours. Les variations sont ce qui a changé ce jour-là : ce sont elles qui donnent sa dynamique au processus accidentel.</p>
+  <p>Une variation est un <b>écart par rapport à l'ordinaire, du point de vue de celui qui travaille</b>. Elle peut être une action inhabituelle — mais aussi une combinaison inhabituelle d'actions parfaitement habituelles. C'est ce caractère de changement qui guide toute l'analyse : la bonne question à un témoin n'est pas « qu'avez-vous fait ? » mais « qu'est-ce qui n'était pas comme d'habitude ? ».</p>
+  <div class="legende">
+    <span><i></i>Rectangle = <b>état</b> (fait permanent, habituel)</span>
+    <span><i class="rond"></i>Cercle = <b>variation</b> (fait inhabituel)</span>
+  </div>
+  <p class="src">Un seul fait par forme — jamais deux idées dans la même bulle. Un trait en pointillé signale qu'il subsiste une incertitude sur la façon dont cette variation a pu apparaître.</p>
+
+  <h2 class="sec" style="margin-top:44px"><span class="num">3.</span>La construction de l'arbre</h2>
+  <p class="chapeau">L'arbre est la représentation graphique de l'enchaînement logique des faits qui ont conduit à la blessure. On le construit <b>à rebours</b> : on part du dommage, placé à droite, et on remonte vers la gauche, fait après fait.</p>
+
+  <div class="callout warn">
+    <h4>Les deux questions qui construisent tout</h4>
+    <p style="margin:0 0 6px">Pour chaque fait <b>(Y)</b> déjà placé sur l'arbre, on pose systématiquement, dans cet ordre :</p>
+    <ol class="dp" style="margin:0">
+      <li><b>Qu'a-t-il fallu pour que (Y) se produise ?</b></li>
+      <li><b>Ce fait (X) a-t-il suffi à lui seul ?</b> Ou a-t-il fallu autre chose en même temps ?</li>
+    </ol>
+    <p style="margin:8px 0 0;font-size:.94em">La seconde question est celle qu'on oublie — et c'est elle qui fait apparaître les causes organisationnelles.</p>
+  </div>
+  <p class="src">On s'arrête de remonter quand la réponse devient « rien d'autre » ou quand on sort du champ d'action de l'entreprise. Rester pragmatique : l'objectif n'est pas la complétude théorique, c'est de trouver des mesures réalistes.</p>
+
+  <h3 class="sub">Les trois liens logiques</h3>
+  <table class="dp">
+    <thead><tr><th style="width:22%">Lien</th><th style="width:36%">Définition</th><th>Exemple</th></tr></thead>
+    <tbody>
+      <tr><td><b>Enchaînement</b></td><td>X a suffi, à lui seul, pour que Y se produise.</td><td>« Le carton bascule sur le pied » → « Fracture du pied »</td></tr>
+      <tr><td><b>Conjonction</b><br><span class="tag" style="background:#fceee8;color:#A83610">ET</span></td><td>X1 <b>ET</b> X2 sont indépendants l'un de l'autre — aucun n'est la cause de l'autre — et il a fallu les deux ensemble pour que Y se produise.</td><td>« Il s'appuie sur la pile » ET « Un carton de 18 kg est en haut de la pile » → « Le carton bascule »</td></tr>
+      <tr><td><b>Disjonction</b><br><span class="tag" style="background:#fceee8;color:#A83610">ET</span></td><td>X a suffi, à lui seul, pour provoquer Y1 <b>ET</b> Y2, deux faits indépendants l'un de l'autre.</td><td>« Le filmage se fait à la main » → « Les cartons sont posés au sol » ET « Il recule pour saisir un carton »</td></tr>
+    </tbody>
+  </table>
+  <p class="src">Deux faits sont <b>indépendants</b> quand ni l'un ni l'autre n'est l'antécédent ou le conséquent de l'autre. Une conjonction comme une disjonction peuvent mettre en jeu trois faits ou davantage. Et le nombre de faits d'un arbre n'est jamais figé : une réunion d'analyse ultérieure peut en ajouter.</p>
+
+  <h2 class="sec" style="margin-top:44px"><span class="num">4.</span>Étape 2 — Exploiter l'arbre pour prévenir</h2>
+  <p class="chapeau">La recherche des mesures se fait <b>en groupe</b>, avec des compétences variées autour de la table. Le groupe examine <b>chaque fait de l'arbre</b>, quelle que soit sa position, et cherche par quel moyen le supprimer. Aucune proposition n'est écartée à ce stade — le tri vient après.</p>
+  <div class="callout">
+    <p style="margin:0"><b>La propriété qui donne toute sa force à l'arbre :</b> vu sa structure logique, <b>supprimer un seul fait suffit à empêcher la reproduction de l'accident</b>. D'où l'intérêt de ne pas se limiter aux faits proches de la blessure : ceux situés en amont sont souvent moins coûteux à traiter et de portée bien plus large.</p>
+  </div>
+
+  <h3 class="sub">Sept questions à poser à chaque mesure envisagée</h3>
+  <ol class="dp crit">
+    <li><b>Est-elle réglementaire ?</b> Une mesure non conforme ne peut pas être retenue, quel que soit son intérêt pratique.</li>
+    <li><b>Tiendra-t-elle dans le temps ?</b> Une protection qu'on peut retirer sera retirée. Un effet qui s'estompe au bout de trois mois n'est pas une mesure de prévention.</li>
+    <li><b>S'intègre-t-elle au travail réel ?</b> Si elle ajoute une contrainte ou une opération inutile à la production, elle sera contournée — et on aura perdu deux fois.</li>
+    <li><b>Déplace-t-elle le risque ?</b> Vérifier qu'elle n'en crée pas un nouveau ailleurs : sur un autre poste, dans une autre équipe, à un autre moment.</li>
+    <li><b>Quelle est sa portée ?</b> Une mesure applicable à d'autres postes ou d'autres ateliers vaut bien plus qu'une mesure taillée pour un seul cas.</li>
+    <li><b>Agit-elle sur les causes profondes ?</b> Les actions en amont suppriment la situation dangereuse elle-même ; celles en aval n'en atténuent que les effets.</li>
+    <li><b>Sous quel délai ?</b> Une action immédiate et limitée — une consigne, un affichage — ne dispense jamais de concevoir une action durable derrière.</li>
+  </ol>
+
+  <h3 class="sub">Monter en niveau d'action</h3>
+  <p>Le réflexe le plus répandu après un accident est de rappeler la consigne et de distribuer un équipement de protection. C'est le niveau le plus bas et le moins durable. L'arbre sert précisément à faire apparaître des leviers d'un autre ordre.</p>
+  <div class="steps">
+    <div class="step"><b>1 · Réagir à l'événement</b><span>Équipement de protection individuelle, consigne, rappel. Immédiat, mais fragile et de portée étroite.</span></div>
+    <div class="step"><b>2 · Traiter techniquement</b><span>Protection collective, modification de l'équipement, suppression physique du risque.</span></div>
+    <div class="step"><b>3 · Organiser</b><span>Modes opératoires, planification, effectifs, maintenance, compétences, coordination.</span></div>
+    <div class="step"><b>4 · Intégrer à la stratégie</b><span>Conception des installations, choix des achats, critères de décision, culture de sécurité.</span></div>
+  </div>
+
+  <h3 class="sub">Du fait particulier au facteur potentiel d'accident</h3>
+  <p>Certains faits, s'ils sont reformulés en termes généraux, se retrouvent tels quels dans d'autres situations de travail. On parle alors de <b>facteur potentiel d'accident</b> : « intervention sur machine en marche », « premier jour sur un poste », « matériel de remplacement différent de l'habituel ». Reformuler ainsi, c'est nommer la famille de risques à laquelle appartient un fait.</p>
+  <p>L'intérêt est direct : ce qu'on apprend d'un accident survenu devient une entrée pour l'analyse <i>a priori</i> des risques. Chaque analyse doit d'ailleurs conduire à réinterroger le <b>document unique d'évaluation des risques professionnels</b> — identification, cotation, plan d'action.</p>
+  <table class="dp">
+    <thead><tr><th style="width:24%">Composante</th><th>Exemples de facteurs à repérer</th></tr></thead>
+    <tbody>
+      <tr><td><b>I</b> — L'individu</td><td>Premier jour au poste • Remplacement au pied levé • Intérimaire ou nouvel embauché • Retour après une longue absence</td></tr>
+      <tr><td><b>T/A</b> — La tâche</td><td>Reprise après incident, déblocage, dépannage • Cadence ou délai contraint • Mode opératoire absent ou inapplicable • Tâche exceptionnelle</td></tr>
+      <tr><td><b>Ma</b> — Le matériel</td><td>Équipement en fonctionnement dégradé • Outil détourné de son usage • Matériel de remplacement différent • Protection déposée pour intervenir</td></tr>
+      <tr><td><b>Mi</b> — Le milieu</td><td>Sol glissant ou encombré • Éclairage, bruit, poussières • Lieu inhabituel pour la personne • Coactivité et interférence entre équipes</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">Quatre conditions pour que ça marche vraiment</h3>
+  <ul class="dp">
+    <li><b>Un engagement clair de la direction</b> : l'analyse ne servira jamais à sanctionner. Sans cette garantie, les témoignages se ferment et l'exercice devient inutile.</li>
+    <li><b>Des analystes formés.</b> La méthode paraît simple, elle ne l'est pas : elle demande un apprentissage. L'analyse se conduit idéalement à deux — par exemple la personne en charge de la sécurité et un représentant du personnel — avec quelqu'un qui joue le rôle de garant de la méthode.</li>
+    <li><b>Un personnel informé</b>, l'encadrement en premier : ce qu'on cherche, ce qu'on en fera, et ce qui a changé après les analyses précédentes.</li>
+    <li><b>Des améliorations concrètes qui suivent.</b> Rien ne décourage plus sûrement que trois analyses dont aucune n'a rien changé sur le terrain.</li>
+  </ul>
+
+  <div class="callout" style="margin-top:30px">
+    <h4>Passer à la pratique</h4>
+    <p style="margin:0">Onglet <b>2 · Recueil des faits</b> : décrire l'accident, puis lister les faits en les triant Technique / Organisationnel / Humain.<br>
+    Onglet <b>3 · Construction de l'arbre</b> : partir du dommage et remonter fait par fait.<br>
+    Onglet <b>4 · Plan d'actions</b> : proposer une ou plusieurs mesures pour chaque fait de l'arbre.</p>
+  </div>
+</div>
+</section>
+<!-- ================= ONGLET 2 : RECUEIL DES FAITS ================= -->
+<section class="panel" id="p-recueil" role="tabpanel" aria-labelledby="tab-recueil" hidden>
+  
+
+  <div class="toolbar no-print">
+    <button class="btn ghost mini" id="btnCasLogistique">Cas « entrepôt logistique »</button>
+    <button class="btn ghost mini" id="btnCasRoutier">Cas « risque routier »</button>
+    <span class="sep"></span>
+    <button class="btn ghost mini" id="btnImport">Ouvrir une analyse (.json)</button>
+    <button class="btn ghost mini" id="btnExportJSON">Enregistrer l'analyse (.json)</button>
+    <span class="sep"></span>
+    <button class="btn warn mini" id="btnReset">Nouvelle analyse</button>
+    <span class="hint">Aucune donnée n'est envoyée sur Internet : tout reste dans votre navigateur.</span>
+  </div>
+
+  <div class="callout warn">
+    <h4>Avant de saisir des noms : données personnelles</h4>
+    <p>Cette analyse contient le nom de la victime, ses lésions et le nom des témoins. Ce sont des données personnelles, et les lésions sont des données de santé. Rien ne sort de votre navigateur, mais le fichier que vous enregistrez ou imprimez, lui, circule.</p>
+    <ul class="dp">
+      <li>Préférez les <b>initiales</b> (« M. B. ») dans le document de travail, et la fiche nominative à part.</li>
+      <li>Décrivez la lésion par ce qui est nécessaire à l'analyse, sans détail médical inutile.</li>
+      <li>Ne diffusez le document qu'aux membres de la délégation d'enquête, et rappelez l'obligation de discrétion des élus (article L. 2315-3 (code du travail)).</li>
+      <li>Le CSE est responsable de ses propres traitements : conservez le fichier le temps de l'analyse, pas au-delà de ce qui est utile.</li>
+    </ul>
+  </div>
+
+  <fieldset class="bloc">
+    <legend>Identification de l'accident</legend>
+    <div class="grid-form">
+      <div class="field"><label for="f_entreprise">Raison sociale de l'entreprise</label><input id="f_entreprise" data-meta="entreprise"></div>
+      <div class="field"><label for="f_victime">Victime (Qui — I)</label><input id="f_victime" data-meta="victime"></div>
+      <div class="field"><label for="f_age">Âge</label><input id="f_age" data-meta="age"></div>
+      <div class="field"><label for="f_qualif">Qualification professionnelle</label><input id="f_qualif" data-meta="qualif"></div>
+      <div class="field"><label for="f_anciennete">Ancienneté au poste</label><input id="f_anciennete" data-meta="anciennete"></div>
+      <div class="field"><label for="f_date">Date de l'accident</label><input id="f_date" data-meta="date"></div>
+      <div class="field"><label for="f_heure">Heure / jour de la semaine</label><input id="f_heure" data-meta="heure"></div>
+      <div class="field"><label for="f_lieu">Lieu (Mi)</label><input id="f_lieu" data-meta="lieu"></div>
+      <div class="field"><label for="f_activite">Activité principale de l'entreprise</label><input id="f_activite" data-meta="activite"></div>
+      <div class="field"><label for="f_lesions">Lésions et conséquences</label><input id="f_lesions" data-meta="lesions"></div>
+      <div class="field"><label for="f_analystes">Analystes / binôme</label><input id="f_analystes" data-meta="analystes"></div>
+      <div class="field"><label for="f_temoins">Témoins entendus</label><input id="f_temoins" data-meta="temoins"></div>
+    </div>
+  </fieldset>
+
+  <fieldset class="bloc">
+    <legend>Récit détaillé de l'accident</legend>
+    <p class="hint" style="margin-top:0">Décrire le travail tel qu'il se fait réellement d'habitude, puis ce qui était inhabituel ce jour-là. Rester au niveau des faits observables ou vérifiables.</p>
+    <div class="field"><textarea id="f_recit" data-meta="recit" rows="6" placeholder="Monsieur X., …"></textarea></div>
+    <div class="grid-form" style="margin-top:12px">
+      <div class="field"><label for="f_ta">T/A — Tâche / activité réelle au moment de l'accident</label><textarea id="f_ta" data-meta="ta" rows="3"></textarea></div>
+      <div class="field"><label for="f_ma">Ma — Matériels, outils, produits utilisés</label><textarea id="f_ma" data-meta="ma" rows="3"></textarea></div>
+      <div class="field"><label for="f_mi">Mi — Milieu : sols, encombrement, éclairage, bruit, coactivité…</label><textarea id="f_mi" data-meta="mi" rows="3"></textarea></div>
+      <div class="field"><label for="f_secours">Secours : alerte, premiers soins, délais</label><textarea id="f_secours" data-meta="secours" rows="3"></textarea></div>
+    </div>
+  </fieldset>
+
+  <fieldset class="bloc">
+    <legend>Liste des faits</legend>
+    <div class="recueil-layout">
+      <div>
+        <div class="qbox">
+          <b>Rappel.</b> Un fait est observable et/ou vérifiable. Ni interprétation, ni opinion, ni jugement de valeur, ni « fait négatif » (absence de…, manque de…).
+        </div>
+        <div class="field" style="margin-bottom:10px">
+          <label for="f_new">Description du fait</label>
+          <textarea id="f_new" rows="2" placeholder="Ex. : La filmeuse automatique est en panne depuis la veille"></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <label style="display:block;font-family:var(--titre);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--teal-2);margin-bottom:4px">Nature du fait</label>
+          <div class="pill-row" id="natRow">
+            <button class="pill T" data-nat="T" aria-pressed="true">Technique</button>
+            <button class="pill O" data-nat="O" aria-pressed="false">Organisationnel</button>
+            <button class="pill H" data-nat="H" aria-pressed="false">Humain</button>
+          </div>
+        </div>
+        <div style="margin-bottom:12px">
+          <label style="display:block;font-family:var(--titre);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--teal-2);margin-bottom:4px">Habituel ou inhabituel ?</label>
+          <div class="pill-row" id="typeRow">
+            <button class="pill etat" data-type="etat" aria-pressed="false">État (fait habituel)</button>
+            <button class="pill var" data-type="variation" aria-pressed="true">Variation (fait inhabituel)</button>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:12px">
+          <label for="f_source">Source de l'information (facultatif)</label>
+          <input id="f_source" placeholder="Ex. : entretien victime, observation sur site, photo n°3">
+        </div>
+        <button class="btn" id="btnAddFait">Ajouter ce fait</button>
+        <button class="btn ghost" id="btnCancelEdit" hidden>Annuler la modification</button>
+        <p id="alerteFait" class="hint" style="color:var(--orange-txt);margin-top:8px" hidden></p>
+      </div>
+
+      <div>
+        <div class="toolbar no-print" style="margin-bottom:10px">
+          <span class="hint"><b id="cptFaits">0</b> fait(s) recueilli(s) — <b id="cptVar">0</b> variation(s)</span>
+          <span class="sep"></span>
+          <button class="btn ghost mini" id="btnGoArbre">Construire l'arbre &rarr;</button>
+        </div>
+        <div class="colonnes-toh">
+          <div class="col-toh T"><header>Technique <span class="n" id="nT">0</span></header><ul id="listT"><li class="vide">Matériel, équipement, machine, produit, ambiance physique…</li></ul></div>
+          <div class="col-toh O"><header>Organisationnel <span class="n" id="nO">0</span></header><ul id="listO"><li class="vide">Consignes, planning, effectifs, maintenance, formation, coactivité…</li></ul></div>
+          <div class="col-toh H"><header>Humain <span class="n" id="nH">0</span></header><ul id="listH"><li class="vide">Actions, gestes, déplacements, décisions des personnes…</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</section>
+<!-- ================= ONGLET 3 : ARBRE ================= -->
+<section class="panel" id="p-arbre" role="tabpanel" aria-labelledby="tab-arbre" hidden>
+  
+  <div id="zoneTravail">
+  <div class="toolbar no-print">
+    <button class="btn" id="btnSetDommage">Définir le dommage</button>
+    <span class="sep"></span>
+    <button class="btn ghost" id="btnAddAnt" disabled>+ Antécédent du fait sélectionné</button>
+    <button class="btn ghost" id="btnLinkMode" aria-pressed="false" disabled>Relier à un fait existant</button>
+    <button class="btn ghost" id="btnEditNode" disabled>Modifier</button>
+    <button class="btn ghost" id="btnDelNode" disabled>Retirer de l'arbre</button>
+    <span class="sep"></span>
+    <button class="btn ghost mini" id="btnRelayout">Réorganiser</button>
+    <button class="btn ghost mini" id="btnFit">Ajuster</button>
+    <button class="btn ghost mini" id="btnZoomOut">−</button><span class="hint" id="zoomLbl">100 %</span><button class="btn ghost mini" id="btnZoomIn">+</button>
+    <span class="sep"></span>
+    <button class="btn ghost mini" id="btnFullscreen">Plein écran</button>
+    <span class="sep"></span>
+    <button class="btn ghost mini" id="btnPNG">Exporter en PNG</button>
+    <button class="btn ghost mini" id="btnPrint">Imprimer / PDF</button>
+  </div>
+
+  <div class="arbre-layout">
+    <div>
+      <div class="side">
+        <header>Fait sélectionné</header>
+        <div class="body">
+          <div class="selinfo" id="selInfo">Aucun fait sélectionné. Cliquez sur un fait de l'arbre.</div>
+          <div class="qbox" id="qBox" hidden>
+            <b>Qu'a-t-il fallu pour que ce fait apparaisse ?</b><br>
+            <span style="font-size:.85rem">Puis : ce fait a-t-il été nécessaire <i>à lui seul</i>, ou a-t-il fallu autre chose ? (chaque antécédent supplémentaire crée une conjonction <b style="color:var(--orange-txt)">ET</b>)</span>
+          </div>
+          <p class="hint" id="linkHint" hidden style="color:var(--orange-txt)">Mode liaison : cliquez sur le fait qui devient <b>antécédent</b> du fait sélectionné.</p>
+        </div>
+      </div>
+
+      <div class="side">
+        <header>Faits recueillis non placés</header>
+        <div class="body">
+          <p class="hint" style="margin-top:0">Sélectionnez d'abord un fait dans l'arbre, puis cliquez un fait ci-dessous : il devient son antécédent.</p>
+          <div class="dispo-list" id="dispoList"><p class="vide">Tous les faits recueillis sont placés.</p></div>
+        </div>
+      </div>
+
+      <div class="side">
+        <header>Légende</header>
+        <div class="body" style="font-size:.85rem">
+          <p style="margin:0 0 6px"><span class="tag etat">Rectangle</span> fait habituel — <b>état</b></p>
+          <p style="margin:0 0 6px"><span class="tag var">Cercle</span> fait inhabituel — <b>variation</b></p>
+          <p style="margin:0 0 6px"><span class="tag T">T</span> technique · <span class="tag O">O</span> organisationnel · <span class="tag H">H</span> humain</p>
+          <p style="margin:0 0 6px"><b style="color:var(--orange-txt)">ET</b> = conjonction ou disjonction : plusieurs faits en jeu.</p>
+          <p style="margin:0">Trait pointillé = part d'incertitude sur la façon dont la variation a pu se créer.</p>
+          <p style="margin:8px 0 0" class="hint">Construction rétrospective : le dommage est à droite, on remonte vers la gauche.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="canvas-wrap" id="canvasWrap">
+      <svg id="svgArbre" width="1200" height="620" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="fleche" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#6d7f84"></path>
+          </marker>
+        </defs>
+        <g id="gLinks"></g>
+        <g id="gNodes"></g>
+      </svg>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ================= ONGLET 4 : PLAN D'ACTIONS ================= -->
+<section class="panel" id="p-plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
+  
+  <div class="wrap" style="max-width:none">
+    <h2 class="sec"><span class="num">4.</span>Plan d'actions correctives et préventives</h2>
+    <p class="chapeau">Une ligne par fait de l'arbre. Le groupe pluridisciplinaire propose des solutions pour <b>chacun</b> des faits, quelle que soit sa position dans l'arbre : il suffit d'en supprimer un seul pour que l'accident ne se reproduise pas. Aucune proposition ne doit être rejetée a priori.</p>
+
+    <details style="margin-bottom:16px">
+      <summary style="cursor:pointer;font-family:var(--titre);font-weight:700;color:var(--teal)">Rappel : les 7 critères de choix d'une mesure de prévention</summary>
+      <ol class="dp crit" style="margin-top:10px">
+        <li><b>Conformité</b> à la réglementation — sinon la mesure ne peut être retenue.</li>
+        <li><b>Stabilité dans le temps</b> — ses effets ne doivent pas disparaître.</li>
+        <li><b>Intégrable au travail quotidien</b> — sinon elle sera abandonnée.</li>
+        <li><b>Pas de déplacement du risque</b> ni de nouveau risque créé.</li>
+        <li><b>Portée</b> — s'applique-t-elle à d'autres postes ou ateliers ?</li>
+        <li><b>Agit-elle sur les causes profondes</b> et pas seulement sur les faits proches du dommage ?</li>
+        <li><b>Délais d'application</b> — une action immédiate ne dispense pas d'actions plus durables.</li>
+      </ol>
+    </details>
+
+    <div class="toolbar no-print">
+      <button class="btn ghost mini" id="btnRefreshPlan">Actualiser depuis l'arbre</button>
+      <button class="btn ghost mini" id="btnPrintPlan">Imprimer / PDF</button>
+      <button class="btn ghost mini" id="btnExportJSON2">Enregistrer l'analyse (.json)</button>
+      <span class="hint">Les lignes reprennent automatiquement tous les faits placés dans l'arbre.</span>
+    </div>
+
+    <table class="plan">
+      <thead><tr>
+        <th style="width:44px">N°</th>
+        <th style="width:24%">Libellé du fait dans l'arbre (facteur d'accident)</th>
+        <th style="width:110px">Nature</th>
+        <th>Mesures de prévention proposées</th>
+        <th style="width:14%">Responsable de la mise en œuvre et du suivi</th>
+        <th style="width:10%">Délai</th>
+      </tr></thead>
+      <tbody id="planBody"><tr><td colspan="6" class="vide">Aucun fait dans l'arbre pour l'instant.</td></tr></tbody>
+    </table>
+
+    <div class="callout" style="margin-top:22px">
+      <h4>Après le plan d'actions</h4>
+      <p style="margin:0">Les mesures retenues font l'objet d'un <b>suivi</b> et leur application est <b>contrôlée</b> (efficacité et délais). L'analyse doit également conduire à mettre à jour le <b>document unique d'évaluation des risques professionnels (DUERP)</b>, en s'interrogeant sur les modifications à apporter à l'identification, à l'estimation du risque et à l'élaboration du plan d'action.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="app">
+  Module d'analyse d'accident par la méthode de l'arbre des causes — <b>Destination Prévention</b><br>
+  Document de travail destiné à la délégation d'enquête : à construire et à valider en séance paritaire.
+  <br><br>
+  <span style="font-size:.94em">DESTINATION PRÉVENTION — 324 route du Bois, 38630 CORBELIN · SIRET 913 586 921 00011<br>
+  Déclaration d'activité n° 84 38 08320 38 auprès du préfet de région Auvergne-Rhône-Alpes — cet enregistrement ne vaut pas agrément de l'État<br>
+  <a href="https://www.destination-prevention.fr">www.destination-prevention.fr</a></span>
+</footer>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="fileInput" accept="application/json,.json" hidden>
+
+<dialog class="modal" id="dlgNode">
+  <form method="dialog">
+    <header id="dlgTitre">Ajouter un fait à l'arbre</header>
+    <div class="body">
+      <div class="field" style="margin-bottom:12px">
+        <label for="d_label">Libellé du fait (court, factuel)</label>
+        <textarea id="d_label" rows="2"></textarea>
+      </div>
+      <div class="grid-form">
+        <div class="field">
+          <label for="d_type">Nature du fait</label>
+          <select id="d_type"><option value="variation">Variation — fait inhabituel (cercle)</option><option value="etat">État — fait habituel (rectangle)</option></select>
+        </div>
+        <div class="field">
+          <label for="d_cat">Composante</label>
+          <select id="d_cat"><option value="T">Technique</option><option value="O">Organisationnel</option><option value="H">Humain</option></select>
+        </div>
+      </div>
+      <label style="display:flex;gap:8px;align-items:center;margin-top:12px;font-size:.9rem">
+        <input type="checkbox" id="d_dashed"> Lien en pointillé — une part d'incertitude subsiste sur la façon dont ce fait a pu se créer
+      </label>
+    </div>
+    <footer>
+      <button class="btn ghost" value="cancel" type="submit">Annuler</button>
+      <button class="btn" value="ok" type="submit" id="dlgOk">Valider</button>
+    </footer>
+  </form>
+</dialog>
+<script>
+"use strict";
+/* ====================================================================
+   Module Arbre des causes — Destination Prévention
+   Analyse de l'accident du travail
+   ==================================================================== */
+
+const NODE_W = 158, NODE_H = 62, ELL_RX = 84, ELL_RY = 44;
+const COL_GAP = 228, ROW_GAP = 118, MARGIN = 54, ELBOW = 26;
+const CAT_LBL = {T:"Technique", O:"Organisationnel", H:"Humain"};
+const TYPE_LBL = {etat:"État (habituel)", variation:"Variation (inhabituelle)"};
+
+let S = blankState();
+let sel = null, linkMode = false, zoom = 1, uid = 1;
+
+function blankState(){
+  return {meta:{}, faits:[], nodes:[], links:[], plan:{}};
+}
+function nid(p){ return p + "_" + (uid++) + "_" + Math.random().toString(36).slice(2,6); }
+function byId(arr,id){ return arr.find(o=>o.id===id) || null; }
+function faitOf(node){ return node.faitId ? byId(S.faits, node.faitId) : null; }
+function nodeLabel(n){ const f = faitOf(n); return f ? f.label : (n.label||""); }
+function nodeCat(n){ const f = faitOf(n); return n.dommage ? null : (f ? f.cat : n.cat); }
+function nodeType(n){ const f = faitOf(n); return f ? f.type : (n.type||"variation"); }
+function nodeOfFait(fid){ return S.nodes.find(n=>n.faitId===fid) || null; }
+function damageNode(){ return S.nodes.find(n=>n.dommage) || null; }
+function parentsOf(id){ return S.links.filter(l=>l.to===id).map(l=>byId(S.nodes,l.from)).filter(Boolean); }
+function childrenOf(id){ return S.links.filter(l=>l.from===id).map(l=>byId(S.nodes,l.to)).filter(Boolean); }
+
+/* ---------------- Notifications ---------------- */
+let toastT = null;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove('on'), 2600);
+}
+
+/* ---------------- Onglets ---------------- */
+document.querySelectorAll('nav.tabs button').forEach(b=>{
+  b.addEventListener('click', ()=>goTab(b.dataset.panel));
+});
+function goTab(pid){
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.setAttribute('aria-selected', String(b.dataset.panel===pid)));
+  document.querySelectorAll('.panel').forEach(p=>p.hidden = (p.id!==pid));
+  if(pid==='p-arbre'){ layout(); render(); }
+  if(pid==='p-plan'){ buildPlan(); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ---------------- Métadonnées ---------------- */
+document.querySelectorAll('[data-meta]').forEach(el=>{
+  el.addEventListener('input', ()=>{ S.meta[el.dataset.meta] = el.value; });
+});
+function fillMeta(){
+  document.querySelectorAll('[data-meta]').forEach(el=>{ el.value = S.meta[el.dataset.meta] || ''; });
+}
+
+/* ---------------- Recueil des faits ---------------- */
+let curNat = 'T', curType = 'variation', editingFait = null;
+
+document.querySelectorAll('#natRow .pill').forEach(b=>b.addEventListener('click',()=>{
+  curNat = b.dataset.nat;
+  document.querySelectorAll('#natRow .pill').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+}));
+document.querySelectorAll('#typeRow .pill').forEach(b=>b.addEventListener('click',()=>{
+  curType = b.dataset.type;
+  document.querySelectorAll('#typeRow .pill').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+}));
+
+const MOTS_INTERDITS = [
+  {re:/\b(absence|manque|défaut d|aucun[e]?|non respect|non-respect|insuffisan|non conforme|non port)/i,
+   msg:"Formulation en « fait négatif » (absence de…, manque de…) : elle décrit le remède, pas la cause. Reformulez en fait observable."},
+  {re:/(\bne\s+\S+\s+pas\b|\bn['’]\S+\s+pas\b|\bn['’](est|était|a|avait|y)\b|\bpas\s+(de|d['’]|assez|encore)\b|\bsans\s+(avoir|être|que)\b)/i,
+   msg:"Formulation négative : décrivez ce qui a été fait ou constaté, pas ce qui n'a pas été fait ni ce qu'il aurait fallu faire."},
+  {re:/\b(trop\b|impruden|néglig|inattenti|dangereu|mauvais|maladroit|évidemment|manifestement|sans doute|probablement|il aurait fallu|aurait dû)/i,
+   msg:"Jugement de valeur, opinion ou interprétation : remplacez par une donnée observable, quantifiable ou vérifiable."}
+];
+function controleFait(txt){
+  for(const m of MOTS_INTERDITS){ if(m.re.test(txt)) return m.msg; }
+  return null;
+}
+
+document.getElementById('btnAddFait').addEventListener('click', ()=>{
+  const ta = document.getElementById('f_new');
+  const label = ta.value.trim();
+  const alerte = document.getElementById('alerteFait');
+  if(!label){ ta.focus(); return; }
+  const pb = controleFait(label);
+  if(pb){ alerte.innerHTML = "<b>Vigilance :</b> " + pb + " <i>Le fait est tout de même ajouté — à rediscuter en groupe.</i>"; alerte.hidden = false; }
+  else { alerte.hidden = true; }
+  const src = document.getElementById('f_source').value.trim();
+  if(editingFait){
+    const f = byId(S.faits, editingFait);
+    if(f){ f.label = label; f.cat = curNat; f.type = curType; f.source = src; }
+    editingFait = null;
+    document.getElementById('btnAddFait').textContent = "Ajouter ce fait";
+    document.getElementById('btnCancelEdit').hidden = true;
+  } else {
+    S.faits.push({id:nid('f'), label, cat:curNat, type:curType, source:src});
+  }
+  ta.value=''; document.getElementById('f_source').value='';
+  renderFaits(); renderDispo(); layout(); render();
+});
+document.getElementById('btnCancelEdit').addEventListener('click', ()=>{
+  editingFait = null;
+  document.getElementById('f_new').value=''; document.getElementById('f_source').value='';
+  document.getElementById('btnAddFait').textContent = "Ajouter ce fait";
+  document.getElementById('btnCancelEdit').hidden = true;
+  document.getElementById('alerteFait').hidden = true;
+});
+
+function renderFaits(){
+  ['T','O','H'].forEach(cat=>{
+    const ul = document.getElementById('list'+cat);
+    const items = S.faits.filter(f=>f.cat===cat);
+    document.getElementById('n'+cat).textContent = items.length;
+    if(!items.length){
+      const txt = {T:"Matériel, équipement, machine, produit, ambiance physique…",
+                   O:"Consignes, planning, effectifs, maintenance, formation, coactivité…",
+                   H:"Actions, gestes, déplacements, décisions des personnes…"}[cat];
+      ul.innerHTML = '<li class="vide">'+txt+'</li>'; return;
+    }
+    ul.innerHTML = '';
+    items.forEach(f=>{
+      const placed = !!nodeOfFait(f.id);
+      const li = document.createElement('li');
+      li.className = 'fait ' + (f.type==='etat'?'etat':'var') + (placed?' place':'');
+      li.innerHTML =
+        '<span class="lbl">'+esc(f.label)+'</span>' +
+        '<span class="meta">' +
+          '<span class="tag '+(f.type==='etat'?'etat':'var')+'">'+(f.type==='etat'?'État':'Variation')+'</span>' +
+          (f.source? '<span class="hint" style="font-size:.76rem">'+esc(f.source)+'</span>':'') +
+          '<span class="acts"></span>' +
+        '</span>';
+      const acts = li.querySelector('.acts');
+      const bE = document.createElement('button'); bE.textContent='Modifier';
+      bE.onclick = ()=>{
+        editingFait = f.id;
+        document.getElementById('f_new').value = f.label;
+        document.getElementById('f_source').value = f.source||'';
+        curNat = f.cat; curType = f.type;
+        document.querySelectorAll('#natRow .pill').forEach(x=>x.setAttribute('aria-pressed', String(x.dataset.nat===f.cat)));
+        document.querySelectorAll('#typeRow .pill').forEach(x=>x.setAttribute('aria-pressed', String(x.dataset.type===f.type)));
+        document.getElementById('btnAddFait').textContent = "Enregistrer la modification";
+        document.getElementById('btnCancelEdit').hidden = false;
+        document.getElementById('f_new').focus();
+      };
+      const bD = document.createElement('button'); bD.className='del'; bD.textContent='Supprimer';
+      bD.onclick = ()=>{
+        const n = nodeOfFait(f.id);
+        if(n) removeNode(n.id, true);
+        S.faits = S.faits.filter(x=>x.id!==f.id);
+        renderFaits(); renderDispo(); layout(); render();
+      };
+      acts.append(bE,bD);
+      ul.appendChild(li);
+    });
+  });
+  document.getElementById('cptFaits').textContent = S.faits.length;
+  document.getElementById('cptVar').textContent = S.faits.filter(f=>f.type==='variation').length;
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+document.getElementById('btnGoArbre').addEventListener('click', ()=>goTab('p-arbre'));
+</script>
+<script>
+"use strict";
+/* ---------------- Construction de l'arbre : modèle ---------------- */
+
+function setDommage(){
+  const d = damageNode();
+  openNodeDialog({
+    titre: d ? "Modifier le dommage" : "Définir le dommage (point de départ de l'arbre)",
+    label: d ? nodeLabel(d) : "",
+    type: 'variation', cat:'H', showType:false, showCat:false, showDashed:false,
+    onOk: (v)=>{
+      if(d){ d.label = v.label; }
+      else {
+        S.nodes.push({id:nid('n'), faitId:null, label:v.label, dommage:true, x:0,y:0,fixed:false});
+      }
+      layout(); render();
+      const dd = damageNode(); if(dd){ select(dd.id); scrollToNode(dd.id); }
+      toast("Dommage défini. Posez maintenant la question : qu'a-t-il fallu pour qu'il apparaisse ?");
+    }
+  });
+}
+
+function addAntecedent(targetId, faitId){
+  if(faitId){
+    let n = nodeOfFait(faitId);
+    if(!n){
+      n = {id:nid('n'), faitId, dommage:false, x:0,y:0,fixed:false};
+      S.nodes.push(n);
+    }
+    if(n.id===targetId) return;
+    if(creeCycle(n.id, targetId)){ toast("Impossible : ce lien créerait une boucle dans l'arbre."); return; }
+    if(!S.links.some(l=>l.from===n.id && l.to===targetId)) S.links.push({from:n.id, to:targetId, dashed:false});
+    layout(); render(); renderFaits(); renderDispo(); select(targetId); scrollToNode(n.id);
+    const nb1 = parentsOf(targetId).length;
+    if(nb1>1) toast("Conjonction : "+nb1+" faits sont désormais nécessaires (ET) pour que ce fait se produise.");
+    return;
+  }
+  openNodeDialog({
+    titre:"Antécédent — qu'a-t-il fallu pour que ce fait apparaisse ?",
+    label:"", type:'variation', cat:'T', showType:true, showCat:true, showDashed:true,
+    onOk:(v)=>{
+      const f = {id:nid('f'), label:v.label, cat:v.cat, type:v.type, source:''};
+      S.faits.push(f);
+      const n = {id:nid('n'), faitId:f.id, dommage:false, x:0,y:0,fixed:false};
+      S.nodes.push(n);
+      S.links.push({from:n.id, to:targetId, dashed:v.dashed});
+      layout(); render(); renderFaits(); renderDispo(); select(targetId); scrollToNode(n.id);
+      const t = byId(S.nodes,targetId);
+      const nb = parentsOf(targetId).length;
+      const pb = controleFait(v.label);
+      if(pb) toast("Vigilance sur la formulation : " + pb.split(':')[0] + ".");
+      else if(nb>1) toast("Conjonction : "+nb+" faits sont désormais nécessaires (ET) pour que « "+nodeLabel(t)+" » se produise.");
+    }
+  });
+}
+
+function creeCycle(fromId, toId){
+  const seen = new Set();
+  (function walk(id){
+    if(seen.has(id)) return; seen.add(id);
+    S.links.filter(l=>l.to===id).forEach(l=>walk(l.from));
+  })(fromId);
+  return seen.has(toId);
+}
+
+function removeNode(id, silent){
+  const n = byId(S.nodes,id); if(!n) return;
+  S.nodes = S.nodes.filter(x=>x.id!==id);
+  S.links = S.links.filter(l=>l.from!==id && l.to!==id);
+  delete S.plan[id];
+  if(sel===id) select(null);
+  if(!silent){ layout(); render(); renderFaits(); renderDispo(); }
+}
+
+/* ---------------- Mise en page automatique ---------------- */
+function depths(){
+  const d = {}; const dom = damageNode();
+  if(!dom) return d;
+  d[dom.id] = 0;
+  let changed = true, guard = 0;
+  while(changed && guard++ < 400){
+    changed = false;
+    S.links.forEach(l=>{
+      if(d[l.to]!==undefined){
+        const v = d[l.to]+1;
+        if(d[l.from]===undefined || d[l.from] < v){ d[l.from]=v; changed=true; }
+      }
+    });
+  }
+  S.nodes.forEach(n=>{ if(d[n.id]===undefined) d[n.id] = 0; });
+  return d;
+}
+
+function layout(){
+  const svg = document.getElementById('svgArbre');
+  const wrap = document.getElementById('canvasWrap');
+  // la zone de dessin ne descend jamais sous la taille visible : la surface de travail
+  // reste constante quel que soit le nombre de faits déjà placés
+  const availW = Math.max(320, (wrap.clientWidth  || 900) - 18) / zoom;
+  const availH = Math.max(260, (wrap.clientHeight || 520) - 18) / zoom;
+
+  const dom = damageNode();
+  if(!dom){
+    svg.setAttribute('viewBox', '0 0 '+Math.round(availW)+' '+Math.round(availH));
+    svg.dataset.w = Math.round(availW); svg.dataset.h = Math.round(availH);
+    svg.setAttribute('width', Math.round(availW*zoom));
+    svg.setAttribute('height', Math.round(availH*zoom));
+    return;
+  }
+
+  const d = depths();
+  const maxD = Math.max(0, ...Object.values(d));
+  const cols = {};
+  S.nodes.forEach(n=>{ (cols[d[n.id]] = cols[d[n.id]]||[]).push(n); });
+
+  // largeur du contenu + une demi-colonne de respiration à gauche pour la suite du travail
+  const contentW = MARGIN*2 + (maxD+1)*COL_GAP + COL_GAP*0.55;
+  const W = Math.max(contentW, availW);
+  S.nodes.forEach(n=>{ n.x = W - MARGIN - ELL_RX - d[n.id]*COL_GAP; });
+
+  const first = (cols[0]||[])[0];
+  let yCursor = MARGIN + (first ? halfH(first) : ELL_RY);
+  (cols[0]||[]).forEach((n,i)=>{ if(!n.fixed) n.y = yCursor; yCursor += halfH(n) + 34 + halfH((cols[0]||[])[i+1]||n); });
+
+  for(let k=1;k<=maxD;k++){
+    const list = (cols[k]||[]).slice();
+    list.forEach(n=>{
+      const ch = childrenOf(n.id);
+      n._want = ch.length ? ch.reduce((a,c)=>a+c.y,0)/ch.length : MARGIN+halfH(n);
+    });
+    list.sort((a,b)=> (a.fixed?a.y:a._want) - (b.fixed?b.y:b._want));
+    let last = -1e9, lastH = 0;
+    list.forEach(n=>{
+      let y = n.fixed ? n.y : n._want;
+      const need = last + lastH + 34 + halfH(n);
+      if(y < need) y = need;
+      if(y < MARGIN + halfH(n)) y = MARGIN + halfH(n);
+      if(!n.fixed) n.y = y;
+      last = n.y; lastH = halfH(n);
+    });
+  }
+
+  const minY = Math.min(...S.nodes.map(n=>n.y - halfH(n)));
+  const maxY = Math.max(...S.nodes.map(n=>n.y + halfH(n)));
+  const contentH = (maxY - minY) + MARGIN*2;
+  const H = Math.max(contentH, availH);
+  // centrage vertical du contenu dans la zone de travail
+  const off = (H - (maxY - minY))/2 - minY;
+  if(isFinite(off)) S.nodes.forEach(n=>{ n.y += off; });
+
+  svg.setAttribute('viewBox', '0 0 '+Math.round(W)+' '+Math.round(H));
+  svg.setAttribute('width', Math.round(W*zoom));
+  svg.setAttribute('height', Math.round(H*zoom));
+  svg.dataset.w = Math.round(W); svg.dataset.h = Math.round(H);
+}
+
+/* boîte englobante du contenu réel — sert au recadrage de l'export et de l'impression */
+function contentBox(){
+  if(!S.nodes.length) return null;
+  const x0 = Math.min(...S.nodes.map(n=>n.x - halfW(n))) - 30;
+  const x1 = Math.max(...S.nodes.map(n=>n.x + halfW(n))) + 30;
+  const y0 = Math.min(...S.nodes.map(n=>n.y - halfH(n))) - 26;
+  const y1 = Math.max(...S.nodes.map(n=>n.y + halfH(n))) + 26;
+  return {x:x0, y:y0, w:x1-x0, h:y1-y0};
+}
+
+/* fait défiler la zone de travail pour amener un fait sous les yeux */
+function scrollToNode(id){
+  const n = byId(S.nodes,id); if(!n) return;
+  const wrap = document.getElementById('canvasWrap');
+  const x = n.x*zoom, y = n.y*zoom;
+  const left = x - wrap.clientWidth/2, top = y - wrap.clientHeight/2;
+  wrap.scrollTo({left:Math.max(0,left), top:Math.max(0,top), behavior:'smooth'});
+}
+
+/* ---------------- Rendu SVG ---------------- */
+function wrapText(txt, max){
+  const words = String(txt).split(/\s+/); const lines=[]; let cur='';
+  words.forEach(w=>{
+    if((cur+' '+w).trim().length <= max) cur = (cur+' '+w).trim();
+    else { if(cur) lines.push(cur); cur = w; }
+  });
+  if(cur) lines.push(cur);
+  if(lines.length>7){ const rest = lines.slice(6).join(' '); return lines.slice(0,6).concat([rest.slice(0,max-1)+'…']); }
+  return lines;
+}
+function geom(n){
+  const isRect = n.dommage || nodeType(n)==='etat';
+  const txt = nodeLabel(n);
+  const lines = wrapText(txt, isRect?22:(txt.length>52?20:17));
+  if(isRect){
+    const h = Math.max(NODE_H, 22 + lines.length*15);
+    return {rect:true, lines, w:NODE_W, h, hw:NODE_W/2, hh:h/2};
+  }
+  const ry = Math.max(ELL_RY, 22 + lines.length*13.5);
+  const rx = lines.length>=5 ? ELL_RX+12 : ELL_RX;
+  return {rect:false, lines, rx, ry, hw:rx, hh:ry};
+}
+function halfH(n){ return n && n.id ? geom(n).hh : ELL_RY; }
+const SVGNS = "http://www.w3.org/2000/svg";
+function mk(tag, attrs){ const e = document.createElementNS(SVGNS, tag); for(const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+function render(){
+  const gL = document.getElementById('gLinks'), gN = document.getElementById('gNodes');
+  gL.innerHTML=''; gN.innerHTML='';
+  if(!damageNode()){
+    const t = mk('text',{x:60,y:60,fill:'#8b9a9e','font-family':'Fira Sans, sans-serif','font-size':'14'});
+    t.textContent = "Commencez par définir le dommage (bouton « Définir le dommage »).";
+    gN.appendChild(t);
+    document.getElementById('svgArbre').setAttribute('viewBox','0 0 1200 620');
+    return;
+  }
+  // liens
+  S.links.forEach(l=>{
+    const a = byId(S.nodes,l.from), b = byId(S.nodes,l.to);
+    if(!a||!b) return;
+    const ax = a.x + halfW(a), ay = a.y;
+    const bx = b.x - halfW(b), by = b.y;
+    const mx = bx - ELBOW;
+    const dpath = 'M '+ax+' '+ay+' H '+mx+' V '+by+' H '+bx;
+    gL.appendChild(mk('path',{d:dpath, class:'lnk'+(l.dashed?' dashed':''), 'marker-end':'url(#fleche)'}));
+  });
+  // libellés ET
+  S.nodes.forEach(n=>{
+    const par = parentsOf(n.id);
+    if(par.length>1){
+      const bx = n.x - halfW(n) - ELBOW;
+      const ys = par.map(p=>p.y);
+      etLabel(gL, bx-13, (Math.min(...ys)+Math.max(...ys))/2);
+    }
+    const ch = childrenOf(n.id);
+    if(ch.length>1){
+      etLabel(gL, n.x+halfW(n)+18, n.y-10);
+    }
+  });
+  // nœuds
+  S.nodes.forEach(n=>{
+    const g = mk('g',{class:'node-box'+(sel===n.id?' sel':''), 'data-id':n.id,
+      'data-cat': nodeCat(n)||'', 'data-type': n.dommage?'dommage':nodeType(n), 'data-dommage': n.dommage?'1':'0'});
+    const G = geom(n);
+    if(G.rect){
+      g.appendChild(mk('rect',{class:'shape', x:n.x-G.w/2, y:n.y-G.h/2, width:G.w, height:G.h, rx:5}));
+      putLines(g, G.lines, n.x, n.y);
+      if(!n.dommage) putBadge(g, n, n.x+G.w/2-13, n.y-G.h/2+13);
+    } else {
+      g.appendChild(mk('ellipse',{class:'shape', cx:n.x, cy:n.y, rx:G.rx, ry:G.ry}));
+      putLines(g, G.lines, n.x, n.y);
+      putBadge(g, n, n.x+G.rx*0.58, n.y-G.ry*0.60);
+    }
+    g.addEventListener('click', e=>{ e.stopPropagation(); onNodeClick(n.id); });
+    g.addEventListener('mousedown', e=>startDrag(e,n));
+    gN.appendChild(g);
+  });
+}
+function etLabel(g, x, y){
+  g.appendChild(mk('rect',{x:x-12, y:y-8, width:24, height:15, fill:'#ffffff', rx:2}));
+  const t = mk('text',{x:x, y:y+4, class:'et-lbl'});
+  t.textContent='ET'; g.appendChild(t);
+}
+function halfW(n){ return geom(n).hw; }
+function putLines(g, lines, cx, cy){
+  const start = cy - (lines.length-1)*7.5;
+  lines.forEach((ln,i)=>{
+    const t = mk('text',{x:cx, y:start + i*15 + 4});
+    t.textContent = ln; g.appendChild(t);
+  });
+}
+function putBadge(g, n, x, y){
+  const cat = nodeCat(n); if(!cat) return;
+  g.appendChild(mk('circle',{class:'band', cx:x, cy:y, r:9}));
+  const t = mk('text',{x:x, y:y+3.4, class:'pastille'});
+  t.textContent = cat; g.appendChild(t);
+}
+</script>
+<script>
+"use strict";
+/* ---------------- Interactions arbre ---------------- */
+function select(id){
+  sel = id; render();
+  const has = !!id;
+  document.getElementById('btnAddAnt').disabled = !has;
+  document.getElementById('btnLinkMode').disabled = !has;
+  document.getElementById('btnEditNode').disabled = !has;
+  document.getElementById('btnDelNode').disabled = !has;
+  const info = document.getElementById('selInfo');
+  document.getElementById('qBox').hidden = !has;
+  if(!has){ info.textContent = "Aucun fait sélectionné. Cliquez sur un fait de l'arbre."; renderDispo(); return; }
+  const n = byId(S.nodes,id);
+  const par = parentsOf(id), ch = childrenOf(id);
+  let lien = "";
+  if(par.length>1) lien = "<br>Conjonction : "+par.length+" antécédents nécessaires (ET).";
+  else if(par.length===1) lien = "<br>Enchaînement : 1 antécédent.";
+  if(ch.length>1) lien += "<br>Disjonction : ce fait a rendu possibles "+ch.length+" conséquents (ET).";
+  info.innerHTML = "<b>"+esc(nodeLabel(n))+"</b>" +
+    (n.dommage ? "<br><i>Dommage — point de départ de l'arbre</i>"
+      : "<br>"+TYPE_LBL[nodeType(n)]+" · "+CAT_LBL[nodeCat(n)]) + lien;
+  renderDispo();
+}
+function onNodeClick(id){
+  if(linkMode && sel && id!==sel){
+    if(creeCycle(id, sel)){ toast("Impossible : ce lien créerait une boucle."); return; }
+    if(!S.links.some(l=>l.from===id && l.to===sel)) S.links.push({from:id, to:sel, dashed:false});
+    setLinkMode(false); layout(); render(); select(sel); toast("Lien créé.");
+    return;
+  }
+  select(id);
+}
+document.getElementById('svgArbre').addEventListener('click', ()=>{ if(!linkMode && !panJustMoved) select(null); });
+
+function setLinkMode(on){
+  linkMode = on;
+  document.getElementById('btnLinkMode').setAttribute('aria-pressed', String(on));
+  document.getElementById('btnLinkMode').textContent = on ? "Annuler la liaison" : "Relier à un fait existant";
+  document.getElementById('linkHint').hidden = !on;
+}
+document.getElementById('btnLinkMode').addEventListener('click', ()=>setLinkMode(!linkMode));
+document.getElementById('btnSetDommage').addEventListener('click', setDommage);
+document.getElementById('btnAddAnt').addEventListener('click', ()=>{ if(sel) addAntecedent(sel,null); });
+document.getElementById('btnDelNode').addEventListener('click', ()=>{
+  if(!sel) return;
+  const n = byId(S.nodes,sel);
+  if(n.dommage && S.nodes.length>1){ toast("Retirez d'abord les autres faits : le dommage est la racine de l'arbre."); return; }
+  removeNode(sel);
+});
+document.getElementById('btnEditNode').addEventListener('click', ()=>{
+  if(!sel) return;
+  const n = byId(S.nodes,sel);
+  if(n.dommage){ setDommage(); return; }
+  const f = faitOf(n);
+  const inLink = S.links.find(l=>l.from===n.id);
+  openNodeDialog({
+    titre:"Modifier le fait", label:f.label, type:f.type, cat:f.cat,
+    showType:true, showCat:true, showDashed:true, dashed: inLink? !!inLink.dashed : false,
+    onOk:(v)=>{
+      f.label=v.label; f.type=v.type; f.cat=v.cat;
+      S.links.filter(l=>l.from===n.id).forEach(l=>l.dashed = v.dashed);
+      layout(); render(); select(n.id); renderFaits(); renderDispo();
+    }
+  });
+});
+document.getElementById('btnRelayout').addEventListener('click', ()=>{
+  S.nodes.forEach(n=>n.fixed=false); layout(); render(); toast("Arbre réorganisé.");
+});
+function setZoom(z){
+  zoom = Math.min(2, Math.max(.4, z));
+  document.getElementById('zoomLbl').textContent = Math.round(zoom*100)+' %';
+  layout(); render();
+}
+function fitZoom(){
+  if(!damageNode()) return;
+  const wrap = document.getElementById('canvasWrap');
+  const dispoW = wrap.clientWidth - 18, dispoH = wrap.clientHeight - 18;
+  // dimensions réelles du contenu, indépendamment de la surface de travail
+  const xs = S.nodes.map(n=>n.x), ys = S.nodes.map(n=>n.y);
+  const cW = (Math.max(...xs) - Math.min(...xs)) + ELL_RX*2 + MARGIN;
+  const cH = (Math.max(...ys) - Math.min(...ys)) + ELL_RY*2 + MARGIN;
+  if(dispoW<100) return;
+  const k = Math.min(dispoW/cW, dispoH/cH, 1.15);
+  setZoom(Math.max(0.5, k));
+  setTimeout(()=>{ wrap.scrollLeft = wrap.scrollWidth; }, 30);
+  if(k < 0.5) toast("L'arbre est trop large pour tenir en entier sans devenir illisible : utilisez le plein écran ou faites glisser le fond pour vous déplacer.");
+}
+document.getElementById('btnFit').addEventListener('click', fitZoom);
+
+/* --- plein écran --- */
+function toggleFullscreen(on){
+  const z = document.getElementById('zoneTravail');
+  const b = document.getElementById('btnFullscreen');
+  const active = (on===undefined) ? !z.classList.contains('fs') : on;
+  z.classList.toggle('fs', active);
+  b.textContent = active ? 'Quitter le plein écran' : 'Plein écran';
+  document.body.style.overflow = active ? 'hidden' : '';
+  setTimeout(()=>{ layout(); render(); }, 40);
+}
+document.getElementById('btnFullscreen').addEventListener('click', ()=>toggleFullscreen());
+window.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && document.getElementById('zoneTravail').classList.contains('fs')) toggleFullscreen(false);
+});
+
+/* --- la zone de travail suit les changements de taille --- */
+let rzT = null, lastWrapW = 0, lastWrapH = 0;
+function onResize(force){
+  const w = document.getElementById('canvasWrap');
+  if(force!==true && Math.abs(w.clientWidth-lastWrapW)<24 && Math.abs(w.clientHeight-lastWrapH)<24) return;
+  lastWrapW = w.clientWidth; lastWrapH = w.clientHeight;
+  clearTimeout(rzT); rzT = setTimeout(()=>{ layout(); render(); }, 140);
+}
+window.addEventListener('resize', ()=>onResize(true));
+if(window.ResizeObserver){
+  new ResizeObserver(()=>onResize()).observe(document.getElementById('canvasWrap'));
+}
+document.getElementById('btnZoomIn').addEventListener('click', ()=>setZoom(zoom+.15));
+document.getElementById('btnZoomOut').addEventListener('click', ()=>setZoom(zoom-.15));
+
+/* --- déplacement du plan de travail (glisser le fond) --- */
+let pan = null;
+document.getElementById('svgArbre').addEventListener('mousedown', e=>{
+  if(e.target.closest('.node-box') || linkMode) return;
+  const wrap = document.getElementById('canvasWrap');
+  pan = {x:e.clientX, y:e.clientY, sl:wrap.scrollLeft, st:wrap.scrollTop, moved:false};
+  wrap.style.cursor = 'grabbing';
+  e.preventDefault();
+});
+window.addEventListener('mousemove', e=>{
+  if(!pan) return;
+  const wrap = document.getElementById('canvasWrap');
+  const dx = e.clientX - pan.x, dy = e.clientY - pan.y;
+  if(Math.abs(dx)>4 || Math.abs(dy)>4) pan.moved = true;
+  wrap.scrollLeft = pan.sl - dx;
+  wrap.scrollTop  = pan.st - dy;
+});
+window.addEventListener('mouseup', ()=>{
+  if(pan){
+    document.getElementById('canvasWrap').style.cursor = '';
+    panJustMoved = pan.moved; pan = null;
+    setTimeout(()=>{ panJustMoved = false; }, 60);
+  }
+});
+let panJustMoved = false;
+/* molette + Ctrl : zoom */
+document.getElementById('canvasWrap').addEventListener('wheel', e=>{
+  if(!e.ctrlKey) return;
+  e.preventDefault();
+  setZoom(zoom + (e.deltaY < 0 ? .1 : -.1));
+}, {passive:false});
+
+/* --- glisser-déposer d'un fait --- */
+let drag = null;
+function startDrag(e, n){
+  if(linkMode) return;
+  const svg = document.getElementById('svgArbre');
+  const r = svg.getBoundingClientRect();
+  const sx = (+svg.dataset.w||1200)/r.width;
+  drag = {n, ox:e.clientX, oy:e.clientY, x0:n.x, y0:n.y, sx};
+  e.preventDefault();
+}
+window.addEventListener('mousemove', e=>{
+  if(!drag) return;
+  drag.n.x = drag.x0 + (e.clientX-drag.ox)*drag.sx;
+  drag.n.y = drag.y0 + (e.clientY-drag.oy)*drag.sx;
+  drag.n.fixed = true;
+  render();
+});
+window.addEventListener('mouseup', ()=>{ drag = null; });
+
+/* --- faits disponibles --- */
+function renderDispo(){
+  const box = document.getElementById('dispoList');
+  const libres = S.faits.filter(f=>!nodeOfFait(f.id));
+  if(!libres.length){ box.innerHTML = '<p class="vide">Tous les faits recueillis sont placés dans l\'arbre.</p>'; return; }
+  box.innerHTML = '';
+  libres.forEach(f=>{
+    const d = document.createElement('div');
+    d.className = 'fait ' + (f.type==='etat'?'etat':'var');
+    d.innerHTML = '<span class="lbl">'+esc(f.label)+'</span><span class="meta"><span class="tag '+f.cat+'">'+CAT_LBL[f.cat]+'</span></span>';
+    d.title = sel ? "Placer comme antécédent du fait sélectionné" : "Sélectionnez d'abord un fait dans l'arbre";
+    d.onclick = ()=>{
+      if(!sel){ toast("Sélectionnez d'abord le fait de l'arbre auquel rattacher celui-ci."); return; }
+      addAntecedent(sel, f.id);
+    };
+    box.appendChild(d);
+  });
+}
+
+/* ---------------- Boîte de dialogue ---------------- */
+let dlgCb = null;
+function openNodeDialog(o){
+  const dlg = document.getElementById('dlgNode');
+  document.getElementById('dlgTitre').textContent = o.titre;
+  document.getElementById('d_label').value = o.label||'';
+  document.getElementById('d_type').value = o.type||'variation';
+  document.getElementById('d_cat').value = o.cat||'T';
+  document.getElementById('d_dashed').checked = !!o.dashed;
+  document.getElementById('d_type').closest('.grid-form').style.display = (o.showType||o.showCat)?'':'none';
+  document.getElementById('d_dashed').closest('label').style.display = o.showDashed?'':'none';
+  dlgCb = o.onOk;
+  dlg.showModal();
+  setTimeout(()=>document.getElementById('d_label').focus(), 40);
+}
+document.getElementById('dlgNode').addEventListener('close', function(){
+  const dlg = this;
+  if(dlg.returnValue!=='ok' || !dlgCb){ dlgCb=null; return; }
+  const label = document.getElementById('d_label').value.trim();
+  if(!label){ dlgCb=null; return; }
+  const cb = dlgCb; dlgCb=null;
+  cb({label, type:document.getElementById('d_type').value, cat:document.getElementById('d_cat').value,
+      dashed:document.getElementById('d_dashed').checked});
+});
+</script>
+<script>
+"use strict";
+/* ---------------- Plan d'actions ---------------- */
+function ordreArbre(){
+  const dom = damageNode(); if(!dom) return [];
+  const out = [], seen = new Set(); const file = [dom.id];
+  while(file.length){
+    const id = file.shift();
+    if(seen.has(id)) continue; seen.add(id);
+    const n = byId(S.nodes,id); if(n) out.push(n);
+    parentsOf(id).forEach(p=>file.push(p.id));
+  }
+  return out;
+}
+function buildPlan(){
+  const tb = document.getElementById('planBody');
+  const list = ordreArbre().filter(n=>!n.dommage);
+  if(!list.length){ tb.innerHTML = '<tr><td colspan="6" class="vide">Aucun fait dans l\'arbre pour l\'instant.</td></tr>'; return; }
+  tb.innerHTML = '';
+  list.forEach((n,i)=>{
+    const p = S.plan[n.id] = S.plan[n.id] || {mesures:'', resp:'', delai:''};
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td><span class="badge-num">'+(i+1)+'</span></td>' +
+      '<td>'+esc(nodeLabel(n))+'</td>' +
+      '<td><span class="tag '+nodeCat(n)+'">'+CAT_LBL[nodeCat(n)]+'</span><br><span class="tag '+(nodeType(n)==='etat'?'etat':'var')+'" style="margin-top:4px">'+(nodeType(n)==='etat'?'État':'Variation')+'</span></td>' +
+      '<td><textarea placeholder="Une mesure par ligne — passez chacune aux 7 critères"></textarea></td>' +
+      '<td><input placeholder="Nom, fonction"></td>' +
+      '<td><input placeholder="Ex. : 30/09"></td>';
+    const [ta, resp, delai] = [tr.querySelector('textarea'), tr.querySelectorAll('input')[0], tr.querySelectorAll('input')[1]];
+    ta.value = p.mesures; resp.value = p.resp; delai.value = p.delai;
+    ta.addEventListener('input', ()=>p.mesures=ta.value);
+    resp.addEventListener('input', ()=>p.resp=resp.value);
+    delai.addEventListener('input', ()=>p.delai=delai.value);
+    tb.appendChild(tr);
+  });
+}
+document.getElementById('btnRefreshPlan').addEventListener('click', ()=>{ buildPlan(); toast("Plan d'actions actualisé."); });
+document.getElementById('btnPrintPlan').addEventListener('click', ()=>window.print());
+document.getElementById('btnPrint').addEventListener('click', ()=>window.print());
+
+/* ---------------- Export / import ---------------- */
+function dl(blob, name){
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 400);
+}
+function exportJSON(){
+  const nom = (S.meta.entreprise||'analyse').replace(/[^a-zA-Z0-9-_]+/g,'_').slice(0,40);
+  dl(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}), 'arbre-des-causes_'+nom+'.json');
+  toast("Analyse enregistrée.");
+}
+document.getElementById('btnExportJSON').addEventListener('click', exportJSON);
+document.getElementById('btnExportJSON2').addEventListener('click', exportJSON);
+document.getElementById('btnImport').addEventListener('click', ()=>document.getElementById('fileInput').click());
+document.getElementById('fileInput').addEventListener('change', e=>{
+  const file = e.target.files[0]; if(!file) return;
+  const r = new FileReader();
+  r.onload = ()=>{
+    try{
+      const o = JSON.parse(r.result);
+      if(!o.faits || !o.nodes) throw new Error('format');
+      S = {meta:o.meta||{}, faits:o.faits||[], nodes:o.nodes||[], links:o.links||[], plan:o.plan||{}};
+      sel=null; setZoom(1); refreshAll(); setTimeout(fitZoom, 60); toast("Analyse chargée.");
+    }catch(err){ toast("Fichier illisible : ce n'est pas une analyse enregistrée par ce module."); }
+  };
+  r.readAsText(file); e.target.value='';
+});
+document.getElementById('btnReset').addEventListener('click', ()=>{
+  if(!confirm("Effacer l'analyse en cours et repartir d'une page blanche ?")) return;
+  S = blankState(); sel=null; setZoom(1); refreshAll(); toast("Nouvelle analyse.");
+});
+
+const SVG_CSS = `
+text{font-family:'Fira Sans','Segoe UI',sans-serif;font-size:11.5px;fill:#243237;text-anchor:middle}
+.shape{fill:#E6E6E6;stroke:#8b9a9e;stroke-width:1.6}
+[data-type="variation"] .shape{fill:#ffffff}
+[data-cat="H"] .shape{stroke:#C33F14}[data-cat="O"] .shape{stroke:#075767}[data-cat="T"] .shape{stroke:#1F7078}
+[data-cat="H"] .band{fill:#C33F14}[data-cat="O"] .band{fill:#075767}[data-cat="T"] .band{fill:#1F7078}
+[data-dommage="1"] .shape{fill:#075767;stroke:#075767}
+[data-dommage="1"] text{fill:#ffffff;font-weight:700}
+.lnk{fill:none;stroke:#6d7f84;stroke-width:1.6}
+.lnk.dashed{stroke-dasharray:6 4}
+.et-lbl{font-family:'Lato',sans-serif;font-size:10.5px;font-weight:700;fill:#C33F14;text-anchor:middle}
+.pastille{font-family:'Lato',sans-serif;font-size:9.5px;font-weight:700;fill:#ffffff;text-anchor:middle}
+`;
+document.getElementById('btnPNG').addEventListener('click', ()=>{
+  if(!damageNode()){ toast("L'arbre est vide."); return; }
+  const src = document.getElementById('svgArbre');
+  const bb = contentBox();
+  const W = bb ? Math.round(bb.w) : (+src.dataset.w||1200);
+  const H = bb ? Math.round(bb.h) : (+src.dataset.h||620);
+  const k = 2;
+  const clone = src.cloneNode(true);
+  clone.setAttribute('width', W); clone.setAttribute('height', H);
+  if(bb) clone.setAttribute('viewBox', Math.round(bb.x)+' '+Math.round(bb.y)+' '+W+' '+H);
+  clone.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+  const st = document.createElementNS("http://www.w3.org/2000/svg",'style');
+  st.textContent = SVG_CSS; clone.insertBefore(st, clone.firstChild);
+  const bg = document.createElementNS("http://www.w3.org/2000/svg",'rect');
+  bg.setAttribute('x',0); bg.setAttribute('y',0); bg.setAttribute('width',W); bg.setAttribute('height',H); bg.setAttribute('fill','#ffffff');
+  clone.insertBefore(bg, clone.querySelector('#gLinks'));
+  const data = new XMLSerializer().serializeToString(clone);
+  const img = new Image();
+  img.onload = ()=>{
+    const c = document.createElement('canvas');
+    c.width = W*k; c.height = H*k;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+    ctx.drawImage(img,0,0,c.width,c.height);
+    c.toBlob(b=>{ dl(b,'arbre-des-causes.png'); toast("Image exportée."); });
+  };
+  img.onerror = ()=>toast("Export impossible dans ce navigateur — utilisez « Imprimer / PDF ».");
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
+});
+
+let vbSauve = null;
+window.addEventListener('beforeprint', ()=>{
+  const svg = document.getElementById('svgArbre'), bb = contentBox();
+  if(!bb) return;
+  vbSauve = {vb:svg.getAttribute('viewBox'), w:svg.getAttribute('width'), h:svg.getAttribute('height')};
+  svg.setAttribute('viewBox', Math.round(bb.x)+' '+Math.round(bb.y)+' '+Math.round(bb.w)+' '+Math.round(bb.h));
+  svg.setAttribute('width', Math.round(bb.w)); svg.setAttribute('height', Math.round(bb.h));
+});
+window.addEventListener('afterprint', ()=>{
+  if(!vbSauve) return;
+  const svg = document.getElementById('svgArbre');
+  svg.setAttribute('viewBox', vbSauve.vb); svg.setAttribute('width', vbSauve.w); svg.setAttribute('height', vbSauve.h);
+  vbSauve = null;
+});
+
+function refreshAll(){
+  fillMeta(); renderFaits(); renderDispo(); layout(); render(); select(null); buildPlan();
+}
+</script>
+<script>
+"use strict";
+/* ---------------- Cas d'exemple ---------------- */
+function chargeCas(cas){
+  S = blankState(); sel = null;
+  S.meta = cas.meta;
+  const map = {};
+  cas.faits.forEach(f=>{
+    const o = {id:nid('f'), label:f[0], cat:f[1], type:f[2], source:'Cas pédagogique'};
+    S.faits.push(o);
+    const n = {id:nid('n'), faitId:o.id, dommage:false, x:0,y:0,fixed:false};
+    S.nodes.push(n); map[f[0]] = n.id;
+  });
+  const dom = {id:nid('n'), faitId:null, label:cas.dommage, dommage:true, x:0,y:0,fixed:false};
+  S.nodes.push(dom); map[cas.dommage] = dom.id;
+  cas.liens.forEach(l=>{
+    if(map[l[0]] && map[l[1]]) S.links.push({from:map[l[0]], to:map[l[1]], dashed:!!l[2]});
+  });
+  refreshAll();
+  goTab('p-arbre');
+  setTimeout(fitZoom, 60);
+  toast("Cas chargé : "+cas.titre);
+}
+
+/* ---- Cas 1 : préparation de commandes ---- */
+const CAS_LOGISTIQUE = {
+  titre:"entrepôt logistique",
+  meta:{entreprise:"Plateforme logistique — préparation de commandes", victime:"Monsieur B.", age:"34 ans",
+    qualif:"Préparateur de commandes", anciennete:"3 ans au poste", date:"—", heure:"9 h 20, mardi",
+    lieu:"Zone de préparation, quai 3", activite:"Distribution et logistique",
+    lesions:"Fracture du métatarse — arrêt de travail",
+    recit:"Monsieur B. prépare les commandes du matin. La filmeuse automatique est en panne depuis la veille au soir : en attendant l'intervention du prestataire, les palettes sont filmées à la main. Pour reprendre une palette mal équilibrée, Monsieur B. dépose les cartons au sol autour de lui, puis les remonte un par un. La zone de préparation est encombrée par les palettes en attente de chargement, comme tous les mardis matin. En reculant pour saisir un carton, il heurte du talon une palette posée derrière lui, perd l'équilibre et se rattrape à la pile de cartons déjà remontés. Un carton de 18 kg placé en haut de la pile bascule et lui tombe sur le pied. Monsieur B. portait ses chaussures de ville : ses chaussures de sécurité étaient restées au vestiaire.",
+    ta:"Préparation de commandes et filmage manuel des palettes, la filmeuse automatique étant hors service.",
+    ma:"Filmeuse automatique en panne ; film manuel ; palettes bois ; cartons de 12 à 20 kg.",
+    mi:"Zone de préparation encombrée de palettes en attente de chargement ; sol béton.",
+    secours:"Sauveteur secouriste du travail présent ; transport au centre hospitalier par un collègue.",
+    analystes:"Binôme : responsable sécurité + secrétaire du CSE",
+    temoins:"Deux préparateurs de la même équipe"},
+  dommage:"Fracture du pied",
+  faits:[
+    ["Le carton bascule sur son pied","T","variation"],
+    ["Monsieur B. porte ses chaussures de ville","H","etat"],
+    ["Monsieur B. se rattrape à la pile de cartons","H","variation"],
+    ["Un carton de 18 kg est posé en haut de la pile","T","variation"],
+    ["Monsieur B. perd l'équilibre","H","variation"],
+    ["Monsieur B. heurte une palette posée derrière lui","H","variation"],
+    ["La zone de préparation est encombrée de palettes en attente","O","etat"],
+    ["Monsieur B. recule pour saisir un carton","H","variation"],
+    ["Les cartons sont déposés au sol autour du poste","H","variation"],
+    ["Le filmage des palettes se fait à la main","O","variation"],
+    ["La filmeuse automatique est en panne depuis la veille","T","variation"]
+  ],
+  liens:[
+    ["Le carton bascule sur son pied","Fracture du pied"],
+    ["Monsieur B. porte ses chaussures de ville","Fracture du pied"],
+    ["Monsieur B. se rattrape à la pile de cartons","Le carton bascule sur son pied"],
+    ["Un carton de 18 kg est posé en haut de la pile","Le carton bascule sur son pied"],
+    ["Monsieur B. perd l'équilibre","Monsieur B. se rattrape à la pile de cartons"],
+    ["Monsieur B. heurte une palette posée derrière lui","Monsieur B. perd l'équilibre"],
+    ["La zone de préparation est encombrée de palettes en attente","Monsieur B. heurte une palette posée derrière lui"],
+    ["Monsieur B. recule pour saisir un carton","Monsieur B. heurte une palette posée derrière lui"],
+    ["Les cartons sont déposés au sol autour du poste","Monsieur B. recule pour saisir un carton"],
+    ["Le filmage des palettes se fait à la main","Les cartons sont déposés au sol autour du poste"],
+    ["Le filmage des palettes se fait à la main","Un carton de 18 kg est posé en haut de la pile"],
+    ["La filmeuse automatique est en panne depuis la veille","Le filmage des palettes se fait à la main"]
+  ]
+};
+
+/* ---- Cas 2 : déplacement professionnel ---- */
+const CAS_ROUTIER = {
+  titre:"risque routier professionnel",
+  meta:{entreprise:"Société de maintenance d'équipements", victime:"Madame C.", age:"41 ans",
+    qualif:"Technicienne de maintenance itinérante", anciennete:"6 ans", date:"—", heure:"17 h 55, jeudi",
+    lieu:"Route départementale, hors agglomération",
+    activite:"Maintenance industrielle — interventions sur site client",
+    lesions:"Fracture de deux côtes — arrêt de travail",
+    recit:"Madame C. effectue trois interventions par jour en moyenne. Ce jeudi-là, un technicien de l'équipe est absent et une quatrième intervention est ajoutée à son planning en début d'après-midi. Elle quitte le troisième site à 17 h 40 pour un rendez-vous fixé à 18 h 15 à quarante kilomètres de là, sur départementale. Son téléphone professionnel, posé sur le siège passager, sonne pendant le trajet. Elle tourne la tête vers l'écran pour identifier l'appelant. Au même moment, le véhicule qui la précède ralentit pour tourner à gauche. Elle percute l'arrière de ce véhicule. L'airbag se déclenche ; elle est conduite aux urgences par les sapeurs-pompiers.",
+    ta:"Quatre interventions client dans la journée au lieu de trois, dont une ajoutée en cours d'après-midi ; trajet entre deux sites.",
+    ma:"Véhicule de service ; téléphone professionnel non fixé, posé sur le siège passager.",
+    mi:"Route départementale hors agglomération, fin de journée, trafic dense.",
+    secours:"Alerte donnée par un automobiliste ; intervention des sapeurs-pompiers.",
+    analystes:"Binôme : animateur sécurité + membre de la CSSCT",
+    temoins:"Conducteur du véhicule percuté ; responsable de planning"},
+  dommage:"Fracture de deux côtes",
+  faits:[
+    ["Le véhicule percute l'arrière du véhicule qui précède","T","variation"],
+    ["Madame C. roule à 90 km/h","H","etat"],
+    ["Madame C. tourne la tête vers le siège passager","H","variation"],
+    ["Le véhicule qui précède ralentit pour tourner à gauche","T","variation"],
+    ["Le téléphone professionnel sonne pendant le trajet","T","variation"],
+    ["Le téléphone est posé sur le siège passager","T","etat"],
+    ["Madame C. dispose de 35 minutes pour parcourir 40 km","O","variation"],
+    ["Une quatrième intervention est ajoutée au planning à 14 h","O","variation"],
+    ["Un technicien de l'équipe est absent","O","variation"]
+  ],
+  liens:[
+    ["Le véhicule percute l'arrière du véhicule qui précède","Fracture de deux côtes"],
+    ["Madame C. tourne la tête vers le siège passager","Le véhicule percute l'arrière du véhicule qui précède"],
+    ["Le véhicule qui précède ralentit pour tourner à gauche","Le véhicule percute l'arrière du véhicule qui précède"],
+    ["Madame C. roule à 90 km/h","Le véhicule percute l'arrière du véhicule qui précède"],
+    ["Le téléphone professionnel sonne pendant le trajet","Madame C. tourne la tête vers le siège passager"],
+    ["Le téléphone est posé sur le siège passager","Madame C. tourne la tête vers le siège passager"],
+    ["Madame C. dispose de 35 minutes pour parcourir 40 km","Madame C. roule à 90 km/h"],
+    ["Une quatrième intervention est ajoutée au planning à 14 h","Madame C. dispose de 35 minutes pour parcourir 40 km"],
+    ["Un technicien de l'équipe est absent","Une quatrième intervention est ajoutée au planning à 14 h"]
+  ]
+};
+
+document.getElementById('btnCasLogistique').addEventListener('click', ()=>{
+  if(S.faits.length && !confirm("Remplacer l'analyse en cours par le cas pédagogique ?")) return;
+  chargeCas(CAS_LOGISTIQUE);
+});
+document.getElementById('btnCasRoutier').addEventListener('click', ()=>{
+  if(S.faits.length && !confirm("Remplacer l'analyse en cours par le cas pédagogique ?")) return;
+  chargeCas(CAS_ROUTIER);
+});
+
+/* ---------------- Init ---------------- */
+refreshAll();
+</script>
+</body>
+</html>
